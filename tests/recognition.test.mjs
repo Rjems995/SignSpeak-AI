@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as tf from '@tensorflow/tfjs';
 import {normalize,Stabilizer,LandmarkClassifier,gatePrediction} from '../signspeak/static/js/recognition.js';
+import {motionFeatures,MotionClassifier} from '../signspeak/static/js/motion.js';
 const model=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/classifier.json',import.meta.url)));
 const report=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/evaluation.json',import.meta.url)));
 const refs=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/references.json',import.meta.url)));
@@ -37,4 +38,19 @@ test('uncertain frames cannot stabilize and unknown geometry is rejected',()=>{
  const p=model.labels.map(x=>x==='A'?.99:.01/6);
  assert.equal(gatePrediction(p,Array(42).fill(100),model,.85).label,null);
  assert.equal(gatePrediction(model.labels.map(()=>1/7),Array(42).fill(0),model,.85).label,null);
+});
+
+test('all 24 static letters are trained and orientation remains meaningful',()=>{
+ assert.deepEqual([...model.labels].sort(),[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].filter(l=>l!=='J'&&l!=='Z'));
+ assert.notDeepEqual(normalize(refs.K),normalize(refs.K.map(v=>-v)));
+});
+test('real J/Z clips match Python temporal features and TF.js probabilities',()=>{
+ const motion=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/motion-classifier.json',import.meta.url)));
+ const evaluation=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/motion-evaluation.json',import.meta.url)));
+ const classifier=new MotionClassifier(motion,tf);
+ assert.deepEqual(motion.labels,['J','Z']);
+ for(const example of evaluation.test_examples){const features=motionFeatures(example.frames);features.forEach((v,i)=>assert.ok(Math.abs(v-example.features[i])<1e-9));classifier.probabilities(features).forEach((v,i)=>assert.ok(Math.abs(v-example.probabilities[i])<.00002));}
+ const points=evaluation.test_examples[0].frames[0].points;
+ assert.throws(()=>motionFeatures(Array.from({length:20},(_,i)=>({t:i*100,points}))),/stationary/);
+ assert.throws(()=>motionFeatures(evaluation.test_examples[0].frames.slice(0,3)),/eight/);
 });

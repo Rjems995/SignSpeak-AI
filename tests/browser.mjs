@@ -24,6 +24,9 @@ try{
  await page.locator('#camera-start').click();
  await page.waitForFunction(()=>document.getElementById('camera-status').textContent.includes('Camera on'),undefined,{timeout:90000});
  assert.equal(await page.locator('#camera-empty').isVisible(),false);
+ assert.equal(await page.locator('#record-motion').isEnabled(),true);
+ await page.locator('#record-motion').click();
+ await page.waitForFunction(()=>document.getElementById('toast').textContent.includes('clearly visible hand'));
  // Fake browser video has no ASL hand; it must not produce invented letters.
  await page.waitForTimeout(1200);assert.equal(await page.locator('#translation-text').inputValue(),'');
  await page.locator('#camera-stop').click();assert.ok((await page.locator('#camera-status').textContent()).includes('Camera off'));
@@ -46,7 +49,7 @@ try{
  console.log('Recorded-hand integration result:',JSON.stringify(realHand));
  await page.screenshot({path:'artifacts/translator.png',fullPage:true});
  await page.goto(base+'/settings');await page.selectOption('#theme','dark');await page.getByRole('button',{name:'Save preferences'}).click();await page.waitForFunction(()=>document.documentElement.dataset.theme==='dark');await page.reload();assert.equal(await page.getAttribute('html','data-theme'),'dark');
- await page.goto(base+'/learn',{waitUntil:'networkidle'});await page.locator('.mark-learned').first().click();await page.waitForFunction(()=>document.getElementById('learn-count').textContent==='1 / 6');
+ await page.goto(base+'/learn',{waitUntil:'networkidle'});assert.equal(await page.locator('.letter-card').count(),26);assert.equal(await page.getAttribute('#learn-progress','max'),'26');await page.locator('.mark-learned').first().click();await page.waitForFunction(()=>document.getElementById('learn-count').textContent==='1 / 26');
  // Complete registration, private saving/search/deletion, and account cleanup.
  const email=`browser-${Date.now()}@example.test`,password='a-long-browser-test-password';
  await page.goto(base+'/register');await page.fill('#name','Browser Test');await page.fill('#email',email);await page.fill('#password',password);await page.getByRole('button',{name:'Create account',exact:true}).click();await page.waitForURL('**/dashboard');

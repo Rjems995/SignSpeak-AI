@@ -1,7 +1,7 @@
 import numpy as np
 
-FEATURE_VERSION = "wrist-palm-axis-mirror-xy-v1"
-LABELS = ["A", "B", "C", "L", "V", "Y", "_"]
+FEATURE_VERSION = "wrist-scale-orientation-xy-v2"
+LABELS = list("ABCDEFGHIKLMNOPQRSTUVWXY")
 
 
 def normalize(points):
@@ -14,9 +14,10 @@ def normalize(points):
     size = np.linalg.norm(palm)
     if size < 1e-6:
         raise ValueError("Degenerate hand geometry")
-    x = (p[:, 0] * -palm[1] + p[:, 1] * palm[0]) / size ** 2
-    y = -(p @ palm) / size ** 2
-    if x[5] > x[17]:
-        x *= -1
-    return np.column_stack([x, y]).ravel()
+    # Preserve image-plane direction: rotating H/U, K/P, or G/Q into the same
+    # palm-axis frame erases meaningful differences between alphabet letters.
+    cross = p[5, 0] * p[17, 1] - p[5, 1] * p[17, 0]
+    if cross < 0:
+        p[:, 0] *= -1
+    return (p / size).ravel()
 

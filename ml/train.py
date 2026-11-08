@@ -20,9 +20,20 @@ def split_indices(samples, y):
         trainval, test = next(GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=42).split(ids, y, groups))
         train, val = next(GroupShuffleSplit(n_splits=1, test_size=0.25, random_state=43).split(trainval, y[trainval], np.array(groups)[trainval]))
         return trainval[train], trainval[val], test, "participant-disjoint"
-    trainval, test = train_test_split(ids, test_size=0.2, stratify=y, random_state=42)
-    train, val = train_test_split(trainval, test_size=0.25, stratify=y[trainval], random_state=43)
-    return train, val, test, "deduplicated stratified sample split; participant IDs unavailable or incomplete"
+    # Allocate per class: sklearn's global rounding can omit a class with only
+    # three examples, even though one example per split is possible.
+    rng = np.random.default_rng(42)
+    train, val, test = [], [], []
+    for label in sorted(set(y)):
+        indices = rng.permutation(ids[y == label])
+        if len(indices) < 2:
+            raise ValueError(f"{label} needs at least two unique samples for separate training/test data")
+        ntest = max(1, round(len(indices)*.2))
+        nval = 0 if len(indices) == 2 else max(1, round(len(indices)*.2))
+        test.extend(indices[:ntest])
+        val.extend(indices[ntest:ntest+nval])
+        train.extend(indices[ntest+nval:])
+    return np.array(train), np.array(val), np.array(test), "deduplicated per-class sample split; participant IDs unavailable or incomplete"
 
 
 def main():
@@ -34,23 +45,26 @@ def main():
     samples = json.loads(raw)
     x = np.array([r["features"] for r in samples])
     y = np.array([r["letter"] if r["letter"] in LABELS else "_" for r in samples])
+    required = set(LABELS)
+    if not required.issubset(set(y)):
+        raise ValueError("Collect training data for all 24 static ASL letters before training.")
     train, val, test, split_name = split_indices(samples, y)
-    for indices in [train, val, test]:
-        if set(y[indices]) != set(LABELS):
-            raise ValueError("Each split must contain all six letters and unsupported examples. Collect more participants/samples.")
+    for indices in [train, test]:
+        if set(y[indices]) != set(y):
+            raise ValueError("Each split must contain every training class. Collect more participants/samples.")
     scaler = StandardScaler().fit(x[train])
     # Augmentation only touches training samples, after the split.
     rng = np.random.default_rng(17)
     train_x = np.concatenate([x[train]] + [x[train] + rng.normal(0, 0.015, x[train].shape) for _ in range(5)])
     train_y = np.tile(y[train], 6)
-    classifier = MLPClassifier(hidden_layer_sizes=(64, 32), solver="lbfgs", alpha=0.1, max_iter=1500, random_state=17)
+    classifier = MLPClassifier(hidden_layer_sizes=(96, 64), solver="lbfgs", alpha=0.1, max_iter=2000, random_state=17)
     classifier.fit(scaler.transform(train_x), train_y)
     labels = classifier.classes_.tolist()
     # Class-specific support gate. Tune only with validation distances, never test data.
     support = {label: x[train][y[train] == label].tolist() for label in labels if label != "_"}
     def distance(features, label):
         return np.sqrt(((features[:, None, :] - np.array(support[label])[None, :, :]) ** 2).mean(axis=2)).min(axis=1)
-    gates = {label: float(max(0.12, np.quantile(distance(x[val][y[val] == label], label), 0.95))) for label in support}
+    gates = {label: float(max(0.12, np.quantile(distance(x[val][y[val] == label], label), 0.95))) if (y[val] == label).any() else 0.12 for label in support}
     probability = classifier.predict_proba(scaler.transform(x[test]))
     raw_prediction = np.array(labels)[probability.argmax(axis=1)]
     accepted = raw_prediction.copy()
@@ -65,6 +79,9 @@ def main():
         "raw_classifier_accuracy": float(accuracy_score(y[test], raw_prediction)),
         "supported_letter_accuracy": float(accuracy_score(y[test][y[test] != "_"], raw_prediction[y[test] != "_"])),
         "supported_letter_test_samples": int((y[test] != "_").sum()),
+        "rejection_evaluated": "_" in y[test],
+        "validation_missing_classes": [label for label in labels if label not in y[val]],
+        "low_support_warning": ("No validation examples for " + ", ".join(label for label in labels if label not in y[val]) + ". These classes use a fixed conservative distance gate.") if any(label not in y[val] for label in labels) else "",
         "gated_accuracy_at_threshold_085": float(accuracy_score(y[test], accepted)),
         "classification_report": classification_report(y[test], raw_prediction, labels=labels, output_dict=True, zero_division=0),
         "confusion_matrix": confusion_matrix(y[test], raw_prediction, labels=labels).tolist(),
@@ -82,20 +99,20 @@ def main():
     save("metadata.json", {"ready": True, "labels": [x for x in labels if x != "_"], "feature_version": FEATURE_VERSION,
                            "training_samples": len(train), "test_samples": len(test), "test_accuracy": report["raw_classifier_accuracy"],
                            "supported_accuracy": report["supported_letter_accuracy"], "supported_test_samples": report["supported_letter_test_samples"],
+                           "low_support_warning": report["low_support_warning"],
                            "split": split_name, "experimental": True, "source": "SigNN public landmark dataset (Apache-2.0)", "warning": report["warning"]})
     references = {}
     for label in support:
-        rows = [r for r in samples if r["letter"] == label]
         # The central training sample is a recorded reference, never a fake prediction.
         candidates = [samples[i] for i in train if y[i] == label]
-        center = np.median([r["features"] for r in rows], axis=0)
+        center = np.median([r["features"] for r in candidates], axis=0)
         references[label] = min(candidates, key=lambda r: np.linalg.norm(np.array(r["features"]) - center))["points"]
     save("references.json", references)
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from sklearn.metrics import ConfusionMatrixDisplay
-    fig, ax = plt.subplots(figsize=(7, 6))
+    fig, ax = plt.subplots(figsize=(12, 11))
     ConfusionMatrixDisplay(np.array(report["confusion_matrix"]), display_labels=labels).plot(ax=ax, colorbar=False, cmap="Purples")
     ax.set_title("Deduplicated sample holdout · not unseen-signer accuracy")
     fig.tight_layout()

@@ -1,18 +1,18 @@
 # SignSpeak AI
 
-A Flask application for learning and recognizing **six static American Sign Language alphabet letters: A, B, C, L, V, and Y**. MediaPipe tracks one hand, and a real trained neural classifier runs through TensorFlow.js in the browser. Recognition builds editable text; browser speech synthesis reads it aloud.
+A Flask application for learning and recognizing the **full American Sign Language alphabet, A-Z**. MediaPipe tracks one hand. A trained TensorFlow.js network recognizes 24 static handshapes; a separate trained temporal network recognizes J/Z movements from a short recording. Recognition builds editable text, and browser speech synthesis reads it aloud.
 
-This is an experimental alphabet MVP. It does not translate ASL sentences, recognize motion letters J/Z, or interpret facial expressions, grammar, or context. ASL and FSL are separate languages; this application supports ASL only.
+This is an experimental alphabet MVP, not full ASL translation. It does not interpret facial expressions, grammar, or context. ASL and FSL are separate languages; this application supports ASL only.
 
 ## What works
 
 - Responsive landing page, dashboard, light/dark themes, and mobile navigation.
 - Permission-based webcam access; real 21-point MediaPipe tracking; optional landmark overlay.
-- A trained 42 → 64 → 32 → 7 MLP: six letters plus an unsupported-handshape class.
-- Shared wrist/scale/rotation/mirror normalization, confidence and distance gates, temporal smoothing, hold duration, and release-before-repeat behavior.
+- Static classifier: 42 -> 96 -> 64 -> 24. Movement classifier: 160 temporal features -> 48 -> 24 -> 2 (J/Z). Both use learned weights, not hardcoded letter predictions.
+- Wrist/scale/mirror normalization that preserves meaningful hand direction, confidence/distance gates, temporal smoothing, and release-before-repeat for static letters.
 - Editable text, space/delete/clear/copy, and explicit saving to private history.
 - English text-to-speech, available voice selection, speed, pause/resume, and stop.
-- Six ASL lesson cards with written steps, recorded landmark reference drawings, and links to ASL University's visual demonstrations.
+- All 26 ASL lesson cards, alphabetical navigation, recorded static references, animated J/Z movement references, and links to ASL University visual demonstrations.
 - Five-letter camera practice sessions, explicit model feedback, attempt counts, session summaries, and saved results.
 - Registration, login/logout, scrypt password hashes, CSRF protection, authentication rate limits, account deletion, and user-scoped records.
 - SQLAlchemy tables for users, profiles, settings, translations, practice sessions/results, and learning progress. SQLite for easy local setup; PostgreSQL on Render.
@@ -54,26 +54,27 @@ The checked-in classifier runs without installing machine learning dependencies 
 
 ## Model results and practical limits
 
-The starter model is trained from [SigNN's public MediaPipe coordinate samples](https://github.com/AriAlavi/SigNN/blob/40bd651899e09a0099767457194062f77f774156/scripts/mediapipe_data_creation/training_data.json), pinned to revision `40bd651899e09a0099767457194062f77f774156`. The upstream Apache 2.0 license and source provenance are in `datasets/`.
+The static model uses [SigNN's pinned public coordinate file](https://github.com/AriAlavi/SigNN/blob/40bd651899e09a0099767457194062f77f774156/scripts/mediapipe_data_creation/training_data.json), distributed under the upstream Apache 2.0 license. Its 622 unique canonical samples are split into 373 training, 124 validation, and 125 test samples. Direction is preserved so orientation-dependent letters remain distinguishable.
 
-After canonical-coordinate deduplication there are **622 unique samples**: 372 training, 125 validation, and 125 test. Splits precede augmentation; only training samples are augmented. The test set stays untouched by fitting and distance-gate tuning.
+The J/Z model uses a deterministic 48-clip subset of the [SigNN public video dataset](https://www.kaggle.com/datasets/signnteam/asl-sign-language-alphabet-videos-j-z), whose Kaggle metadata declares CC0. Two clips failed tracking checks. The remaining 46 real sequences are split by source clip into 27 training, 9 validation, and 10 test clips, before augmentation.
 
-| Measure | Result |
-| --- | --- |
-| Raw classifier accuracy across six letters plus unsupported examples | 89.6% on 125 samples |
-| Raw accuracy on the six supported letters alone | **76.5% on 34 samples** |
-| Gated classification accuracy, default 85% threshold | 92.0% across all 125 samples |
+| Model | Raw held-out accuracy | Accuracy after the default rejection gate |
+| --- | --- | --- |
+| 24 static letters | 74.4% on 125 samples | 68.8% on 125 samples |
+| J/Z movements | 100% on just 10 source clips | 70% on those 10 clips |
 
-The overall figures contain 91 unsupported test examples. They must not be presented as six-letter accuracy. The model especially struggles with V: raw test recall is 25% on four samples. The evaluation report includes per-class precision, recall, F1, raw and gated confusion matrices, split fingerprints, and all held-out predictions. See:
+Gated accuracy counts rejected valid examples as errors; it is not precision among accepted outputs. There are no held-out unsupported poses/movements in these expanded datasets, so unknown-gesture rejection rates are **unmeasured**. No participant IDs are provided. These small sample/clip holdouts do not estimate accuracy on unseen signers. Q has only two unique samples: one training, one test, no validation. Its gate uses a fixed conservative fallback, and the single Q test sample was not correctly classified. Several similar closed handshapes also remain difficult.
 
-- `signspeak/static/models/evaluation.json`
-- `signspeak/static/models/confusion-matrix.png`
-- `signspeak/static/models/metadata.json`
-- [Model card](MODEL_CARD.md)
+Confidence is an uncalibrated model probability. Unsupported gestures can still receive high scores. Inspect/correct the generated text and collect more diverse, consented, participant-labeled data before relying on recognition. The new metrics replace the previous six-letter model's results.
 
-**No signer IDs are supplied by this historical dataset. These sample-holdout results do not establish accuracy on unseen people.** Similar frames or samples from the same person may still cross the sample split even after exact/canonical deduplication. The historical landmark extractor may also differ from the current browser model. Collect new data and run a participant-disjoint evaluation before relying on recognition.
+See `signspeak/static/models/evaluation.json`, `motion-evaluation.json`, their metadata files, and [MODEL_CARD.md](MODEL_CARD.md). Reports contain per-class precision/recall/F1, confusion matrices, split IDs, and held-out probabilities.
 
-Confidence is the model's highest class probability, not a calibrated probability of correct signing. Unsupported handshapes are rejected using a trained background class and a validation-tuned distance gate, but rejection is incomplete. A closed-set model can still confidently misread unfamiliar gestures. Human review of generated text remains necessary.
+## Using every letter
+
+- A-I and K-Y: hold one clear handshape steady until the hold indicator fills.
+- J and Z: enable the camera, select **Record J / Z**, and trace the letter once during the 2.4-second recording. J uses the little fingertip; Z uses the index fingertip. Coordinates are held temporarily in browser memory; no video is recorded or uploaded.
+- In practice, J/Z prompts show a moving reference. Record the movement, then select **Check my sign** within eight seconds of an accepted result.
+- Lower/release your hand before repeating a static letter. Use a new recording for another J/Z. Camera stop, tab hiding, and navigation cancel an unfinished recording.
 
 ## Reproduce training and evaluation
 
@@ -86,7 +87,7 @@ Confidence is the model's highest class probability, not a calibrated probabilit
 .\.venv\Scripts\python.exe -m ml.evaluate
 ```
 
-The classifier is trained with scikit-learn's MLP implementation. Its learned dense kernels, biases, and scaler are exported to JSON and evaluated with TensorFlow.js matrix operations in the browser; no Python inference or video upload is involved. JavaScript tests verify that the exported TF.js network matches the original held-out probabilities. This avoids installing TensorFlow on the application server.
+The classifiers are trained with scikit-learn MLPs. Their learned kernels, biases, and scalers are exported to JSON and evaluated with TensorFlow.js in the browser. No Python inference or video upload is involved. Tests compare Python and JavaScript feature extraction and held-out probabilities for both models.
 
 `ml.train` writes a new classifier, model metadata, measured test results, reference samples, and confusion-matrix image. Restart or refresh the app afterward. Keep the scripts' random seeds and use the locked development versions in `requirements-lock.txt` to reproduce the checked-in artifacts. Retraining with future library versions can change the results.
 
@@ -110,7 +111,7 @@ $env:MPLCONFIGDIR = "$PWD\artifacts\matplotlib"
 .\.venv\Scripts\python.exe -m ml.train --dataset datasets/private/prepared.json
 ```
 
-The training script uses participant-separated train/validation/test groups when every sample has an ID and there are at least three distinct participants. It stops if any split lacks a required class. With missing IDs it explicitly reports a sample-based split. Combining unidentified public samples with private captures therefore does **not** produce a signer-independent evaluation. Never identify each frame as a different participant.
+Both training scripts use participant-separated groups when all samples have IDs and there are at least three participants. Every training and test class must be represented. The static script allows a class with only two samples to have no validation sample, explicitly reports it, and uses a fixed conservative distance gate. With missing participant IDs, reports state sample-based or source-clip-based splits; mixing unidentified public data with private captures does not produce a signer-independent evaluation.
 
 To extract landmarks from consented still images, organize files as `INPUT/participant/LETTER/*.jpg`. Install the optional extractor:
 
@@ -122,6 +123,28 @@ Invoke-WebRequest 'https://storage.googleapis.com/mediapipe-models/hand_landmark
 ```
 
 Create `datasets/private/` before downloading if it does not exist. The extractor keeps images with exactly one detected hand. Retain participant grouping and permission records separately; do not commit private images.
+
+### Reproduce J/Z movement training
+
+The trained artifacts are bundled; downloads are needed only to retrain. The default subset downloads about 265 MB, not the full 4 GB dataset. Source videos stay ignored by Git. Provenance records version, file names, and SHA-256 hashes. Prepared coordinate sequences are in `datasets/motion.json`.
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-motion.txt
+.\.venv\Scripts\python.exe -m ml.download_motion
+.\.venv\Scripts\python.exe -m ml.extract_motion
+.\.venv\Scripts\python.exe -m ml.train_motion
+```
+
+The extractor uses Google's actual hand-landmarker model on real frames and logs rejected clips. Motion features resample tracked wrist/thumb/index/middle/little landmarks to 16 time steps, preserve movement relative to the initial wrist, and reject a stationary hand. Models, scalers, reference sequences, and gates use training/validation clips only.
+
+At `/capture`, select J or Z, enter a participant ID, opt in, and select **Record movement sample**. Static samples and sequences download separately according to the selected letter type. Combine your downloaded J/Z exports and train with participant grouping:
+
+```powershell
+.\.venv\Scripts\python.exe -m ml.prepare_motion datasets/private/signer01-motion.json datasets/private/signer02-motion.json --output datasets/private/motion.json
+.\.venv\Scripts\python.exe -m ml.train_motion --dataset datasets/private/motion.json
+```
+
+Collect many participants, each contributing both letters across varied conditions. Never use source clip IDs as participant IDs. Do not mix static samples into a motion dataset. The motion trainer stops when either class or a required split lacks enough data.
 
 ## PostgreSQL and Render
 

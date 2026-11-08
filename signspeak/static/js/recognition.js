@@ -1,5 +1,5 @@
 // Shared math stays free of DOM dependencies so it can be checked against Python.
-export const FEATURE_VERSION = 'wrist-palm-axis-mirror-xy-v1';
+export const FEATURE_VERSION = 'wrist-scale-orientation-xy-v2';
 export const CONNECTIONS = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],[14,15],[15,16],[13,17],[0,17],[17,18],[18,19],[19,20]];
 
 export function normalize(points) {
@@ -13,10 +13,9 @@ export function normalize(points) {
   const [vx,vy] = relative[9];
   const squared = vx*vx + vy*vy;
   if (squared < 1e-12) throw new Error('Hand is too small to read.');
-  let x = relative.map(([px,py]) => (-vy*px+vx*py)/squared);
-  const y = relative.map(([px,py]) => -(px*vx+py*vy)/squared);
-  if (x[5] > x[17]) x = x.map(v => -v);
-  return x.flatMap((v,i) => [v,y[i]]);
+  const cross=relative[5][0]*relative[17][1]-relative[5][1]*relative[17][0];
+  const mirror=cross<0?-1:1,size=Math.sqrt(squared);
+  return relative.flatMap(([x,y])=>[x*mirror/size,y/size]);
 }
 
 export function nearestDistance(features, support) {
@@ -54,19 +53,25 @@ export class Stabilizer {
 }
 
 export class LandmarkClassifier {
-  constructor(model,tf) {
-    if (model.feature_version !== FEATURE_VERSION) throw new Error('Model feature version does not match this app.');
+  constructor(model,tf,featureVersion=FEATURE_VERSION) {
+    if (model.feature_version !== featureVersion) throw new Error('Model feature version does not match this app.');
     this.data=model;this.tf=tf;
     this.mean=tf.tensor1d(model.mean);this.scale=tf.tensor1d(model.scale);
     this.layers=model.layers.map(l=>({kernel:tf.tensor2d(l.kernel),bias:tf.tensor1d(l.bias)}));
   }
   predict(points,threshold) {
     const features=normalize(points);
-    const probabilities=this.tf.tidy(()=>{
+    return this.predictFeatures(features,threshold);
+  }
+  probabilities(features) {
+    return this.tf.tidy(()=>{
       let x=this.tf.tensor2d([features]).sub(this.mean).div(this.scale);
       this.layers.forEach((layer,i)=>{x=x.matMul(layer.kernel).add(layer.bias);if(i<this.layers.length-1)x=x.relu();});
       return Array.from(x.softmax().dataSync());
     });
+  }
+  predictFeatures(features,threshold) {
+    const probabilities=this.probabilities(features);
     return gatePrediction(probabilities,features,this.data,threshold);
   }
 }

@@ -1,0 +1,296 @@
+{
+  "source": "https://www.kaggle.com/datasets/signnteam/asl-sign-language-alphabet-videos-j-z",
+  "version": 1,
+  "license": "CC0: Public Domain (Kaggle dataset metadata)",
+  "participants": "Not provided. Clip IDs are not participant IDs.",
+  "files": [
+    {
+      "file": "J/1.avi",
+      "upstream": "SigNN Video Data/J/1.avi",
+      "sha256": "75f91fd98f54498b3310e0ee347931f8135365cf71aad0eaf57efd51895bfa8b",
+      "bytes": 3670016
+    },
+    {
+      "file": "J/15.avi",
+      "upstream": "SigNN Video Data/J/15.avi",
+      "sha256": "ba5613a3cf1cea87fb299cfa4642b264a4388b51ac583ba747607735ba141bcf",
+      "bytes": 6390055
+    },
+    {
+      "file": "J/28.avi",
+      "upstream": "SigNN Video Data/J/28.avi",
+      "sha256": "4b7fdaca442d978b4a70b75c6e87c255de4f6452e35065558fbaeff7beed239c",
+      "bytes": 6488372
+    },
+    {
+      "file": "J/42.avi",
+      "upstream": "SigNN Video Data/J/42.avi",
+      "sha256": "da628c68dc56f6196be7aa562e0c4a67bd5df66f74a267e8866e57c5643e44e4",
+      "bytes": 7274806
+    },
+    {
+      "file": "J/56.avi",
+      "upstream": "SigNN Video Data/J/56.avi",
+      "sha256": "44e6a151d30b4488f4dbf75633b0f991e53a65c05cacb783024ab123d3741183",
+      "bytes": 7242053
+    },
+    {
+      "file": "J/69.avi",
+      "upstream": "SigNN Video Data/J/69.avi",
+      "sha256": "58cefbaf9fe903cbc386413bf008152fa5e0ccef9fc06f0e4809eb57847452f8",
+      "bytes": 7176511
+    },
+    {
+      "file": "J/83.avi",
+      "upstream": "SigNN Video Data/J/83.avi",
+      "sha256": "4ca0997ad72a892a7001a39902090f8855504658c30545e395954eb0fc134313",
+      "bytes": 7143742
+    },
+    {
+      "file": "J/97.avi",
+      "upstream": "SigNN Video Data/J/97.avi",
+      "sha256": "59cfc83793db1018335af8e2e7e25997f82fb329d5d4069c658f6bc2494079c9",
+      "bytes": 7143743
+    },
+    {
+      "file": "J/111.avi",
+      "upstream": "SigNN Video Data/J/111.avi",
+      "sha256": "3550516dec8c10289ca87e356f0dd667fc8a7a3dcf5ec76511206fdd8c28d622",
+      "bytes": 5341445
+    },
+    {
+      "file": "J/124.avi",
+      "upstream": "SigNN Video Data/J/124.avi",
+      "sha256": "21f390d71fceb01cd059c856421cbf9eb0f9cad6e43d6164de857cbd6c948522",
+      "bytes": 4980736
+    },
+    {
+      "file": "J/138.avi",
+      "upstream": "SigNN Video Data/J/138.avi",
+      "sha256": "912586ae1525df92332711bfccd8f7febc0ce6661250718bed289b1ef2e33ee5",
+      "bytes": 4915444
+    },
+    {
+      "file": "J/152.avi",
+      "upstream": "SigNN Video Data/J/152.avi",
+      "sha256": "99d3023ac037530fb1d1a3562ca5e21a51c3fbace32badf078dee995b56ca409",
+      "bytes": 6488348
+    },
+    {
+      "file": "J/165.avi",
+      "upstream": "SigNN Video Data/J/165.avi",
+      "sha256": "c478548b4cf6a753252fb5a8e658b3aff15eb4fa3ed2fc30c65c0a151cb57c21",
+      "bytes": 6521130
+    },
+    {
+      "file": "J/179.avi",
+      "upstream": "SigNN Video Data/J/179.avi",
+      "sha256": "8703d903a5b60bb9e9795fe8336a10f557feb2c65f13a3c9fdbbe93ac1438a76",
+      "bytes": 1048576
+    },
+    {
+      "file": "J/193.avi",
+      "upstream": "SigNN Video Data/J/193.avi",
+      "sha256": "38102f74055c952e080fda3d8d59377af386bf0b65387d714f666f6ca79d243c",
+      "bytes": 4554945
+    },
+    {
+      "file": "J/206.avi",
+      "upstream": "SigNN Video Data/J/206.avi",
+      "sha256": "e169fa7b8bf520f2b638ca8e903f9d478d36c77200fbe1489f928f5a6ff37e60",
+      "bytes": 3604647
+    },
+    {
+      "file": "J/220.avi",
+      "upstream": "SigNN Video Data/J/220.avi",
+      "sha256": "be8f576286c052b1504fdc10cb76f851de5709363cd18bf600e79ddbc1cd97cc",
+      "bytes": 3513246
+    },
+    {
+      "file": "J/234.avi",
+      "upstream": "SigNN Video Data/J/234.avi",
+      "sha256": "cfdd14bf8dc4b62fa2ed3704c30c9b725bacb633fe765e034e13a244a80d40f7",
+      "bytes": 3486862
+    },
+    {
+      "file": "J/248.avi",
+      "upstream": "SigNN Video Data/J/248.avi",
+      "sha256": "f52338aedccd4078d2a57d263e2cb7f38874b5c62e8a8cf53f41ecf34f82f0f7",
+      "bytes": 1048576
+    },
+    {
+      "file": "J/261.avi",
+      "upstream": "SigNN Video Data/J/261.avi",
+      "sha256": "90688fe874f2907ee5bb718090dd2caa827a51ef354f2b70078c6e2f7346234c",
+      "bytes": 1048576
+    },
+    {
+      "file": "J/275.avi",
+      "upstream": "SigNN Video Data/J/275.avi",
+      "sha256": "3c098b2fcb9e10f3bd650fb4cc7e252d07ba4d772b62564dd70b4933aff96a81",
+      "bytes": 786432
+    },
+    {
+      "file": "J/289.avi",
+      "upstream": "SigNN Video Data/J/289.avi",
+      "sha256": "3f5e512edbb828f033ae6d8e0ce30fe09d9d67bf430fd6a92d0f3baafc539808",
+      "bytes": 5112036
+    },
+    {
+      "file": "J/302.avi",
+      "upstream": "SigNN Video Data/J/302.avi",
+      "sha256": "b8c441ca6b7b4dcf61c86063b26acc3cb3e03cee0ea9e4eaf22a0d1f6cd1a8a2",
+      "bytes": 6390039
+    },
+    {
+      "file": "J/316.avi",
+      "upstream": "SigNN Video Data/J/316.avi",
+      "sha256": "963e8452668974a7576c6007d147626e48795e64a3f3a103984aa2828835d255",
+      "bytes": 6390045
+    },
+    {
+      "file": "Z/1.avi",
+      "upstream": "SigNN Video Data/Z/1.avi",
+      "sha256": "907d5fd57408bbc0dcfc5e721aca6a74d933ca98a66f872890aab4f75093db57",
+      "bytes": 786432
+    },
+    {
+      "file": "Z/18.avi",
+      "upstream": "SigNN Video Data/Z/18.avi",
+      "sha256": "8dee8d6859c008aa4851ecc2347a287536a94a77226fea1cd8797fd9b70edd79",
+      "bytes": 4980736
+    },
+    {
+      "file": "Z/35.avi",
+      "upstream": "SigNN Video Data/Z/35.avi",
+      "sha256": "f96456a7d931eb081924cca67e4675610ca9d622c6446d87e665197348c43f17",
+      "bytes": 4980736
+    },
+    {
+      "file": "Z/53.avi",
+      "upstream": "SigNN Video Data/Z/53.avi",
+      "sha256": "7722aaa1d55a1bd98a8bc33066b9c2dc36c1458508011b37e641c1a90048e8af",
+      "bytes": 1048576
+    },
+    {
+      "file": "Z/70.avi",
+      "upstream": "SigNN Video Data/Z/70.avi",
+      "sha256": "58bd78335d2188524a4dd038aa4d1137ce6e8340693cb43bc4198cfe00ca91cb",
+      "bytes": 786432
+    },
+    {
+      "file": "Z/87.avi",
+      "upstream": "SigNN Video Data/Z/87.avi",
+      "sha256": "d8c1b46169b7c39cedfcbd054bdfe3ff31e6c04afe17195cc705aa2c74c5d387",
+      "bytes": 20087669
+    },
+    {
+      "file": "Z/104.avi",
+      "upstream": "SigNN Video Data/Z/104.avi",
+      "sha256": "4c47ebe0396c3395d4febc05e7ccb33df0edf08aaa293ce618bb51bc3d6e306c",
+      "bytes": 18645823
+    },
+    {
+      "file": "Z/121.avi",
+      "upstream": "SigNN Video Data/Z/121.avi",
+      "sha256": "c523e7f081c272e5e52957015dc61b65a381ab1146dcb67e26f70ff0dc8819dd",
+      "bytes": 6684985
+    },
+    {
+      "file": "Z/138.avi",
+      "upstream": "SigNN Video Data/Z/138.avi",
+      "sha256": "ee8d4359e19068f7c410be8204ba74b556595435580b41665e45f414a39ea15b",
+      "bytes": 6226211
+    },
+    {
+      "file": "Z/156.avi",
+      "upstream": "SigNN Video Data/Z/156.avi",
+      "sha256": "4db59b02d6a9eaabd42b5a124988da6a759d32b210eff46870526e194b2c1a4d",
+      "bytes": 6619418
+    },
+    {
+      "file": "Z/173.avi",
+      "upstream": "SigNN Video Data/Z/173.avi",
+      "sha256": "84cfe14f37411a5e1f41408406b931e92ccfa91ca24babd18e7c5df992880f1d",
+      "bytes": 6291758
+    },
+    {
+      "file": "Z/190.avi",
+      "upstream": "SigNN Video Data/Z/190.avi",
+      "sha256": "5f409a4bef30ee3f6757ff8941ddd7bd83ce87139b2f319019f3a822c499fc9d",
+      "bytes": 7176523
+    },
+    {
+      "file": "Z/207.avi",
+      "upstream": "SigNN Video Data/Z/207.avi",
+      "sha256": "bd7d35bfc3a217a84a6ecc7c59d4bc4b1a1339fb2b00fd07e22ebb29072edb82",
+      "bytes": 7242054
+    },
+    {
+      "file": "Z/224.avi",
+      "upstream": "SigNN Video Data/Z/224.avi",
+      "sha256": "435a53b9927659948dd9a96c5ccd0a0a2d2a19f253a5e7f070e164403a18e7f4",
+      "bytes": 7176475
+    },
+    {
+      "file": "Z/241.avi",
+      "upstream": "SigNN Video Data/Z/241.avi",
+      "sha256": "5ac637508fb2a13e14f023ba46f743c8d76180fe6d11e01e40685dc46b95c386",
+      "bytes": 7274833
+    },
+    {
+      "file": "Z/259.avi",
+      "upstream": "SigNN Video Data/Z/259.avi",
+      "sha256": "3c9c74d05dfcfa2dddf2e6581dbafc4ed40cdb3c47e9bc2bb80d24c4a15c0809",
+      "bytes": 5013758
+    },
+    {
+      "file": "Z/276.avi",
+      "upstream": "SigNN Video Data/Z/276.avi",
+      "sha256": "74505d6828c76c9b00f1ee7afaa90c2951d1e627967dfbfc5953c08edef416d2",
+      "bytes": 5210366
+    },
+    {
+      "file": "Z/293.avi",
+      "upstream": "SigNN Video Data/Z/293.avi",
+      "sha256": "c0380a738770906b57809f0119f71cf7b1f285554f9ff16c0eb97592254a4946",
+      "bytes": 5898522
+    },
+    {
+      "file": "Z/310.avi",
+      "upstream": "SigNN Video Data/Z/310.avi",
+      "sha256": "a38652f031d5205e3ff08c12a6ba057f94690bab21c2bb0518cfb6997304e09b",
+      "bytes": 5079274
+    },
+    {
+      "file": "Z/327.avi",
+      "upstream": "SigNN Video Data/Z/327.avi",
+      "sha256": "f45f22ac1a20b4743edd94468e855381c5bcd2d54178964f54ab8869f1777b64",
+      "bytes": 4915425
+    },
+    {
+      "file": "Z/344.avi",
+      "upstream": "SigNN Video Data/Z/344.avi",
+      "sha256": "0c56810fa657a09d527467b135e255d4bb254fbba138e68ad7d7d1fec6d4afc3",
+      "bytes": 3801261
+    },
+    {
+      "file": "Z/362.avi",
+      "upstream": "SigNN Video Data/Z/362.avi",
+      "sha256": "f61082f367653500eb0b56ae5d5ee548667ec4b220e7cd1c1795d86e789aea93",
+      "bytes": 3539100
+    },
+    {
+      "file": "Z/379.avi",
+      "upstream": "SigNN Video Data/Z/379.avi",
+      "sha256": "174332d0e533fdb24a405a1dbc4ba33af400c021ad1c38664a88fcfc7283f8bc",
+      "bytes": 3768479
+    },
+    {
+      "file": "Z/396.avi",
+      "upstream": "SigNN Video Data/Z/396.avi",
+      "sha256": "80d888835540d672cfab3a2a5646ba47e4b0536ddf49457bc41b2eeda959c13e",
+      "bytes": 3726224
+    }
+  ]
+}

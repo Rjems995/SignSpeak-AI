@@ -15,7 +15,14 @@ web = Blueprint("web", __name__)
 
 def model_info():
     path = Path(current_app.static_folder) / "models" / "metadata.json"
-    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"ready": False, "labels": []}
+    model = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"ready": False, "labels": []}
+    model["static_labels"] = list(model.get("labels", []))
+    motion_path = path.with_name("motion-metadata.json")
+    motion = json.loads(motion_path.read_text(encoding="utf-8")) if motion_path.exists() else {"ready": False, "labels": []}
+    model["motion"] = motion
+    model["motion_labels"] = motion.get("labels", []) if motion.get("ready") else []
+    model["labels"] = sorted(set(model["static_labels"] + model["motion_labels"]))
+    return model
 
 
 @web.app_context_processor

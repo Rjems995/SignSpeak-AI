@@ -5,6 +5,7 @@ instance/
 .env
 node_modules/
 datasets/private/
+datasets/videos/
 *.pyc
 *.log
 artifacts/

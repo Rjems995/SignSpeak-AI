@@ -32,6 +32,22 @@ def test_all_pages_render_and_assets_exist(app):
         assert client.get("/static/" + asset).status_code == 200, asset
 
 
+def test_full_alphabet_lessons_and_capabilities(app):
+    from signspeak.content import LETTERS
+    client = app.test_client()
+    assert list(LETTERS) == list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    info = client.get("/api/model").get_json()
+    assert info["labels"] == list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    assert info["motion_labels"] == ["J", "Z"]
+    assert len(info["static_labels"]) == 24
+    html = client.get("/learn").get_data(as_text=True)
+    assert html.count('class="letter-card"') == 26
+    assert 'max="26"' in html
+    register(client)
+    assert client.post("/api/progress", json={"letter": "Z"}).status_code == 200
+    assert client.post("/api/practice", json={"results": [{"expected": "J", "predicted": "J"}, {"expected": "Z", "predicted": None}]}).status_code == 201
+
+
 def test_private_history_and_practice_isolation(app):
     first, second = app.test_client(), app.test_client()
     assert first.get("/api/history").status_code == 401

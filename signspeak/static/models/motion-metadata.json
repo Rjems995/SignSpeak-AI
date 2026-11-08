@@ -1,0 +1,1 @@
+{"ready":true,"labels":["J","Z"],"feature_version":"temporal-palm-scale-16x5xy-v1","training_samples":27,"test_samples":10,"test_accuracy":1.0,"split":"source-clip-disjoint; participant IDs unavailable or incomplete","experimental":true,"source":"SigNN J/Z public video subset, CC0","recording_ms":2400}

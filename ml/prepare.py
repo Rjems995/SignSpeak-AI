@@ -17,6 +17,8 @@ def prepare(paths):
         else:
             raw = data["samples"] if isinstance(data, dict) else data
         for row in raw:
+            if "frames" in row:
+                raise ValueError("Motion samples need ml.train_motion; keep static and movement datasets separate.")
             points = row["points"]
             features = normalize(points)
             # Fingerprint canonical coordinates, so translated/mirrored duplicates stay together.

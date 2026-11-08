@@ -1,0 +1,3 @@
+-r requirements-ml.txt
+mediapipe>=0.10.21,<0.11
+# MediaPipe supplies opencv-contrib-python for decoding clips.
