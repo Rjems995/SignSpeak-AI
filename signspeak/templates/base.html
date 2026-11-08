@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="{{ settings.theme }}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn, practice, and recognize six static American Sign Language alphabet letters, privately in your browser.">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ title }} · SignSpeak AI</title>
+  <link rel="icon" href="{{ url_for('static', filename='mark.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script id="app-config" type="application/json">{{ {'settings': settings, 'authenticated': current_user.is_authenticated, 'user_id': current_user.id if current_user.is_authenticated else none, 'page': page, 'model': model}|tojson }}</script>
+  <script type="module" src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  {% macro icon(name, cls='') -%}<svg class="icon {{ cls }}" aria-hidden="true"><use href="{{ url_for('static', filename='icons.svg') }}#{{ name }}"></use></svg>{%- endmacro %}
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="{{ url_for('web.landing') }}"><img src="{{ url_for('static', filename='mark.svg') }}" alt="" width="36" height="36"><span>SignSpeak<span class="brand-ai"> AI</span><small>CONNECTION, IN YOUR HANDS</small></span></a>
+    <div class="nav-label">YOUR WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      {% for endpoint, label, glyph, key in [('dashboard','Overview','grid','dashboard'), ('translate','Live translator','hand','translate'), ('learn','Learn ASL','book','learn'), ('practice','Practice studio','sparkles','practice'), ('history','My history','history','history')] %}
+      <a href="{{ url_for('web.' + endpoint) }}" class="nav-item {{ 'active' if page == key }}" {% if page == key %}aria-current="page"{% endif %}>{{ icon(glyph) }}{{ label }}{% if key == 'translate' %}<span class="nav-dot"></span>{% endif %}</a>
+      {% endfor %}
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="little-note"><span class="note-symbol">✧</span><strong>A new way to say hello.</strong><p>One letter at a time.<br>At your own pace.</p><a href="{{ url_for('web.learn') }}">Explore the alphabet <span aria-hidden="true">↗</span></a></div>
+      <a class="nav-item {{ 'active' if page == 'settings' }}" href="{{ url_for('web.settings_page') }}">{{ icon('settings') }}Settings</a>
+      {% if current_user.is_authenticated %}
+      <a class="user-card" href="{{ url_for('web.profile') }}"><span class="avatar">{{ current_user.profile.name[0]|upper }}</span><span><strong>{{ current_user.profile.name }}</strong><small>Your personal space</small></span>{{ icon('chevron') }}</a>
+      {% else %}
+      <a class="user-card" href="{{ url_for('web.login_page') }}"><span class="avatar">{{ icon('user') }}</span><span><strong>Welcome, explorer</strong><small>Sign in to save your progress</small></span>{{ icon('chevron') }}</a>
+      {% endif %}
+    </div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-button mobile-menu" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">{{ icon('menu') }}</button>
+      <div class="breadcrumb">Your workspace <span>/</span> <strong>{{ {'home':'Welcome', 'dashboard':'Overview', 'translate':'Live translator', 'learn':'Learn ASL', 'practice':'Practice studio', 'history':'My history', 'settings':'Settings', 'login':'Sign in', 'register':'Create account', 'profile':'My profile', 'capture':'Training samples'}.get(page, page) }}</strong></div>
+      <div class="topbar-right"><span class="language-pill"><span class="status-dot"></span> American Sign Language <span class="muted">· ASL</span></span><button class="icon-button" id="theme-toggle" aria-label="Toggle dark mode">{{ icon('sun') }}</button></div>
+    </header>
+    <main id="main">
+      {% for category, message in get_flashed_messages(with_categories=true) %}<div class="alert {{ category }}" role="alert">{{ message }}</div>{% endfor %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="app-footer"><span>Made for a little more understanding.</span><span>ASL alphabet MVP <span class="footer-dot">·</span> Camera frames stay on your device {{ icon('lock') }}</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="confirm-dialog"><form method="dialog"><h2 id="confirm-title">Are you sure?</h2><p id="confirm-message"></p><div class="button-row"><button class="button secondary" value="cancel">Cancel</button><button class="button danger" value="confirm">Delete</button></div></form></dialog>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
+

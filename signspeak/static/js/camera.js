@@ -1,0 +1,75 @@
+import {config,settings,toast} from './app.js';
+import {LandmarkClassifier,Stabilizer,drawHand} from './recognition.js';
+
+const MP_BASE='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21';
+const LANDMARK_MODEL='https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
+let resources;
+function loadTf(){if(window.tf)return Promise.resolve(window.tf);return new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js';script.crossOrigin='anonymous';script.onload=()=>resolve(window.tf);script.onerror=()=>{script.remove();reject(new Error('TensorFlow.js could not load. Check your connection and retry.'));};document.head.append(script);});}
+async function loadResources(){
+  if(!resources)resources=(async()=>{
+    const [vision,tf]=await Promise.all([import(`${MP_BASE}/vision_bundle.mjs`),loadTf()]);
+    const fileset=await vision.FilesetResolver.forVisionTasks(`${MP_BASE}/wasm`);
+    // CPU is supported on a wider range of devices than a required GPU delegate.
+    const landmarker=await vision.HandLandmarker.createFromOptions(fileset,{baseOptions:{modelAssetPath:LANDMARK_MODEL,delegate:'CPU'},runningMode:'VIDEO',numHands:2,minHandDetectionConfidence:0.6,minHandPresenceConfidence:0.6,minTrackingConfidence:0.6});
+    let classifier=null;
+    if(config.model.ready){try{const response=await fetch('/static/models/classifier.json');if(!response.ok)throw new Error('The trained classifier is missing.');const model=await response.json();await tf.setBackend('cpu');await tf.ready();classifier=new LandmarkClassifier(model,tf);}catch(error){landmarker.close();throw error;}}
+    return {landmarker,classifier};
+  })().catch(error=>{resources=null;throw error;});
+  return resources;
+}
+
+export class CameraController {
+  constructor({onCommit=()=>{},onResult=()=>{},onState=()=>{}}={}){
+    this.onCommit=onCommit;this.onResult=onResult;this.onState=onState;this.running=false;this.token=0;this.lastResult=null;this.points=null;this.lastSeen=0;
+    this.stabilizer=new Stabilizer(Number(settings.hold_ms));this.video=document.getElementById('webcam');this.canvas=document.getElementById('landmark-canvas');this.startButton=document.getElementById('camera-start');this.stopButton=document.getElementById('camera-stop');
+  }
+  bind(){this.startButton.addEventListener('click',()=>this.start());this.stopButton.addEventListener('click',()=>this.stop());document.getElementById('show-landmarks').checked=settings.landmarks;document.getElementById('show-landmarks').addEventListener('change',e=>settings.landmarks=e.target.checked);window.addEventListener('pagehide',()=>this.stop());document.addEventListener('visibilitychange',()=>{if(document.hidden)this.stop();});}
+  status(text,active=false){const el=document.getElementById('camera-status');el.replaceChildren();const dot=document.createElement('span');dot.className=`status-dot${active?'':' gray'}`;el.append(dot,document.createTextNode(text));}
+  async start(){
+    if(this.running||this.loading)return;
+    if(!navigator.mediaDevices?.getUserMedia)return toast('Camera access needs HTTPS or localhost and a browser with webcam support.');
+    const token=++this.token;this.loading=true;this.startButton.disabled=true;this.startButton.textContent='Preparing your camera…';this.stopButton.disabled=false;this.status('Requesting permission');
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({video:settings.camera?{deviceId:{exact:settings.camera},width:{ideal:640},height:{ideal:480}}:{facingMode:'user',width:{ideal:640},height:{ideal:480}},audio:false});
+      if(token!==this.token){stream.getTracks().forEach(t=>t.stop());return;}
+      this.stream=stream;this.status('Loading hand tracking…');const loaded=await loadResources();
+      if(token!==this.token)return;
+      this.landmarker=loaded.landmarker;this.classifier=loaded.classifier;
+      this.video.srcObject=stream;await this.video.play();if(token!==this.token)return;
+      this.canvas.width=this.video.videoWidth;this.canvas.height=this.video.videoHeight;
+      document.getElementById('camera-viewport').style.aspectRatio=`${this.video.videoWidth}/${this.video.videoHeight}`;
+      document.getElementById('camera-viewport').classList.add('running');document.getElementById('camera-empty').hidden=true;document.getElementById('hand-status').hidden=false;
+      this.running=true;this.lastVideoTime=-1;this.lastFrame=0;this.stabilizer.reset();this.status('Camera on',true);this.onState(true);if(!this.classifier)toast('Hand tracking is ready. Install a trained classifier to enable letter recognition.');
+      stream.getVideoTracks()[0]?.addEventListener('ended',()=>{if(this.running){this.stop();toast('Your camera disconnected. Reconnect it and enable the camera again.');}},{once:true});
+      this.frame();
+    }catch(error){if(token===this.token){this.stop();const messages={NotAllowedError:'Camera permission was denied. Allow camera access in your browser and try again.',NotFoundError:'No camera was found. Connect a camera and try again.',NotReadableError:'Your camera is busy. Close other apps using it and retry.',OverconstrainedError:'The selected camera is unavailable. Choose the default camera in Settings.'};toast(messages[error.name]||`${error.message||'Hand tracking could not load.'} Check your connection and try again.`);}}
+    finally{if(token===this.token){this.loading=false;this.startButton.disabled=false;this.startButton.textContent='Enable camera';}}
+  }
+  frame(){
+    if(!this.running)return;
+    this.raf=requestAnimationFrame(()=>this.frame());const now=performance.now();
+    if(this.video.readyState<2||now-this.lastFrame<90||this.video.currentTime===this.lastVideoTime)return;
+    this.lastFrame=now;this.lastVideoTime=this.video.currentTime;
+    try{
+      const result=this.landmarker.detectForVideo(this.video,now);const single=result.landmarks.length===1;
+      this.points=single?result.landmarks[0]:null;if(this.points)this.lastSeen=now;
+      drawHand(this.canvas,settings.landmarks?this.points:null);
+      document.getElementById('hand-status').textContent=result.landmarks.length>1?'Use one hand at a time':single?'Hand detected · hold your letter steady':'Bring one hand into view';
+      let prediction={label:null,confidence:0,candidate:null};
+      if(this.points&&this.classifier)prediction=this.classifier.predict(this.points,Number(settings.threshold));
+      const stable=this.stabilizer.update(prediction.label,now);this.lastResult={...prediction,stable:stable.stable,progress:stable.progress,timestamp:now};
+      this.renderPrediction(single,prediction,stable);this.onResult(this.lastResult,this.points);
+      if(stable.commit)this.onCommit(stable.commit);
+    }catch(error){console.error(error);this.stop();toast('Hand tracking stopped unexpectedly. Enable the camera to retry.');}
+  }
+  renderPrediction(hasHand,prediction,stable){
+    const letter=document.getElementById('prediction-letter');if(letter)letter.textContent=prediction.label||'—';
+    const label=document.getElementById('prediction-label');if(label)label.textContent=prediction.label?`ASL letter ${prediction.label}`:hasHand?'No supported letter accepted':'Looking for your hand';
+    const hint=document.getElementById('prediction-hint');if(hint)hint.textContent=prediction.label?(stable.progress>=1?'Letter held. Release briefly to repeat.':'Hold steady to confirm this letter.'):hasHand?'Try A, B, C, L, V, or Y.':'Keep your whole hand inside the camera.';
+    const confidence=document.getElementById('confidence-value');if(confidence)confidence.textContent=hasHand&&this.classifier?`${Math.round(prediction.confidence*100)}%`:'—';
+    const confidenceFill=document.getElementById('confidence-fill');if(confidenceFill)confidenceFill.style.width=`${hasHand?prediction.confidence*100:0}%`;
+    const hold=document.getElementById('hold-fill');if(hold)hold.style.width=`${stable.progress*100}%`;
+  }
+  current(){return this.running&&this.lastResult&&performance.now()-this.lastResult.timestamp<400?this.lastResult:null;}
+  stop(){++this.token;this.loading=false;this.running=false;cancelAnimationFrame(this.raf);this.stream?.getTracks().forEach(t=>t.stop());this.stream=null;this.video.pause();this.video.srcObject=null;this.points=null;this.lastResult=null;this.stabilizer.reset();drawHand(this.canvas,null);document.getElementById('camera-viewport').classList.remove('running');document.getElementById('camera-empty').hidden=false;document.getElementById('hand-status').hidden=true;this.startButton.disabled=false;this.startButton.textContent='Enable camera';this.stopButton.disabled=true;this.status('Camera off');this.renderPrediction(false,{label:null,confidence:0},{progress:0});this.onState(false);this.onResult(null,null);}
+}

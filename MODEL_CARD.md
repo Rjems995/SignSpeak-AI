@@ -1,0 +1,19 @@
+# SignSpeak static ASL starter classifier
+
+**Intended use:** experimental, human-reviewed six-letter fingerspelling recognition and informal learning feedback. **Supported letters:** A, B, C, L, V, Y. `_` is a rejection/background class that merges other static labels in the source. Full language translation, dynamic signs, certified proficiency assessment, and high-stakes communication are outside scope.
+
+**Architecture:** StandardScaler → dense 64 ReLU → dense 32 ReLU → dense 7 softmax. Input is 21 image-space XY landmarks, wrist-centered, palm-length scaled, palm-axis aligned, and canonicalized across mirrored hands. Training uses scikit-learn; the learned network runs with TensorFlow.js in the browser. Input feature version is `wrist-palm-axis-mirror-xy-v1`.
+
+**Data:** SigNN's Apache-2.0 public landmark sample file, pinned to Git revision `40bd651899e09a0099767457194062f77f774156`. Dataset provenance and license are in `datasets/`. No personally identifiable data is introduced. Raw video/images are not bundled. Participant identities, participant counts, acquisition conditions, demographic distribution, and consent documentation are not supplied in this coordinate file.
+
+**Split:** canonical-coordinate duplicates removed before a seeded stratified 60%/20%/20% train/validation/test split: 622 unique samples; 372 train, 125 validation, 125 test. Gaussian perturbation is restricted to training samples after the split. Class-specific nearest-support distance thresholds use validation data. Test data is not used for parameter fitting or gate tuning. Participant overlap cannot be ruled out. Test labels and probabilities are published for reproducibility.
+
+**Measured results:** raw seven-class accuracy 89.6%; six-letter-only accuracy 76.5% (26/34). Of 125 test samples, 91 are background-class examples. Default gated seven-class accuracy is 92.0%, where unsupported/rejected outputs are mapped to `_`. This gated score combines correct rejection with letter recognition and must not be read as supported-letter accuracy. Per-class results, support counts, and both confusion matrices are in `signspeak/static/models/evaluation.json`. V is especially weak in this sample test (25% recall across four examples).
+
+**Rejection and stability:** background class, minimum softmax score (default .85), validation-tuned per-letter distance threshold, recent-frame consensus, configurable hold duration (default 900ms), and at least 300ms of release/change before a repeated letter is allowed. Two visible hands block classification. None of these guarantees rejection of all unseen handshapes. Scores are uncalibrated model probabilities.
+
+**Limitations:** few examples per letter; many background examples; unknown signer grouping; possible similar-frame leakage; no depth features; historic versus current MediaPipe domain differences; uncertain behavior across camera angles, occlusion, handedness, skin tones, mobility differences, and lighting. Rotation/mirror invariance is mathematical preprocessing, not an empirical fairness or accessibility evaluation. Held-out sample accuracy does not estimate recognition performance for an arbitrary new signer.
+
+**Next validation:** obtain permissioned data from multiple ASL signers with preserved participant IDs, balanced letters and diverse unsupported poses. Split by participant and session; include camera/lighting/device variation. Publish calibrated confidence/rejection metrics and false-positive rates on new gestures. Have Deaf educators assess lesson instructions and the learning experience.
+
+**Reproduction:** `python -m ml.prepare datasets/signn.json`, `python -m ml.train`, `python -m ml.evaluate`; use `requirements-lock.txt` and Python 3.12. Tests compare exported TF.js probabilities to Python predictions on every held-out example and verify that deduplicated fingerprints do not cross splits.

@@ -1,0 +1,8 @@
+{
+  "source": "https://github.com/AriAlavi/SigNN",
+  "revision": "40bd651899e09a0099767457194062f77f774156",
+  "license": "Apache-2.0 (upstream repository license; retained alongside dataset)",
+  "format": "24 static ASL labels; lists of 21 image-space (x,y) landmark pairs",
+  "participants": "Not supplied by upstream. No signer-independent accuracy claim is possible.",
+  "limitations": "Small historical MediaPipe dataset; duplicates; unknown signer/session grouping; landmark-extractor domain shift possible."
+}

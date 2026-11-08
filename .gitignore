@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+instance/
+.env
+node_modules/
+datasets/private/
+*.pyc
+*.log
+artifacts/
+

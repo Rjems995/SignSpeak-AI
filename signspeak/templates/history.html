@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">MY HISTORY</span><h1>Pick up the conversation.</h1><p>Your saved words, right where you left them. Visible only to you.</p></div><button class="button secondary" id="delete-all-history">{{ icon('trash') }} Delete all</button></div><div class="history-toolbar"><label class="search-box">{{ icon('search') }}<input id="history-search" type="search" placeholder="Find a conversation…" aria-label="Search translation history"></label><span class="muted small-text" id="history-count">Loading saved translations…</span></div><div id="history-list" class="history-list" aria-live="polite"></div><p class="footnote">Showing your latest 100 matching records. Translations are saved when you select Save. <a href="{{ url_for('web.settings_page') }}">Manage history preferences</a>.</p>
+{% endblock %}
+
