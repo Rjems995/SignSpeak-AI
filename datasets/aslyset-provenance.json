@@ -1,0 +1,15 @@
+{
+  "dataset": "ASLYset",
+  "author": "Miguel Rivera",
+  "doi": "10.17632/xs6mvhx6rh.1",
+  "version": 1,
+  "source": "https://data.mendeley.com/datasets/xs6mvhx6rh/1",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "sha256": "e50202c30dfff4795b88762b765bbeb357e184c13fe22b8f6e0d836d02235c80",
+  "bytes": 872115989,
+  "published_participants": 4,
+  "published_hand": "right",
+  "conditions": "Varying distance and position reported. Lighting/angle labels are not supplied; do not invent them.",
+  "attribution": "Rivera, Miguel (2019), ASLYset, Mendeley Data, V1, doi:10.17632/xs6mvhx6rh.1. Changes: extracted hand landmarks and curated source records."
+}

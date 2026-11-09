@@ -6,6 +6,7 @@ instance/
 node_modules/
 datasets/private/
 datasets/videos/
+datasets/public/
 *.pyc
 *.log
 artifacts/

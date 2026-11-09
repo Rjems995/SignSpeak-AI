@@ -17,6 +17,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=Path, default=ROOT / "datasets" / "motion.json")
     parser.add_argument("--output", type=Path, default=ROOT / "signspeak" / "static" / "models")
+    parser.add_argument("--require-participant-split", action="store_true")
     args = parser.parse_args()
     unique = {}
     for record in json.loads(args.dataset.read_text(encoding="utf-8"))["samples"]:
@@ -40,6 +41,8 @@ def main():
         trainval, test = train_test_split(ids, test_size=.2, random_state=42, stratify=y)
         train, val = train_test_split(trainval, test_size=.25, random_state=43, stratify=y[trainval])
         split = "source-clip-disjoint; participant IDs unavailable or incomplete"
+    if args.require_participant_split and split != "participant-disjoint":
+        raise ValueError("A participant-disjoint split was required. Supply complete participant IDs from at least three signers.")
     if any(set(y[indices]) != {"J", "Z"} for indices in [train, val, test]):
         raise ValueError("Every split needs both letters. Collect more participants/clips.")
     scaler = StandardScaler().fit(x[train])

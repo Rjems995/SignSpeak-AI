@@ -1,0 +1,46 @@
+{
+  "asl_hg": {
+    "name": "ASL-HG",
+    "url": "https://data.mendeley.com/datasets/j4y5w2c8w9/1",
+    "dataset": "j4y5w2c8w9",
+    "file": "28201373-c176-4b20-8f5e-c963d3ca1564",
+    "archive": "ASL_Raw_Images.zip",
+    "bytes": 876640391,
+    "sha256": "594cfa0158044085ed61351315c187a6f3a3f9087795b4f4cdba68ecd04f12b1",
+    "license": "CC BY 4.0",
+    "attribution": "Pranto, Md. Famidul Islam; Islam, Md. Rifatul; Akbor, Md. Ali; Ghosh, Nabonita; Alam, Md. Rahatun; Chaki, Sudipto; Islam, Md Masudul (2025), ASL-HG, Mendeley Data, V1, doi:10.17632/j4y5w2c8w9.1",
+    "participant_metadata": "P1-P10 in original filenames; namespace retained, not inferred from appearance",
+    "condition_metadata": "Publisher describes indoor/outdoor and varied lighting, backgrounds and hand orientations. No per-image physical hand, lighting, camera-angle or session labels are provided.",
+    "training_eligible": true
+  },
+  "signalphaset": {
+    "name": "SignAlphaSet",
+    "url": "https://data.mendeley.com/datasets/8fmvr9m98w/3",
+    "paper": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12173717/",
+    "dataset": "8fmvr9m98w",
+    "file": "a12e2b20-74de-4301-858f-35ab312d77b7",
+    "archive": "SignAlphaSet.zip",
+    "bytes": 445404175,
+    "sha256": "1fb90e83a9d4d3548545e487b5c7b7be8ff6e6929a8751b79c447501d7bd408f",
+    "license": "CC BY 4.0",
+    "attribution": "Garg, Bindu; Kasar, Manisha; Kashyap, Achyut; Vats, Amber; Sharma, Gunjan; Hange, Aditya (2025), SignAlphaSet, Mendeley Data, V3, doi:10.17632/8fmvr9m98w.3",
+    "participant_metadata": "Paper reports three participants; no per-image participant IDs. Do not invent signer IDs or mix this unidentified cohort across train/test.",
+    "condition_metadata": "Paper reports 750 right-hand and 250 left-hand images per letter but explicitly says files do not identify hand. It also describes augmentation without per-file original/augmentation flags. Physical hand and capture conditions remain unknown; detector handedness is only an estimate.",
+    "training_eligible": false
+  },
+  "massey": {
+    "name": "Massey MU HandImages ASL",
+    "url": "https://www.massey.ac.nz/~albarcza/gesture_dataset2012.html",
+    "archived_source": "https://web.archive.org/web/20220616023007id_/https://www.massey.ac.nz/~albarcza/gesture_dataset2012.html",
+    "download_url": "https://codeload.github.com/snrao310/ASL-Finger-Spelling-Recognition/zip/5d1f82ac72676f8901ff1aeca8d85a5a06f0d6ae",
+    "mirror_commit": "5d1f82ac72676f8901ff1aeca8d85a5a06f0d6ae",
+    "archive": "massey-mirror.zip",
+    "bytes": 30111932,
+    "sha256": "455796a99024c54cb1da9df7f13d9e4c84a6d11e1084c02e526891625006edca",
+    "license": "No explicit redistribution license found on the original dataset page; copyright Massey University 2012; citation requested",
+    "attribution": "Barczak, A. L. C.; Reyes, N. H.; Abastillas, M.; Piccio, A.; Susnjak, T. (2011), A new 2D static hand gesture colour image dataset for ASL gestures, Research Letters in the Information and Mathematical Sciences, 15, 12-20",
+    "participant_metadata": "hand1-hand5 filename identifiers for volunteers",
+    "condition_metadata": "Filename codes bot, top, left, right and dif identify light direction, not physical hand or camera angle. JPEG mirror of the original segmented images; no explicit physical-hand/session annotations.",
+    "training_eligible": false
+  }
+}

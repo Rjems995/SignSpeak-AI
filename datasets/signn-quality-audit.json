@@ -1,0 +1,561 @@
+{
+  "curation": {
+    "input_rows": 1386,
+    "usable_unique": 615,
+    "duplicate_rows": 1,
+    "conflicts": [
+      {
+        "fingerprint": "d855df3a077e8c898b3a81def53facc19d6c5543591990ab0d18ac4ef69dc4c4",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y"
+        ],
+        "rows": 758
+      },
+      {
+        "fingerprint": "c840de6d9b02af81473a6eb62c0679aeacff9ab3fbc952047b63da4bbdbe616a",
+        "labels": [
+          "E",
+          "S"
+        ],
+        "rows": 2
+      },
+      {
+        "fingerprint": "f7ef7c5965bd3e73f64e517006599c42c4cca2863aa7538f42f808969db90c81",
+        "labels": [
+          "E",
+          "S"
+        ],
+        "rows": 2
+      },
+      {
+        "fingerprint": "b696341fcd44d224872619dac8f0e5f2387e13a951c21480516d33938299133e",
+        "labels": [
+          "E",
+          "S"
+        ],
+        "rows": 2
+      },
+      {
+        "fingerprint": "03cfdca2662c31640d3e5265a78fdbec6d734d55c6d69d9292d4b97027b3ba06",
+        "labels": [
+          "E",
+          "S"
+        ],
+        "rows": 2
+      },
+      {
+        "fingerprint": "a0b4279fd46519c5ea0e8e4b66d7869812bf033bf4c8e62b5defc3d424f51e4b",
+        "labels": [
+          "E",
+          "S"
+        ],
+        "rows": 2
+      },
+      {
+        "fingerprint": "d682349c0a8a33e8ecc05aec9a46b90803966f1f0c2bf1f17e9cf8a7c304ac29",
+        "labels": [
+          "E",
+          "S"
+        ],
+        "rows": 2
+      }
+    ],
+    "cross_participant_duplicates": [],
+    "invalid": []
+  },
+  "coverage": {
+    "kind": "static",
+    "samples": 615,
+    "participant_count": 0,
+    "missing_metadata": {
+      "participant": 615,
+      "session": 615,
+      "hand": 615,
+      "lighting": 615,
+      "angle": 615
+    },
+    "letters": {
+      "A": {
+        "samples": 40,
+        "participants": 0,
+        "hand": {
+          "unknown": 40
+        },
+        "lighting": {
+          "unknown": 40
+        },
+        "angle": {
+          "unknown": 40
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "B": {
+        "samples": 26,
+        "participants": 0,
+        "hand": {
+          "unknown": 26
+        },
+        "lighting": {
+          "unknown": 26
+        },
+        "angle": {
+          "unknown": 26
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "C": {
+        "samples": 32,
+        "participants": 0,
+        "hand": {
+          "unknown": 32
+        },
+        "lighting": {
+          "unknown": 32
+        },
+        "angle": {
+          "unknown": 32
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "D": {
+        "samples": 20,
+        "participants": 0,
+        "hand": {
+          "unknown": 20
+        },
+        "lighting": {
+          "unknown": 20
+        },
+        "angle": {
+          "unknown": 20
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "E": {
+        "samples": 30,
+        "participants": 0,
+        "hand": {
+          "unknown": 30
+        },
+        "lighting": {
+          "unknown": 30
+        },
+        "angle": {
+          "unknown": 30
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "F": {
+        "samples": 25,
+        "participants": 0,
+        "hand": {
+          "unknown": 25
+        },
+        "lighting": {
+          "unknown": 25
+        },
+        "angle": {
+          "unknown": 25
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "G": {
+        "samples": 46,
+        "participants": 0,
+        "hand": {
+          "unknown": 46
+        },
+        "lighting": {
+          "unknown": 46
+        },
+        "angle": {
+          "unknown": 46
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "H": {
+        "samples": 26,
+        "participants": 0,
+        "hand": {
+          "unknown": 26
+        },
+        "lighting": {
+          "unknown": 26
+        },
+        "angle": {
+          "unknown": 26
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "I": {
+        "samples": 19,
+        "participants": 0,
+        "hand": {
+          "unknown": 19
+        },
+        "lighting": {
+          "unknown": 19
+        },
+        "angle": {
+          "unknown": 19
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "K": {
+        "samples": 41,
+        "participants": 0,
+        "hand": {
+          "unknown": 41
+        },
+        "lighting": {
+          "unknown": 41
+        },
+        "angle": {
+          "unknown": 41
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "L": {
+        "samples": 25,
+        "participants": 0,
+        "hand": {
+          "unknown": 25
+        },
+        "lighting": {
+          "unknown": 25
+        },
+        "angle": {
+          "unknown": 25
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "M": {
+        "samples": 16,
+        "participants": 0,
+        "hand": {
+          "unknown": 16
+        },
+        "lighting": {
+          "unknown": 16
+        },
+        "angle": {
+          "unknown": 16
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "N": {
+        "samples": 8,
+        "participants": 0,
+        "hand": {
+          "unknown": 8
+        },
+        "lighting": {
+          "unknown": 8
+        },
+        "angle": {
+          "unknown": 8
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "O": {
+        "samples": 28,
+        "participants": 0,
+        "hand": {
+          "unknown": 28
+        },
+        "lighting": {
+          "unknown": 28
+        },
+        "angle": {
+          "unknown": 28
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "P": {
+        "samples": 13,
+        "participants": 0,
+        "hand": {
+          "unknown": 13
+        },
+        "lighting": {
+          "unknown": 13
+        },
+        "angle": {
+          "unknown": 13
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "Q": {
+        "samples": 2,
+        "participants": 0,
+        "hand": {
+          "unknown": 2
+        },
+        "lighting": {
+          "unknown": 2
+        },
+        "angle": {
+          "unknown": 2
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "R": {
+        "samples": 16,
+        "participants": 0,
+        "hand": {
+          "unknown": 16
+        },
+        "lighting": {
+          "unknown": 16
+        },
+        "angle": {
+          "unknown": 16
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "S": {
+        "samples": 14,
+        "participants": 0,
+        "hand": {
+          "unknown": 14
+        },
+        "lighting": {
+          "unknown": 14
+        },
+        "angle": {
+          "unknown": 14
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "T": {
+        "samples": 34,
+        "participants": 0,
+        "hand": {
+          "unknown": 34
+        },
+        "lighting": {
+          "unknown": 34
+        },
+        "angle": {
+          "unknown": 34
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "U": {
+        "samples": 35,
+        "participants": 0,
+        "hand": {
+          "unknown": 35
+        },
+        "lighting": {
+          "unknown": 35
+        },
+        "angle": {
+          "unknown": 35
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "V": {
+        "samples": 21,
+        "participants": 0,
+        "hand": {
+          "unknown": 21
+        },
+        "lighting": {
+          "unknown": 21
+        },
+        "angle": {
+          "unknown": 21
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "W": {
+        "samples": 32,
+        "participants": 0,
+        "hand": {
+          "unknown": 32
+        },
+        "lighting": {
+          "unknown": 32
+        },
+        "angle": {
+          "unknown": 32
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "X": {
+        "samples": 38,
+        "participants": 0,
+        "hand": {
+          "unknown": 38
+        },
+        "lighting": {
+          "unknown": 38
+        },
+        "angle": {
+          "unknown": 38
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      },
+      "Y": {
+        "samples": 28,
+        "participants": 0,
+        "hand": {
+          "unknown": 28
+        },
+        "lighting": {
+          "unknown": 28
+        },
+        "angle": {
+          "unknown": 28
+        },
+        "needs": [
+          "participants 0/10",
+          "missing hand: left, right",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right"
+        ]
+      }
+    },
+    "collection_targets_met": false,
+    "warning": "Targets describe collection coverage, not recognition accuracy. Self-reported conditions and dataset-provided labels need review."
+  }
+}

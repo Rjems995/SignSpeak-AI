@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "alphabet": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
+  "priority_letters": ["Q","E","S","M","N","T","U","V","R","P"],
+  "confusion_pairs": [["E","S"],["M","E"],["U","V"],["M","N"]],
+  "target_participants": 10,
+  "samples_per_participant_letter_hand": 20,
+  "priority_extra_samples": 20,
+  "sessions_per_participant": 2,
+  "hands": ["left","right"],
+  "lighting": ["bright","soft","dim"],
+  "angles": ["front","slight_left","slight_right"],
+  "note": "Collection targets are a starting plan, not evidence of accuracy. Keep the letter valid while varying camera conditions. Have labels reviewed by a knowledgeable ASL signer."
+}

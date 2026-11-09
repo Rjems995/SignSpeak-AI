@@ -48,6 +48,18 @@ def test_full_alphabet_lessons_and_capabilities(app):
     assert client.post("/api/practice", json={"results": [{"expected": "J", "predicted": "J"}, {"expected": "Z", "predicted": None}]}).status_code == 201
 
 
+def test_collection_workshop_labels_and_actual_public_source_counts(app):
+    html = app.test_client().get("/capture").get_data(as_text=True)
+    for element in ["capture-session", "capture-hand", "capture-lighting", "capture-angle", "capture-verified", "download-static", "download-motion", "coverage-rows"]:
+        assert f'id="{element}"' in html
+    assert "4770 usable unique static samples" in html
+    assert "Q: 199" in html
+    assert "Unknown physical hands are not counted as left or right" in html
+    assert "5746 usable unique static samples" in html
+    assert "Signer IDs: 10" in html
+    assert "Review only" in html and "excluded from training" in html
+
+
 def test_private_history_and_practice_isolation(app):
     first, second = app.test_client(), app.test_client()
     assert first.get("/api/history").status_code == 401

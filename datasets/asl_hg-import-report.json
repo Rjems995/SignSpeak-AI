@@ -1,0 +1,146 @@
+{
+  "source": {
+    "name": "ASL-HG",
+    "url": "https://data.mendeley.com/datasets/j4y5w2c8w9/1",
+    "dataset": "j4y5w2c8w9",
+    "file": "28201373-c176-4b20-8f5e-c963d3ca1564",
+    "archive": "ASL_Raw_Images.zip",
+    "bytes": 876640391,
+    "sha256": "594cfa0158044085ed61351315c187a6f3a3f9087795b4f4cdba68ecd04f12b1",
+    "license": "CC BY 4.0",
+    "attribution": "Pranto, Md. Famidul Islam; Islam, Md. Rifatul; Akbor, Md. Ali; Ghosh, Nabonita; Alam, Md. Rahatun; Chaki, Sudipto; Islam, Md Masudul (2025), ASL-HG, Mendeley Data, V1, doi:10.17632/j4y5w2c8w9.1",
+    "participant_metadata": "P1-P10 in original filenames; namespace retained, not inferred from appearance",
+    "condition_metadata": "Publisher describes indoor/outdoor and varied lighting, backgrounds and hand orientations. No per-image physical hand, lighting, camera-angle or session labels are provided.",
+    "training_eligible": true
+  },
+  "selection": {
+    "method": "SHA-256 filename order within source/signer/letter (and light direction when documented)",
+    "per_cell": 20,
+    "priority_extra": 10,
+    "priority_letters": [
+      "E",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V"
+    ]
+  },
+  "selected": 5800,
+  "accepted": 5788,
+  "rejected": 12,
+  "counts_by_letter": {
+    "A": 200,
+    "B": 200,
+    "C": 197,
+    "D": 200,
+    "E": 300,
+    "F": 200,
+    "G": 200,
+    "H": 197,
+    "I": 200,
+    "K": 200,
+    "L": 200,
+    "M": 300,
+    "N": 300,
+    "O": 200,
+    "P": 300,
+    "Q": 300,
+    "R": 294,
+    "S": 300,
+    "T": 300,
+    "U": 300,
+    "V": 300,
+    "W": 200,
+    "X": 200,
+    "Y": 200
+  },
+  "participant_ids": [
+    "asl_hg_p1",
+    "asl_hg_p10",
+    "asl_hg_p2",
+    "asl_hg_p3",
+    "asl_hg_p4",
+    "asl_hg_p5",
+    "asl_hg_p6",
+    "asl_hg_p7",
+    "asl_hg_p8",
+    "asl_hg_p9"
+  ],
+  "physical_hands": {
+    "unknown": 5788
+  },
+  "lighting_directions": {
+    "unknown": 5788
+  },
+  "estimated_hands_not_ground_truth": {
+    "right": 5779,
+    "left": 9
+  },
+  "rejections": [
+    {
+      "file": "asl_dataset/C/P9_C_858.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/C/P9_C_853.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/C/P9_C_809.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/H/P8_H_794.jpg",
+      "letter": "H",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/H/P8_H_791.jpg",
+      "letter": "H",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/H/P8_H_788.jpg",
+      "letter": "H",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/R/P3_R_293.jpg",
+      "letter": "R",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/R/P3_R_248.jpg",
+      "letter": "R",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/R/P3_R_256.jpg",
+      "letter": "R",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/R/P3_R_267.jpg",
+      "letter": "R",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/R/P3_R_254.jpg",
+      "letter": "R",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "asl_dataset/R/P3_R_284.jpg",
+      "letter": "R",
+      "reason": "requires_one_detected_hand"
+    }
+  ]
+}

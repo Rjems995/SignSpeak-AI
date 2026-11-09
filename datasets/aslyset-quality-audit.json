@@ -1,0 +1,530 @@
+{
+  "curation": {
+    "input_rows": 4788,
+    "usable_unique": 4770,
+    "duplicate_rows": 18,
+    "conflicts": [],
+    "cross_participant_duplicates": [],
+    "invalid": []
+  },
+  "coverage": {
+    "kind": "static",
+    "samples": 4770,
+    "participant_count": 4,
+    "missing_metadata": {
+      "participant": 0,
+      "session": 4770,
+      "hand": 0,
+      "lighting": 4770,
+      "angle": 4770
+    },
+    "letters": {
+      "A": {
+        "samples": 198,
+        "participants": 4,
+        "hand": {
+          "right": 198
+        },
+        "lighting": {
+          "unknown": 198
+        },
+        "angle": {
+          "unknown": 198
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "B": {
+        "samples": 199,
+        "participants": 4,
+        "hand": {
+          "right": 199
+        },
+        "lighting": {
+          "unknown": 199
+        },
+        "angle": {
+          "unknown": 199
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "C": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "D": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "E": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "F": {
+        "samples": 197,
+        "participants": 4,
+        "hand": {
+          "right": 197
+        },
+        "lighting": {
+          "unknown": 197
+        },
+        "angle": {
+          "unknown": 197
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "G": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "H": {
+        "samples": 197,
+        "participants": 4,
+        "hand": {
+          "right": 197
+        },
+        "lighting": {
+          "unknown": 197
+        },
+        "angle": {
+          "unknown": 197
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "I": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "K": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "L": {
+        "samples": 196,
+        "participants": 4,
+        "hand": {
+          "right": 196
+        },
+        "lighting": {
+          "unknown": 196
+        },
+        "angle": {
+          "unknown": 196
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "M": {
+        "samples": 196,
+        "participants": 4,
+        "hand": {
+          "right": 196
+        },
+        "lighting": {
+          "unknown": 196
+        },
+        "angle": {
+          "unknown": 196
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "N": {
+        "samples": 199,
+        "participants": 4,
+        "hand": {
+          "right": 199
+        },
+        "lighting": {
+          "unknown": 199
+        },
+        "angle": {
+          "unknown": 199
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "O": {
+        "samples": 196,
+        "participants": 4,
+        "hand": {
+          "right": 196
+        },
+        "lighting": {
+          "unknown": 196
+        },
+        "angle": {
+          "unknown": 196
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "P": {
+        "samples": 199,
+        "participants": 4,
+        "hand": {
+          "right": 199
+        },
+        "lighting": {
+          "unknown": 199
+        },
+        "angle": {
+          "unknown": 199
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "Q": {
+        "samples": 199,
+        "participants": 4,
+        "hand": {
+          "right": 199
+        },
+        "lighting": {
+          "unknown": 199
+        },
+        "angle": {
+          "unknown": 199
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "R": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "S": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "T": {
+        "samples": 197,
+        "participants": 4,
+        "hand": {
+          "right": 197
+        },
+        "lighting": {
+          "unknown": 197
+        },
+        "angle": {
+          "unknown": 197
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "U": {
+        "samples": 198,
+        "participants": 4,
+        "hand": {
+          "right": 198
+        },
+        "lighting": {
+          "unknown": 198
+        },
+        "angle": {
+          "unknown": 198
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "V": {
+        "samples": 199,
+        "participants": 4,
+        "hand": {
+          "right": 199
+        },
+        "lighting": {
+          "unknown": 199
+        },
+        "angle": {
+          "unknown": 199
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "W": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "X": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      },
+      "Y": {
+        "samples": 200,
+        "participants": 4,
+        "hand": {
+          "right": 200
+        },
+        "lighting": {
+          "unknown": 200
+        },
+        "angle": {
+          "unknown": 200
+        },
+        "needs": [
+          "participants 4/10",
+          "missing hand: left",
+          "missing lighting: bright, soft, dim",
+          "missing angle: front, slight_left, slight_right",
+          "some signer/hand cells are below the per-letter sample target",
+          "some signers lack the requested independent sessions"
+        ]
+      }
+    },
+    "collection_targets_met": false,
+    "warning": "Targets describe collection coverage, not recognition accuracy. Self-reported conditions and dataset-provided labels need review."
+  }
+}

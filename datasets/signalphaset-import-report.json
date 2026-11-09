@@ -1,0 +1,281 @@
+{
+  "source": {
+    "name": "SignAlphaSet",
+    "url": "https://data.mendeley.com/datasets/8fmvr9m98w/3",
+    "paper": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12173717/",
+    "dataset": "8fmvr9m98w",
+    "file": "a12e2b20-74de-4301-858f-35ab312d77b7",
+    "archive": "SignAlphaSet.zip",
+    "bytes": 445404175,
+    "sha256": "1fb90e83a9d4d3548545e487b5c7b7be8ff6e6929a8751b79c447501d7bd408f",
+    "license": "CC BY 4.0",
+    "attribution": "Garg, Bindu; Kasar, Manisha; Kashyap, Achyut; Vats, Amber; Sharma, Gunjan; Hange, Aditya (2025), SignAlphaSet, Mendeley Data, V3, doi:10.17632/8fmvr9m98w.3",
+    "participant_metadata": "Paper reports three participants; no per-image participant IDs. Do not invent signer IDs or mix this unidentified cohort across train/test.",
+    "condition_metadata": "Paper reports 750 right-hand and 250 left-hand images per letter but explicitly says files do not identify hand. It also describes augmentation without per-file original/augmentation flags. Physical hand and capture conditions remain unknown; detector handedness is only an estimate.",
+    "training_eligible": false
+  },
+  "selection": {
+    "method": "SHA-256 filename order within source/signer/letter (and light direction when documented)",
+    "per_cell": 64,
+    "priority_extra": 0,
+    "priority_letters": [
+      "E",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V"
+    ]
+  },
+  "selected": 1536,
+  "accepted": 1495,
+  "rejected": 41,
+  "counts_by_letter": {
+    "A": 64,
+    "B": 64,
+    "C": 58,
+    "D": 64,
+    "E": 64,
+    "F": 64,
+    "G": 64,
+    "H": 64,
+    "I": 64,
+    "K": 64,
+    "L": 64,
+    "M": 51,
+    "N": 64,
+    "O": 43,
+    "P": 64,
+    "Q": 63,
+    "R": 64,
+    "S": 64,
+    "T": 64,
+    "U": 64,
+    "V": 64,
+    "W": 64,
+    "X": 64,
+    "Y": 64
+  },
+  "participant_ids": [],
+  "physical_hands": {
+    "unknown": 1495
+  },
+  "lighting_directions": {
+    "unknown": 1495
+  },
+  "estimated_hands_not_ground_truth": {
+    "right": 1285,
+    "left": 210
+  },
+  "rejections": [
+    {
+      "file": "SignAlphaSet/C/C_347.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/C/C_880.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/C/C_455.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/C/C_710.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/C/C_709.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/C/C_341.jpg",
+      "letter": "C",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_810.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_727.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_892.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_875.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_781.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_849.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_302.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_295.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_955.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_737.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_761.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_938.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/M/M_812.jpg",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_867.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_975.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_808.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_915.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_835.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_800.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_806.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_850.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_774.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_836.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_929.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_661.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_777.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_997.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_875.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_772.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_776.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_311.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_858.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_853.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/O/O_786.jpg",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "SignAlphaSet/Q/Q_86.jpg",
+      "letter": "Q",
+      "reason": "requires_one_detected_hand"
+    }
+  ]
+}

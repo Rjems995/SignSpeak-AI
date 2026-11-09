@@ -18,7 +18,7 @@
     <a class="brand" href="{{ url_for('web.landing') }}"><img src="{{ url_for('static', filename='mark.svg') }}" alt="" width="36" height="36"><span>SignSpeak<span class="brand-ai"> AI</span><small>CONNECTION, IN YOUR HANDS</small></span></a>
     <div class="nav-label">YOUR WORKSPACE</div>
     <nav aria-label="Main navigation">
-      {% for endpoint, label, glyph, key in [('dashboard','Overview','grid','dashboard'), ('translate','Live translator','hand','translate'), ('learn','Learn ASL','book','learn'), ('practice','Practice studio','sparkles','practice'), ('history','My history','history','history')] %}
+      {% for endpoint, label, glyph, key in [('dashboard','Overview','grid','dashboard'), ('translate','Live translator','hand','translate'), ('learn','Learn ASL','book','learn'), ('practice','Practice studio','sparkles','practice'), ('capture','Collect samples','video','capture'), ('history','My history','history','history')] %}
       <a href="{{ url_for('web.' + endpoint) }}" class="nav-item {{ 'active' if page == key }}" {% if page == key %}aria-current="page"{% endif %}>{{ icon(glyph) }}{{ label }}{% if key == 'translate' %}<span class="nav-dot"></span>{% endif %}</a>
       {% endfor %}
     </nav>

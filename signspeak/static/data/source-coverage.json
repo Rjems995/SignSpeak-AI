@@ -1,0 +1,88 @@
+[
+  {
+    "name": "ASLYset",
+    "source_key": "aslyset",
+    "samples": 4770,
+    "participants": 4,
+    "q_samples": 199,
+    "left": 0,
+    "right": 4770,
+    "hand_unknown": 0,
+    "lighting_directions": {},
+    "usage": "Training pool",
+    "url": "https://data.mendeley.com/datasets/xs6mvhx6rh/1",
+    "limitations": "CC BY 4.0. Right-hand images only; per-image lighting, camera angle and session labels are unknown.",
+    "curation": {
+      "input_rows": 4788,
+      "usable_unique": 4770,
+      "duplicate_rows": 18,
+      "cross_participant_quarantined_rows": 0
+    }
+  },
+  {
+    "name": "ASL-HG",
+    "source_key": "asl_hg",
+    "samples": 5746,
+    "participants": 10,
+    "q_samples": 300,
+    "left": 0,
+    "right": 0,
+    "hand_unknown": 5746,
+    "lighting_directions": {},
+    "usage": "Training pool",
+    "url": "https://data.mendeley.com/datasets/j4y5w2c8w9/1",
+    "limitations": "Publisher describes indoor/outdoor and varied lighting, backgrounds and hand orientations. No per-image physical hand, lighting, camera-angle or session labels are provided.",
+    "curation": {
+      "input_rows": 5788,
+      "usable_unique": 5746,
+      "duplicate_rows": 14,
+      "cross_participant_quarantined_rows": 28
+    }
+  },
+  {
+    "name": "SignAlphaSet",
+    "source_key": "signalphaset",
+    "samples": 1495,
+    "participants": 0,
+    "q_samples": 63,
+    "left": 0,
+    "right": 0,
+    "hand_unknown": 1495,
+    "lighting_directions": {},
+    "usage": "Review only \u2014 excluded from training",
+    "url": "https://data.mendeley.com/datasets/8fmvr9m98w/3",
+    "limitations": "Paper reports 750 right-hand and 250 left-hand images per letter but explicitly says files do not identify hand. It also describes augmentation without per-file original/augmentation flags. Physical hand and capture conditions remain unknown; detector handedness is only an estimate.",
+    "curation": {
+      "input_rows": 1495,
+      "usable_unique": 1495,
+      "duplicate_rows": 0,
+      "cross_participant_quarantined_rows": 0
+    }
+  },
+  {
+    "name": "Massey MU HandImages ASL",
+    "source_key": "massey",
+    "samples": 895,
+    "participants": 5,
+    "q_samples": 11,
+    "left": 0,
+    "right": 0,
+    "hand_unknown": 895,
+    "lighting_directions": {
+      "bottom": 260,
+      "diffuse": 285,
+      "left": 116,
+      "right": 83,
+      "top": 151
+    },
+    "usage": "Review only \u2014 excluded from training",
+    "url": "https://www.massey.ac.nz/~albarcza/gesture_dataset2012.html",
+    "limitations": "Filename codes bot, top, left, right and dif identify light direction, not physical hand or camera angle. JPEG mirror of the original segmented images; no explicit physical-hand/session annotations. No explicit redistribution license located; coordinates remain in the ignored local review cache.",
+    "curation": {
+      "input_rows": 895,
+      "usable_unique": 895,
+      "duplicate_rows": 0,
+      "cross_participant_quarantined_rows": 0
+    }
+  }
+]

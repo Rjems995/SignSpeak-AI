@@ -21,8 +21,8 @@ async function loadResources(){
 }
 
 export class CameraController {
-  constructor({onCommit=()=>{},onResult=()=>{},onState=()=>{},onSequence=()=>{}}={}){
-    this.onCommit=onCommit;this.onResult=onResult;this.onState=onState;this.onSequence=onSequence;this.running=false;this.token=0;this.lastResult=null;this.points=null;this.lastSeen=0;this.recording=false;this.lastMotion=null;this.motionDisplayUntil=0;
+  constructor({onCommit=()=>{},onResult=()=>{},onState=()=>{},onSequence=()=>{},onSequenceStart=()=>true,onSequenceEnd=()=>{}}={}){
+    this.onCommit=onCommit;this.onResult=onResult;this.onState=onState;this.onSequence=onSequence;this.onSequenceStart=onSequenceStart;this.onSequenceEnd=onSequenceEnd;this.running=false;this.token=0;this.lastResult=null;this.points=null;this.lastSeen=0;this.recording=false;this.lastMotion=null;this.motionDisplayUntil=0;this.observation=null;
     this.stabilizer=new Stabilizer(Number(settings.hold_ms));this.video=document.getElementById('webcam');this.canvas=document.getElementById('landmark-canvas');this.startButton=document.getElementById('camera-start');this.stopButton=document.getElementById('camera-stop');
   }
   bind(){this.startButton.addEventListener('click',()=>this.start());this.stopButton.addEventListener('click',()=>this.stop());document.getElementById('record-motion').addEventListener('click',()=>this.recordMotion());document.getElementById('show-landmarks').checked=settings.landmarks;document.getElementById('show-landmarks').addEventListener('change',e=>settings.landmarks=e.target.checked);window.addEventListener('pagehide',()=>this.stop());document.addEventListener('visibilitychange',()=>{if(document.hidden)this.stop();});}
@@ -55,6 +55,8 @@ export class CameraController {
     try{
       const result=this.landmarker.detectForVideo(this.video,now);const single=result.landmarks.length===1;
       this.points=single?result.landmarks[0]:null;if(this.points)this.lastSeen=now;
+      const hand=(result.handednesses??result.handedness)?.[0]?.[0];
+      this.observation=single?{observed_hand:hand?.categoryName?.toLowerCase()??null,observed_hand_score:hand?.score??null,frame_width:this.video.videoWidth,frame_height:this.video.videoHeight,input_mirrored:false,preview_mirrored:true,landmarker_version:'0.10.21'}:null;
       drawHand(this.canvas,settings.landmarks?this.points:null);
       if(this.recording){
         if(this.points)this.motionFrames.push({t:now-this.motionStart,points:this.points.flatMap(p=>[p.x,p.y])});
@@ -82,9 +84,11 @@ export class CameraController {
     if(!this.running||!this.motionClassifier)return toast('Enable the camera and movement model first.');
     if(this.recording)return;
     if(!this.points||performance.now()-this.lastSeen>400)return toast('Bring one clearly visible hand into view before recording.');
+    if(this.onSequenceStart()===false)return false;
     this.recording=true;this.lastMotion=null;this.motionFrames=[];this.motionStart=performance.now();this.motionDuration=config.model.motion?.recording_ms||2400;this.stabilizer.reset();this.lastResult=null;
     document.getElementById('record-motion').disabled=true;document.getElementById('motion-status').textContent='Recording now. Trace J or Z once with one hand.';
     this.motionTimer=setTimeout(()=>this.finishMotion(),this.motionDuration);
+    return true;
   }
   finishMotion(){
     this.recording=false;if(!this.running)return;document.getElementById('record-motion').disabled=false;
@@ -95,9 +99,9 @@ export class CameraController {
       const now=performance.now();this.lastMotion={...prediction,motion:true,stable:prediction.label,progress:1,timestamp:now};this.motionDisplayUntil=now+1600;
       this.renderPrediction(true,this.lastMotion,{progress:1});this.onResult(this.lastMotion,this.points);this.onCommit(prediction.label);
       document.getElementById('motion-status').textContent=`Movement model accepted ${prediction.label}. This experimental result may need correction.`;
-    }catch(error){document.getElementById('motion-status').textContent=error.message;}
+    }catch(error){document.getElementById('motion-status').textContent=error.message;}finally{this.onSequenceEnd({cancelled:false});}
   }
   clearMotion(){this.lastMotion=null;this.motionDisplayUntil=0;this.stabilizer.reset();}
   current(){if(this.running&&this.lastMotion&&performance.now()-this.lastMotion.timestamp<8000)return this.lastMotion;return this.running&&this.lastResult&&performance.now()-this.lastResult.timestamp<400?this.lastResult:null;}
-  stop(){++this.token;clearTimeout(this.motionTimer);this.recording=false;this.lastMotion=null;this.motionFrames=[];this.motionDisplayUntil=0;document.getElementById('record-motion').disabled=true;document.getElementById('motion-status').textContent='Hold static letters steady. For J or Z, select Record J / Z and trace once in 2.4 seconds.';this.loading=false;this.running=false;cancelAnimationFrame(this.raf);this.stream?.getTracks().forEach(t=>t.stop());this.stream=null;this.video.pause();this.video.srcObject=null;this.points=null;this.lastResult=null;this.stabilizer.reset();drawHand(this.canvas,null);document.getElementById('camera-viewport').classList.remove('running');document.getElementById('camera-empty').hidden=false;document.getElementById('hand-status').hidden=true;this.startButton.disabled=false;this.startButton.textContent='Enable camera';this.stopButton.disabled=true;this.status('Camera off');this.renderPrediction(false,{label:null,confidence:0},{progress:0});this.onState(false);this.onResult(null,null);}
+  stop(){++this.token;clearTimeout(this.motionTimer);const wasRecording=this.recording;this.recording=false;if(wasRecording)this.onSequenceEnd({cancelled:true});this.lastMotion=null;this.motionFrames=[];this.motionDisplayUntil=0;document.getElementById('record-motion').disabled=true;document.getElementById('motion-status').textContent='Hold static letters steady. For J or Z, select Record J / Z and trace once in 2.4 seconds.';this.loading=false;this.running=false;cancelAnimationFrame(this.raf);this.stream?.getTracks().forEach(t=>t.stop());this.stream=null;this.video.pause();this.video.srcObject=null;this.points=null;this.observation=null;this.lastResult=null;this.stabilizer.reset();drawHand(this.canvas,null);document.getElementById('camera-viewport').classList.remove('running');document.getElementById('camera-empty').hidden=false;document.getElementById('hand-status').hidden=true;this.startButton.disabled=false;this.startButton.textContent='Enable camera';this.stopButton.disabled=true;this.status('Camera off');this.renderPrediction(false,{label:null,confidence:0},{progress:0});this.onState(false);this.onResult(null,null);}
 }

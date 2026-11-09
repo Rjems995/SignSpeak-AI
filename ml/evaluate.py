@@ -7,9 +7,9 @@ from sklearn.metrics import classification_report
 ROOT = Path(__file__).resolve().parents[1] / "signspeak" / "static" / "models"
 
 
-def evaluate(prefix=""):
-    model = json.loads((ROOT / f"{prefix}classifier.json").read_text())
-    report = json.loads((ROOT / f"{prefix}evaluation.json").read_text())
+def evaluate(prefix="", directory=ROOT):
+    model = json.loads((directory / f"{prefix}classifier.json").read_text())
+    report = json.loads((directory / f"{prefix}evaluation.json").read_text())
     examples = report["test_examples"]
     x = (np.array([r["features"] for r in examples]) - model["mean"]) / model["scale"]
     for i, layer in enumerate(model["layers"]):
@@ -24,11 +24,14 @@ def evaluate(prefix=""):
     print("Exported weights match the trained classifier on every held-out sample.")
 
 
-def main():
-    evaluate()
-    if (ROOT / "motion-classifier.json").exists():
-        evaluate("motion-")
+def main(directory=ROOT):
+    evaluate(directory=directory)
+    if (directory / "motion-classifier.json").exists():
+        evaluate("motion-", directory)
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model-directory", type=Path, default=ROOT)
+    main(parser.parse_args().model_directory)

@@ -82,14 +82,14 @@ See `signspeak/static/models/evaluation.json`, `motion-evaluation.json`, their m
 .\.venv\Scripts\python.exe -m pip install -r requirements-ml.txt
 # Optional: re-download the pinned public source and license.
 .\.venv\Scripts\python.exe -m ml.download_dataset
-.\.venv\Scripts\python.exe -m ml.prepare datasets/signn.json
+.\.venv\Scripts\python.exe -m ml.prepare datasets/signn.json --drop-conflicts --output datasets/private/clean-signn.json
 .\.venv\Scripts\python.exe -m ml.train
 .\.venv\Scripts\python.exe -m ml.evaluate
 ```
 
 The classifiers are trained with scikit-learn MLPs. Their learned kernels, biases, and scalers are exported to JSON and evaluated with TensorFlow.js in the browser. No Python inference or video upload is involved. Tests compare Python and JavaScript feature extraction and held-out probabilities for both models.
 
-`ml.train` writes a new classifier, model metadata, measured test results, reference samples, and confusion-matrix image. Restart or refresh the app afterward. Keep the scripts' random seeds and use the locked development versions in `requirements-lock.txt` to reproduce the checked-in artifacts. Retraining with future library versions can change the results.
+`ml.train` writes a new classifier, model metadata, measured test results, reference samples, and confusion-matrix image. The legacy source audit now finds seven conflicting-coordinate label groups; preparation refuses to choose a label arbitrarily. Use `--drop-conflicts` to quarantine those groups. The retained `datasets/prepared.json` and published model are the frozen historical baseline; generating cleaned data does not reproduce its original training set. Restart or refresh the app afterward. Keep the scripts' random seeds and use the locked development versions in `requirements-lock.txt` to reproduce the checked-in artifacts. Retraining with future library versions can change the results.
 
 If Matplotlib cannot write its user cache, set a workspace-local directory first:
 
@@ -99,7 +99,11 @@ $env:MPLCONFIGDIR = "$PWD\artifacts\matplotlib"
 
 ### Collect a better dataset
 
-1. Visit **http://127.0.0.1:5000/capture**. Give each consenting signer a pseudonymous participant ID. The form's consent checkbox specifically covers collecting hand coordinates.
+The workshop and public data are documented in [DATA_COLLECTION.md](DATA_COLLECTION.md). The eligible ASLYset + ASL-HG pool contains **10,516 usable unique samples**, including **499 Q samples**, across **14 source signer IDs**. `datasets/public-balanced.json` selects 17 originals per signer/letter: **5,712 samples, 238 per static letter**. The workshop tracks signer/session, actual hand, lighting, angle and duplicates. Unknown public metadata stays unknown. SignAlphaSet and Massey imports are review-only; the audit explains why they are excluded from training.
+
+A new candidate scores **89.13% raw / 80.23% with rejection** on 1,224 images from three held-out source signers; the current model scores **57.60% / 45.51% on that same test**. E and gated M performance regress, verified left-hand/condition coverage and unsupported-sign evaluation are still missing, and the live model remains unchanged. The saved comparison is `datasets/public-candidate-evaluation.json`; reproduction commands and per-letter limits are in DATA_COLLECTION.md.
+
+1. Visit **http://127.0.0.1:5000/capture**. Give each consenting signer a pseudonymous participant ID. The form's consent checkbox specifically covers collecting hand coordinates. Use the same signer ID across sessions and label the actual hand, lighting and viewing angle.
 2. Enable the camera. Choose a letter, hold the correct shape, and capture individual samples while varying distance, hand position, lighting, and sessions. Check the labels with a knowledgeable ASL signer.
 3. Collect unsupported shapes with the **Other / unsupported handshape** option. Include near-confusable signs, relaxed hands, and partially formed letters. Aim for balanced supported classes and diverse negative examples.
 4. Download each JSON file into `datasets/private/`. This folder is ignored by Git. Only coordinates are downloaded; no video is recorded.
@@ -137,7 +141,7 @@ The trained artifacts are bundled; downloads are needed only to retrain. The def
 
 The extractor uses Google's actual hand-landmarker model on real frames and logs rejected clips. Motion features resample tracked wrist/thumb/index/middle/little landmarks to 16 time steps, preserve movement relative to the initial wrist, and reject a stationary hand. Models, scalers, reference sequences, and gates use training/validation clips only.
 
-At `/capture`, select J or Z, enter a participant ID, opt in, and select **Record movement sample**. Static samples and sequences download separately according to the selected letter type. Combine your downloaded J/Z exports and train with participant grouping:
+At `/capture`, select J or Z, enter a participant ID, opt in, and select **Record movement sample**. Use the separate Download static and Download J/Z buttons; each export preserves signer, session, actual-hand and condition metadata. Combine your downloaded J/Z exports and train with participant grouping:
 
 ```powershell
 .\.venv\Scripts\python.exe -m ml.prepare_motion datasets/private/signer01-motion.json datasets/private/signer02-motion.json --output datasets/private/motion.json

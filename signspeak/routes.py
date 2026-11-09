@@ -83,7 +83,11 @@ def settings_page():
 
 @web.get("/capture")
 def capture():
-    return render_template("capture.html", page="capture", title="Collect real training samples")
+    directory = Path(current_app.static_folder) / "data"
+    plan = json.loads((directory / "collection-plan.json").read_text(encoding="utf-8"))
+    source_path = directory / "source-coverage.json"
+    sources = json.loads(source_path.read_text(encoding="utf-8")) if source_path.exists() else []
+    return render_template("capture.html", page="capture", title="Collect real training samples", collection_plan=plan, collection_sources=sources)
 
 
 @web.get("/profile")

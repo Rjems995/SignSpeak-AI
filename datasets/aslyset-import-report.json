@@ -1,0 +1,136 @@
+{
+  "source": "https://data.mendeley.com/datasets/xs6mvhx6rh/1",
+  "license": "CC BY 4.0",
+  "image_count": 4800,
+  "accepted": 4788,
+  "rejected": 12,
+  "counts_by_letter": {
+    "A": 200,
+    "B": 200,
+    "C": 200,
+    "D": 200,
+    "E": 200,
+    "F": 200,
+    "G": 200,
+    "H": 200,
+    "I": 200,
+    "K": 200,
+    "L": 200,
+    "M": 198,
+    "N": 199,
+    "O": 196,
+    "P": 199,
+    "Q": 199,
+    "R": 200,
+    "S": 200,
+    "T": 200,
+    "U": 198,
+    "V": 199,
+    "W": 200,
+    "X": 200,
+    "Y": 200
+  },
+  "raw_counts_by_letter": {
+    "A": 200,
+    "B": 200,
+    "C": 200,
+    "D": 200,
+    "E": 200,
+    "F": 200,
+    "G": 200,
+    "H": 200,
+    "I": 200,
+    "K": 200,
+    "L": 200,
+    "M": 200,
+    "N": 200,
+    "O": 200,
+    "P": 200,
+    "Q": 200,
+    "R": 200,
+    "S": 200,
+    "T": 200,
+    "U": 200,
+    "V": 200,
+    "W": 200,
+    "X": 200,
+    "Y": 200
+  },
+  "participant_ids": [
+    "aslyset_user1",
+    "aslyset_user2",
+    "aslyset_user3",
+    "aslyset_user4"
+  ],
+  "hands": {
+    "right": 4788,
+    "left": 0
+  },
+  "unknown_metadata": [
+    "lighting",
+    "angle",
+    "session"
+  ],
+  "rejections": [
+    {
+      "file": "ASLYset/images/User1/u/User1_U_45.png",
+      "letter": "U",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User1/u/User1_U_46.png",
+      "letter": "U",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User2/o/User2_O_28.png",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User2/o/User2_O_36.png",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User2/o/User2_O_4.png",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User2/o/User2_O_40.png",
+      "letter": "O",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User2/v/User2_V_17.png",
+      "letter": "V",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User3/m/User3_M_7.png",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User3/m/User3_M_8.png",
+      "letter": "M",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User3/n/User3_N_2.png",
+      "letter": "N",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User3/p/User3_P_47.png",
+      "letter": "P",
+      "reason": "requires_one_detected_hand"
+    },
+    {
+      "file": "ASLYset/images/User4/q/User4_Q_1.png",
+      "letter": "Q",
+      "reason": "requires_one_detected_hand"
+    }
+  ]
+}

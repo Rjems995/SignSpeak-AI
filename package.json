@@ -3,8 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/recognition.test.mjs",
-    "test:browser": "node tests/browser.mjs"
+    "test": "node --test tests/recognition.test.mjs tests/collection.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "test:collection-browser": "node tests/collection-browser.mjs"
   },
   "devDependencies": {"@tensorflow/tfjs": "4.22.0", "playwright": "1.56.1"}
 }
