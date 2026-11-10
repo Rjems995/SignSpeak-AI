@@ -10,11 +10,14 @@ from .motion_features import motion_features
 from .motion_audit import motion_observations, ranges
 
 
-def extract_video(path, metadata, fps_override=None, bounds=None, frontal_panel=False, keep_stationary_control=False):
+def extract_video(path, metadata, fps_override=None, bounds=None, frontal_panel=False, keep_stationary_control=False, panel=None):
     import cv2
     import mediapipe as mp
     from mediapipe.tasks import python
     from mediapipe.tasks.python import vision
+    panel = panel or ("frontal" if frontal_panel else None)
+    if panel not in {None, "frontal", "profile_right"}:
+        raise ValueError("Unknown source camera panel")
     model = ROOT / "datasets/videos/hand_landmarker.task"
     options = vision.HandLandmarkerOptions(base_options=python.BaseOptions(model_asset_path=str(model)), running_mode=vision.RunningMode.VIDEO, num_hands=2)
     cap = cv2.VideoCapture(str(path))
@@ -29,21 +32,21 @@ def extract_video(path, metadata, fps_override=None, bounds=None, frontal_panel=
                     break
                 include = index % stride == 0 and (bounds is None or bounds[0] <= index <= bounds[1])
                 if include:
-                    if frontal_panel:
+                    if panel:
                         # ASLLVD's processed MOV stacks frontal then profile
                         # views. Never count the synchronized second view as a
                         # different performance or signer.
-                        pixels = pixels[:pixels.shape[0]//2].copy()
+                        pixels = (pixels[:pixels.shape[0]//2] if panel == "frontal" else pixels[pixels.shape[0]//2:]).copy()
                     timestamp = round(index/fps*1000)
                     total += 1
                     image = mp.Image(image_format=mp.ImageFormat.SRGB, data=cv2.cvtColor(pixels, cv2.COLOR_BGR2RGB))
                     result = detector.detect_for_video(image, timestamp)
-                    if len(result.hand_landmarks) == 1 or (frontal_panel and result.hand_landmarks):
+                    if len(result.hand_landmarks) == 1 or (panel and result.hand_landmarks):
                         # In this corpus one hand signs while the other rests
                         # at the waist. Select the raised hand in the frontal
                         # panel; this is a documented extraction rule, not a
                         # detector-generated physical-handedness annotation.
-                        hand = min(result.hand_landmarks, key=lambda points: points[0].y) if frontal_panel else result.hand_landmarks[0]
+                        hand = min(result.hand_landmarks, key=lambda points: points[0].y) if panel else result.hand_landmarks[0]
                         frames.append({"t": timestamp, "points": [value for point in hand for value in (point.x, point.y)]})
                 index += 1
     finally:

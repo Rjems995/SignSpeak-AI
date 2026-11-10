@@ -8,10 +8,16 @@
     "archive": "massey-mirror.zip",
     "bytes": 30111932,
     "sha256": "455796a99024c54cb1da9df7f13d9e4c84a6d11e1084c02e526891625006edca",
-    "license": "No explicit redistribution license found on the original dataset page; copyright Massey University 2012; citation requested",
+    "license": "Author dataset terms, section 7 (2011): attribution and verbatim notice required; image resale prohibited",
+    "terms_file": "datasets/MASSEY-TERMS.txt",
+    "paper_url": "https://mro.massey.ac.nz/server/api/core/bitstreams/09187662-5ebe-4563-8515-3d7e5e1d2a33/content",
+    "paper_text_url": "https://mro.massey.ac.nz/server/api/core/bitstreams/bec25486-cda1-4605-9fae-6d7cb3844617/content",
+    "redistribution_eligible": true,
+    "bundled_coordinates": true,
+    "usage": "Lighting benchmark \u2014 excluded from training",
     "attribution": "Barczak, A. L. C.; Reyes, N. H.; Abastillas, M.; Piccio, A.; Susnjak, T. (2011), A new 2D static hand gesture colour image dataset for ASL gestures, Research Letters in the Information and Mathematical Sciences, 15, 12-20",
     "participant_metadata": "hand1-hand5 filename identifiers for volunteers",
-    "condition_metadata": "Filename codes bot, top, left, right and dif identify light direction, not physical hand or camera angle. JPEG mirror of the original segmented images; no explicit physical-hand/session annotations.",
+    "condition_metadata": "Source filename codes identify five light directions. The original paper documents a fixed tripod camera perpendicular to the subject; individual hand tilt and numeric camera angles are not annotated. Physical hand and sessions remain unknown. Author terms permit attributed redistribution; this source is reserved for lighting evaluation, outside training.",
     "training_eligible": false
   },
   "selection": {
@@ -3982,5 +3988,10 @@
       "letter": "Y",
       "reason": "requires_one_detected_hand"
     }
-  ]
+  ],
+  "metadata_refresh": {
+    "coordinates_changed": false,
+    "source_images_reverified": 895,
+    "evidence": "Original author paper; per-image filename illumination labels; capture protocol kept separate from camera angle"
+  }
 }

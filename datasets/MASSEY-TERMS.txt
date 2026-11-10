@@ -1,0 +1,23 @@
+MU HandImages ASL dataset terms, copied verbatim from the author paper.
+Barczak, Reyes, Abastillas, Piccio and Susnjak (2011), Research Letters in the Information and Mathematical Sciences 15, 12-20.
+Source: https://mro.massey.ac.nz/server/api/core/bitstreams/09187662-5ebe-4563-8515-3d7e5e1d2a33/content
+
+7 Conditions for using these images
+The images distributed with this dataset are copyrighted by the authors of this paper. You are
+granted free use, distribution and publication of these images, but you are obliged to follow the
+following rules:
+1. You may not claim that these images belong to you, or that they were taken by you. If you
+publish images of these dataset you should cite this paper to acknowledge the rightfull origin
+of the images.
+2. You can alter images using the methods described in this paper. This does not mean that
+you own the modified images. Modified images that contain the hand images in any shape or
+form are still subject to the same rules hereby described. You are allowed to publish, copy,
+re-distribute the modified images, as long as the true origin is acknowledged.
+3. You can produce research using these images, and the independent results of your original
+research carried out by you using our image datasets are yours. If commercial products are
+spawned from your research, you can freely redistribute our images with the product, but
+you are still not allowed to sell images that belong to this dataset. You are not allowed to
+sell images that contain cropped gesture images pasted onto them either.
+4. If you re-distribute copies or distribute modified copies of the images contained in this dataset,
+you should add this notice ipsis litteris to the documentation, and include a link or an
+acknowledgement to this research paper.

@@ -60,6 +60,8 @@ def main():
     args = parser.parse_args()
     raw = args.dataset.read_bytes()
     samples = json.loads(raw)
+    if any(row.get("training_eligible") is False for row in samples):
+        raise ValueError("Benchmark/review-only records cannot enter training; preserve the independent evaluation source")
     x = np.array([r["features"] for r in samples])
     y = np.array([r["letter"] if r["letter"] in LABELS else "_" for r in samples])
     required = set(LABELS)

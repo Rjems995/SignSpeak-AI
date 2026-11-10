@@ -87,7 +87,9 @@ def capture():
     plan = json.loads((directory / "collection-plan.json").read_text(encoding="utf-8"))
     source_path = directory / "source-coverage.json"
     sources = json.loads(source_path.read_text(encoding="utf-8")) if source_path.exists() else []
-    return render_template("capture.html", page="capture", title="Collect real training samples", collection_plan=plan, collection_sources=sources)
+    condition_path = directory / "condition-coverage.json"
+    condition_coverage = json.loads(condition_path.read_text(encoding="utf-8")) if condition_path.exists() else None
+    return render_template("capture.html", page="capture", title="Collect real training samples", collection_plan=plan, collection_sources=sources, condition_coverage=condition_coverage)
 
 
 @web.get("/profile")

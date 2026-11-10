@@ -1,0 +1,12 @@
+{
+  "massey-paper.txt": {
+    "url": "https://mro.massey.ac.nz/server/api/core/bitstreams/bec25486-cda1-4605-9fae-6d7cb3844617/content",
+    "sha256": "6e71f4b2b06ddc8dbec6dc4bd0439cce255f464cbae5ba89945ec8c89d9d9ffa",
+    "bytes": 22338
+  },
+  "massey-paper.pdf": {
+    "url": "https://mro.massey.ac.nz/server/api/core/bitstreams/09187662-5ebe-4563-8515-3d7e5e1d2a33/content",
+    "sha256": "7bbd49723c10c6fc6bd50663cd9838ce23ef22fd3f44e92b87b76d33f71015ab",
+    "bytes": 1037165
+  }
+}

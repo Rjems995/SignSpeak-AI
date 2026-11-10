@@ -58,6 +58,8 @@ def test_collection_workshop_labels_and_actual_public_source_counts(app):
     assert "5746 usable unique static samples" in html
     assert "Signer IDs: 10" in html
     assert "Review only" in html and "excluded from training" in html
+    assert "Lighting benchmark" in html
+    assert "Public annotation gaps remain" in html
 
 
 def test_private_history_and_practice_isolation(app):

@@ -48,6 +48,8 @@ The architecture remains a 160-feature sequence input, scaler, 48-unit ReLU laye
 
 A separate [ASLLVD](https://www.bu.edu/asllrp/av/dai-asllvd.html) benchmark contains five annotated J/Z performances from **three source-identified native ASL signers**, plus eleven D/I/L controls. It is excluded from training and validation. The source terms allow research/education and restrict redistribution/commercial use; its videos, annotation subset, signer mapping and extracted coordinates remain in ignored local caches. Only aggregate evaluation results are bundled.
 
+The source describes right-hand-dominant signers without identifying the actual hand for every token. Local metadata now keeps actual hand unknown and records dominance separately. Coordinates and recognition results are unchanged. CONDITION_DATA.md documents this correction and the separate camera-view audit.
+
 The source's processed MOVs stack synchronized frontal/profile views and play captured 60-fps frames at 15 fps. Extraction uses only the frontal panel, corrects timestamps to capture time, selects the raised signing hand, and follows the published sign start/end frames for positives. The profile view is never counted as another performance. Actual context frames are retained for controls. In particular, a fluent J performance lasting about 333 ms exposed the previous overly restrictive minimum-duration check.
 
 | Independent research test | Old model | Installed expanded model |

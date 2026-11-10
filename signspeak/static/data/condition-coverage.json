@@ -1,0 +1,9 @@
+{
+  "status": "partial_coverage",
+  "verified_left": 0,
+  "joint_complete": 0,
+  "lighting_samples": 895,
+  "camera_views": 10,
+  "camera_performances": 5,
+  "notice": "Public annotation gaps remain: verified physical left-hand alphabet examples and samples jointly labeled with hand, illumination and camera view are still missing."
+}

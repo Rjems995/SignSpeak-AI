@@ -9,6 +9,7 @@
     "right": 4770,
     "hand_unknown": 0,
     "lighting_directions": {},
+    "documented_camera_setups": {},
     "usage": "Training pool",
     "url": "https://data.mendeley.com/datasets/xs6mvhx6rh/1",
     "limitations": "CC BY 4.0. Right-hand images only; per-image lighting, camera angle and session labels are unknown.",
@@ -29,6 +30,7 @@
     "right": 0,
     "hand_unknown": 5746,
     "lighting_directions": {},
+    "documented_camera_setups": {},
     "usage": "Training pool",
     "url": "https://data.mendeley.com/datasets/j4y5w2c8w9/1",
     "limitations": "Publisher describes indoor/outdoor and varied lighting, backgrounds and hand orientations. No per-image physical hand, lighting, camera-angle or session labels are provided.",
@@ -49,6 +51,7 @@
     "right": 0,
     "hand_unknown": 1495,
     "lighting_directions": {},
+    "documented_camera_setups": {},
     "usage": "Review only \u2014 excluded from training",
     "url": "https://data.mendeley.com/datasets/8fmvr9m98w/3",
     "limitations": "Paper reports 750 right-hand and 250 left-hand images per letter but explicitly says files do not identify hand. It also describes augmentation without per-file original/augmentation flags. Physical hand and capture conditions remain unknown; detector handedness is only an estimate.",
@@ -75,9 +78,12 @@
       "right": 83,
       "top": 151
     },
-    "usage": "Review only \u2014 excluded from training",
-    "url": "https://www.massey.ac.nz/~albarcza/gesture_dataset2012.html",
-    "limitations": "Filename codes bot, top, left, right and dif identify light direction, not physical hand or camera angle. JPEG mirror of the original segmented images; no explicit physical-hand/session annotations. No explicit redistribution license located; coordinates remain in the ignored local review cache.",
+    "documented_camera_setups": {
+      "fixed_tripod_perpendicular_to_subject": 895
+    },
+    "usage": "Lighting benchmark \u2014 excluded from training",
+    "url": "https://mro.massey.ac.nz/server/api/core/bitstreams/09187662-5ebe-4563-8515-3d7e5e1d2a33/content",
+    "limitations": "Source filename codes identify five light directions. The original paper documents a fixed tripod camera perpendicular to the subject; individual hand tilt and numeric camera angles are not annotated. Physical hand and sessions remain unknown. Author terms permit attributed redistribution; this source is reserved for lighting evaluation, outside training.",
     "curation": {
       "input_rows": 895,
       "usable_unique": 895,

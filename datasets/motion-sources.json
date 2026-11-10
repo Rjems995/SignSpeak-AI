@@ -9,7 +9,7 @@
     "license": "Research and education only; no redistribution or commercial use without explicit permission",
     "training_eligible": false,
     "attribution": "Neidle, Carol; Thangali, Ashwin; Sclaroff, Stan (2012), Challenges in Development of the American Sign Language Lexicon Video Dataset (ASLLVD) Corpus, LREC 2012. See original source for full credits and terms.",
-    "conditions": "Evaluation only. Source-annotated consultant IDs, sign start/end frame numbers and physical right-hand dominance. Processed MOVs stack frontal/profile views and play all originally captured 60-fps frames at 15 fps; correct timestamps to capture time. Keep clips, source annotation subset and coordinates in ignored local caches."
+    "conditions": "Evaluation only. Source-annotated consultant IDs and sign start/end frames; the source describes right-hand-dominant signers, not actual physical hand per token. Keep actual hand unknown. Processed MOVs stack frontal/profile views and play all originally captured 60-fps frames at 15 fps; correct timestamps to capture time. Keep clips, source annotation subset and coordinates in ignored local caches."
   },
   "signalpha_motion": {
     "name": "SignAlphaSet dynamic V3",

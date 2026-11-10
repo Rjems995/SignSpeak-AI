@@ -3,17 +3,16 @@ import json
 from collections import Counter
 from .data_quality import ROOT, curate, load_records
 from .import_public import SOURCES
+from .condition_evidence import documented_value
 
 
 def main():
     specs = [("aslyset", "ASLYset", ROOT / "datasets/aslyset-landmarks.json", "https://data.mendeley.com/datasets/xs6mvhx6rh/1", True,
               "CC BY 4.0. Right-hand images only; per-image lighting, camera angle and session labels are unknown.")]
     for key, source in SOURCES.items():
-        directory = ROOT / ("datasets" if source["training_eligible"] else "artifacts/public-review")
+        directory = ROOT / ("datasets" if source.get("bundled_coordinates", source["training_eligible"]) else "artifacts/public-review")
         limitation = source["condition_metadata"]
-        if key == "massey":
-            limitation += " No explicit redistribution license located; coordinates remain in the ignored local review cache."
-        specs.append((key, source["name"], directory / f"{key}-landmarks.json", source["url"], source["training_eligible"], limitation))
+        specs.append((key, source["name"], directory / f"{key}-landmarks.json", source.get("paper_url", source["url"]), source["training_eligible"], limitation))
     reports = []
     for key, name, path, url, eligible, limitation in specs:
         if not path.exists():
@@ -28,7 +27,8 @@ def main():
                         "q_samples": sum(r["letter"] == "Q" for r in clean),
                         "left": hands["left"], "right": hands["right"], "hand_unknown": hands["unknown"],
                         "lighting_directions": dict(sorted(directions.items())),
-                        "usage": "Training pool" if eligible else "Review only — excluded from training",
+                        "documented_camera_setups": dict(Counter(value for row in clean if (value := documented_value(row, "camera_setup")))),
+                        "usage": SOURCES.get(key, {}).get("usage", "Training pool" if eligible else "Review only — excluded from training"),
                         "url": url, "limitations": limitation,
                         "curation": {**{k: v for k, v in audit.items() if k not in {"invalid", "conflicts", "cross_participant_duplicates"}},
                                      "cross_participant_quarantined_rows": sum(group["rows"] for group in audit["cross_participant_duplicates"])}})

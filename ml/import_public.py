@@ -41,6 +41,10 @@ def source_metadata(source, name):
         row["participant"] = "massey_hand" + match[2]
         row["lighting_direction"] = LIGHTS[match[3]]
         row["lighting_direction_source"] = "source_filename"
+        row["camera_setup"] = "fixed_tripod_perpendicular_to_subject"
+        row["metadata_evidence"] = {
+            "lighting_direction": {"basis": "publisher_per_sample", "source": SOURCES[source]["paper_url"], "locator": "section 4 filename convention; source_file", "value": row["lighting_direction"]},
+            "camera_setup": {"basis": "publisher_protocol", "source": SOURCES[source]["paper_url"], "locator": "introduction and section 3 acquisition setup", "value": row["camera_setup"]}}
     return row
 
 
@@ -81,7 +85,7 @@ def main():
         actual = hashlib.file_digest(stream, "sha256").hexdigest()
     if archive.stat().st_size != source["bytes"] or actual != source["sha256"]:
         raise ValueError("Archive verification failed; run scripts/download-public-source.mjs")
-    output_directory = ROOT / ("datasets" if source["training_eligible"] else "artifacts/public-review")
+    output_directory = ROOT / ("datasets" if source.get("bundled_coordinates", source["training_eligible"]) else "artifacts/public-review")
     output_directory.mkdir(parents=True, exist_ok=True)
     output = output_directory / f"{args.source}-landmarks.json"
     model_path = ROOT / "datasets/videos/hand_landmarker.task"

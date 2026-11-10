@@ -63,7 +63,8 @@ def extract():
         bounds = (50, 50+row["source_end_frame"]-row["source_start_frame"]) if row["letter"] != "_" else (40, 60+row["source_end_frame"]-row["source_start_frame"])
         try:
             metadata = {"letter": row["letter"], "source_label": row["source_label"], "clip": "asllvd/"+row["file"],
-                        "participant": row["participant"], "session": row["session"], "hand": "right", "hand_source": "publisher_recording_protocol",
+                        "participant": row["participant"], "session": row["session"], "hand": "unknown", "hand_source": "not_annotated_per_token",
+                        "signer_dominance": "right", "signer_dominance_source": "publisher_recording_protocol",
                         "source": "ASLLVD research benchmark", "source_sha256": row["sha256"], "training_eligible": False,
                         "source_url": manifest["source"]["url"], "license": manifest["source"]["license"], "source_row": row["source_row"],
                         "extraction": "frontal panel; raised hand; 60-fps capture time; annotated J/Z bounds, 10-frame context only for controls"}

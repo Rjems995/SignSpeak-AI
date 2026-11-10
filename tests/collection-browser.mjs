@@ -22,6 +22,8 @@ try{
   assert.ok((await page.locator('.source-coverage').textContent()).includes('5746 usable unique'));
   assert.equal(await page.locator('.source-audit').count(),4);
   assert.ok((await page.locator('.source-coverage').textContent()).includes('hand unknown: 5746'));
+  assert.ok((await page.locator('.source-coverage').textContent()).includes('Public annotation gaps remain'));
+  assert.ok((await page.locator('.source-coverage').textContent()).includes('Lighting benchmark'));
   assert.equal(await page.locator('#capture-letter').inputValue(),'Q');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.screenshot({path:'artifacts/collection-desktop.png',fullPage:true,animations:'disabled'});
