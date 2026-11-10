@@ -40,6 +40,36 @@ test('uncertain frames cannot stabilize and unknown geometry is rejected',()=>{
  assert.equal(gatePrediction(model.labels.map(()=>1/7),Array(42).fill(0),model,.85).label,null);
 });
 
+test('real reviewed unknown poses match Python gates and cannot commit rejected letters',()=>{
+ const evaluation=JSON.parse(fs.readFileSync(new URL('../datasets/unknown-evaluation.json',import.meta.url)));
+ const classifier=new LandmarkClassifier(model,tf);
+ let accepted=0;
+ for(const row of evaluation.test_examples){
+   const result=classifier.predictFeatures(row.features,.85);
+   assert.equal(result.label,row.accepted,`${row.category} ${row.fingerprint}`);
+   if(result.label){accepted++;continue;}
+   const stabilizer=new Stabilizer(500);
+   // A rejection interrupts a nearly completed valid-letter hold.
+   for(let t=0;t<700;t+=100)stabilizer.update('A',t);
+   assert.equal(stabilizer.update(null,700).progress,0);
+   for(let t=800;t<2500;t+=100)assert.equal(stabilizer.update(result.label,t).commit,null);
+ }
+ assert.equal(accepted,2); // Keep the remaining failures visible.
+ assert.equal(evaluation.candidate.test.unknown.false_acceptances,accepted);
+});
+
+test('rejection gates fail closed for malformed coordinates, probabilities and config',()=>{
+ const classifier=new LandmarkClassifier(model,tf);
+ for(const points of [null,[],Array(42).fill(0),Array(42).fill(NaN)])assert.equal(classifier.predict(points,.85).label,null);
+ const row=report.test_examples[0],probabilities=row.probabilities;
+ for(const features of [[],row.features.map(()=>Infinity)])assert.equal(gatePrediction(probabilities,features,model,.85).label,null);
+ for(const probabilities of [[],model.labels.map(()=>NaN),model.labels.map(()=>-1)])assert.equal(gatePrediction(probabilities,row.features,model,.85).label,null);
+ assert.equal(gatePrediction(probabilities,row.features,model,NaN).label,null);
+ // A guaranteed pre-gate acceptance lets us test malformed veto config.
+ const features=model.support.A[0],p=model.labels.map(label=>label==='A'?1:0);
+ assert.equal(gatePrediction(p,features,{...model,rejection:{version:'bad'}},.85).label,null);
+});
+
 test('all 24 static letters are trained and orientation remains meaningful',()=>{
  assert.deepEqual([...model.labels].sort(),[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].filter(l=>l!=='J'&&l!=='Z'));
  assert.notDeepEqual(normalize(refs.K),normalize(refs.K.map(v=>-v)));

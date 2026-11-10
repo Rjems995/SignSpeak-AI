@@ -1,0 +1,22 @@
+{
+  "reviewer": "Codex visual review; not a Deaf educator or ASL expert certification",
+  "rule": "Review original hand crops before model inference. Keep visibly spread or flexed non-letter poses. Exclude object grips and letter-compatible or occluded ambiguous shapes; source no_gesture is not an ASL-negative label.",
+  "hagrid_no_gesture": {
+    "unrelated_gesture": [0,2,5,7,8,11,12,13,17,20,21,22,25,28,31,33,35,38,39,40,41,44,46,52,54,55,58,59,60,61,65,66,69,71,72,73,74,75,76,78,79,81,82,83,85,86,87,88,89,91,92,95,97,98,99,101,107,109,110,111,115,117,118,120,123,125,131,135,139,140,141,142,143,144,149,150,151,152,153,154,155,157,158,164,167,171,172,174,175,176,178,181,183,185,186,189,190,194,195],
+    "other_rows": "excluded: ambiguous, letter-compatible, closed fingers with hidden thumb, or object grip"
+  },
+  "hagrid_resting": {
+    "relaxed_hand": [0,2,4,5,7,9,11,14,17,20,22,23,25,26,28,29,30,31,32,33,34,35,37,38,40,45,46,49,51,53,55,57,61,65,69,70,71,74],
+    "partial_flexion": [6,43,56,63,72],
+    "other_rows": "excluded: letter-compatible fist/C/pointing shape, closed parallel fingers, object grip, occlusion or uncertain crop. Partial flexion is a visible proxy for incomplete handshapes; intended sign and completeness are not source-annotated."
+  },
+  "aslyset": {"source_label":"FN","users":[1,2,3,4],"image_numbers":[1,11,21,31,41],"category":"unrelated_gesture","review":"All 20 show a spread five-finger palm, outside the alphabet vocabulary. SP controls excluded because horizontal closed-finger poses can overlap alphabet handshapes."},
+  "video_transitions": "48 frames reviewed; excluded from negative training. Many already show another valid letter; other frames are blurred, occluded, or lack a hand. Intended incomplete letter cannot be inferred from handshape alone.",
+  "validation_policy": {
+    "ratio_grid": [0.25,0.5,0.75,1,1.25,1.5,2,3,4],
+    "minimum_legacy_correct_acceptance_retention": 1,
+    "minimum_public_correct_acceptance_retention": 0.99,
+    "minimum_public_per_letter_correct_acceptance_retention": 0.95,
+    "selection": "Minimize unknown validation acceptances subject to supported-letter retention; break ties toward the smallest rejection ratio. Require fewer unknown validation acceptances than baseline. Test data never select the threshold."
+  }
+}

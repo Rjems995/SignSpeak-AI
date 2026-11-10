@@ -24,11 +24,24 @@ export function nearestDistance(features, support) {
 }
 
 export function gatePrediction(probabilities, features, model, threshold) {
+  const rejected = reason => ({label:null,confidence:0,candidate:null,reason});
+  if (!Array.isArray(features) || features.length !== model.mean.length || features.some(v=>!Number.isFinite(v)) ||
+      !Array.isArray(probabilities) || probabilities.length !== model.labels.length || !probabilities.length ||
+      probabilities.some(v=>!Number.isFinite(v)||v<0||v>1) || !Number.isFinite(threshold) || threshold<0 || threshold>1) return rejected('invalid_input');
   const index = probabilities.indexOf(Math.max(...probabilities));
   const confidence = probabilities[index];
   const candidate = model.labels[index];
-  const accepted = candidate !== '_' && confidence >= threshold && nearestDistance(features,model.support[candidate]) <= model.distance_thresholds[candidate];
-  return {label:accepted ? candidate : null, confidence, candidate};
+  const distance = nearestDistance(features,model.support[candidate]);
+  let reason = candidate === '_' ? 'unsupported' : confidence < threshold ? 'confidence' : !(distance <= model.distance_thresholds[candidate]) ? 'distance' : null;
+  // A second, training-only support set models reviewed non-letter shapes.
+  // Keep the existing class network and confidence/distance checks intact.
+  if (!reason && model.rejection) {
+    const gate=model.rejection;
+    if(gate.version!=='negative-distance-ratio-v1' || !Number.isFinite(gate.ratio) || gate.ratio<=0 ||
+       !Array.isArray(gate.support) || !gate.support.length || gate.support.some(row=>!Array.isArray(row)||row.length!==features.length||row.some(v=>!Number.isFinite(v)))) return rejected('invalid_rejection_model');
+    if(nearestDistance(features,gate.support) <= distance*gate.ratio)reason='unknown_handshape';
+  }
+  return {label:reason ? null : candidate, confidence, candidate, reason};
 }
 
 export class Stabilizer {
@@ -60,7 +73,8 @@ export class LandmarkClassifier {
     this.layers=model.layers.map(l=>({kernel:tf.tensor2d(l.kernel),bias:tf.tensor1d(l.bias)}));
   }
   predict(points,threshold) {
-    const features=normalize(points);
+    let features;
+    try {features=normalize(points);} catch {return {label:null,confidence:0,candidate:null,reason:'invalid_geometry'};}
     return this.predictFeatures(features,threshold);
   }
   probabilities(features) {

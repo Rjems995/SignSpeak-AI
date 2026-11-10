@@ -8,8 +8,8 @@ This is an experimental alphabet MVP, not full ASL translation. It does not inte
 
 - Responsive landing page, dashboard, light/dark themes, and mobile navigation.
 - Permission-based webcam access; real 21-point MediaPipe tracking; optional landmark overlay.
-- Static classifier: 42 -> 96 -> 64 -> 24. Movement classifier: 160 temporal features -> 48 -> 24 -> 2 (J/Z). Both use learned weights, not hardcoded letter predictions.
-- Wrist/scale/mirror normalization that preserves meaningful hand direction, confidence/distance gates, temporal smoothing, and release-before-repeat for static letters.
+- Static classifier: 42 -> 96 -> 64 -> 24. Movement classifier: 160 temporal features -> 48 -> 24 -> 3 (J, Z, unsupported). Both use learned weights, not hardcoded letter predictions.
+- Wrist/scale/mirror normalization that preserves meaningful hand direction, confidence/distance gates, reviewed negative-handshape support, temporal smoothing, and release-before-repeat for static letters. Rejected hands display “Sign not recognized.”
 - Editable text, space/delete/clear/copy, and explicit saving to private history.
 - English text-to-speech, available voice selection, speed, pause/resume, and stop.
 - All 26 ASL lesson cards, alphabetical navigation, recorded static references, animated J/Z movement references, and links to ASL University visual demonstrations.
@@ -60,10 +60,10 @@ The installed J/Z model uses **188 real movements and 10 non-J/Z controls** from
 
 | Model | Raw held-out accuracy | Accuracy after the default rejection gate |
 | --- | --- | --- |
-| 24 static letters | 74.4% on 125 samples | 68.8% on 125 samples |
+| 24 static letters | 74.4% on 125 samples | 68.0% on 125 samples (previously 68.8%) |
 | J/Z movements | 97.37% on 38 positive test clips | 84.21% on those 38 clips |
 
-Gated accuracy counts rejected valid examples as errors; it is not precision among accepted outputs. The motion model rejects 2/2 held-out non-J/Z controls. An independent, research-only ASLLVD benchmark yields 3/5 accepted correct J/Z predictions and 0/11 falsely accepted controls, versus 0/5 and 0/11 for the old model. These tiny control sets do not establish reliable unknown-gesture rejection. The public motion split has no per-clip signer IDs and does not estimate unseen-signer accuracy. Static unsupported-pose rejection remains unmeasured. In the unchanged static model, Q has only two unique samples: one training, one test, no validation. Its gate uses a fixed conservative fallback, and the single Q test sample was not correctly classified.
+Gated accuracy counts rejected valid examples as errors; it is not precision among accepted outputs. The motion model rejects 2/2 held-out non-J/Z controls. An independent, research-only ASLLVD benchmark yields 3/5 accepted correct J/Z predictions and 0/11 falsely accepted controls, versus 0/5 and 0/11 for the old model. These tiny control sets do not establish reliable unknown-gesture rejection. The public motion split has no per-clip signer IDs and does not estimate unseen-signer accuracy. The static rejection update reduces false letters from 16/48 to 2/48 reviewed held-out unknown poses; see UNKNOWN_HANDS.md for the still-image limits and one additional known-letter false rejection. In the static class network, Q still has only two unique samples: one training, one test, no validation. Its gate uses a fixed conservative fallback, and the single Q test sample was not correctly classified.
 
 Confidence is an uncalibrated model probability. Unsupported gestures can still receive high scores. Inspect/correct the generated text and collect more diverse, consented, participant-labeled data before relying on recognition. The new metrics replace the previous six-letter model's results.
 
@@ -89,7 +89,7 @@ See `signspeak/static/models/evaluation.json`, `motion-evaluation.json`, their m
 
 The classifiers are trained with scikit-learn MLPs. Their learned kernels, biases, and scalers are exported to JSON and evaluated with TensorFlow.js in the browser. No Python inference or video upload is involved. Tests compare Python and JavaScript feature extraction and held-out probabilities for both models.
 
-`ml.train` writes a new classifier, model metadata, measured test results, reference samples, and confusion-matrix image. The legacy source audit now finds seven conflicting-coordinate label groups; preparation refuses to choose a label arbitrarily. Use `--drop-conflicts` to quarantine those groups. The retained `datasets/prepared.json` and published model are the frozen historical baseline; generating cleaned data does not reproduce its original training set. Restart or refresh the app afterward. Keep the scripts' random seeds and use the locked development versions in `requirements-lock.txt` to reproduce the checked-in artifacts. Retraining with future library versions can change the results.
+`ml.train` writes a new classifier, model metadata, measured test results, reference samples, and confusion-matrix image. The legacy source audit now finds seven conflicting-coordinate label groups; preparation refuses to choose a label arbitrarily. Use `--drop-conflicts` to quarantine those groups. The retained `datasets/prepared.json` and `datasets/baselines/static-v1/` are the frozen historical baseline; generating cleaned data does not reproduce its original training set. The installed model adds the separately evaluated rejection support described in UNKNOWN_HANDS.md; retraining a classifier replaces that export, so evaluate rejection again before installing new weights. Restart or refresh the app afterward. Keep the scripts' random seeds and use the locked development versions in `requirements-lock.txt` to reproduce the checked-in artifacts. Retraining with future library versions can change the results.
 
 If Matplotlib cannot write its user cache, set a workspace-local directory first:
 
@@ -103,7 +103,9 @@ The workshop and public data are documented in [DATA_COLLECTION.md](DATA_COLLECT
 
 [CONDITION_DATA.md](CONDITION_DATA.md) documents **895 source-labeled lighting samples** and **10 camera views of five existing ASL performances**. The audit keeps light direction, camera setup, actual camera view and signer dominance separate. Verified physical left-hand samples and jointly annotated hand/light/view examples are still missing. `/capture` displays this partial-coverage status; no model weights were changed by the condition audit.
 
-A new static candidate scores **89.13% raw / 80.23% with rejection** on 1,224 images from three held-out source signers; the current static model scores **57.60% / 45.51% on that same test**. E and gated M performance regress, verified left-hand/condition coverage and unsupported-pose evaluation are still missing, and the live static model remains unchanged. The saved comparison is `datasets/public-candidate-evaluation.json`; reproduction commands and per-letter limits are in DATA_COLLECTION.md. The separate J/Z model has been updated as described in MOTION_DATA.md.
+A separate static candidate scores **89.13% raw / 80.23% with rejection** on 1,224 images from three held-out source signers; the live static model scores **57.60% / 45.51% on that same test**. E and gated M performance regress, so that class network was not promoted. The historical comparison is `datasets/public-candidate-evaluation.json`; reproduction commands and per-letter limits are in DATA_COLLECTION.md. The separate J/Z model has been updated as described in MOTION_DATA.md.
+
+[UNKNOWN_HANDS.md](UNKNOWN_HANDS.md) documents the installed static rejection update: **16/48 → 2/48** false letters on reviewed held-out unknown hands, with real relaxed hands, partial-flexion proxies and unrelated gestures. Correct accepted letters change **86/125 → 85/125** on the legacy test and remain **557/1,224** on the public test. Partial/incomplete shapes remain weak; this small still-image benchmark does not establish live-webcam reliability. Coordinates, split isolation, source terms, validation policy and remaining failures are retained for review.
 
 1. Visit **http://127.0.0.1:5000/capture**. Give each consenting signer a pseudonymous participant ID. The form's consent checkbox specifically covers collecting hand coordinates. Use the same signer ID across sessions and label the actual hand, lighting and viewing angle.
 2. Enable the camera. Choose a letter, hold the correct shape, and capture individual samples while varying distance, hand position, lighting, and sessions. Check the labels with a knowledgeable ASL signer.

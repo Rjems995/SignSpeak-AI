@@ -22,6 +22,13 @@ def predict(model, features):
         support = np.array(model["support"][label])
         distances = np.sqrt(((features[indices, None, :]-support[None, :, :])**2).mean(axis=2)).min(axis=1)
         rejected = (probabilities[indices].max(axis=1) < .85) | (distances > model["distance_thresholds"][label])
+        if model.get("rejection"):
+            gate = model["rejection"]
+            if gate["version"] != "negative-distance-ratio-v1" or not gate["support"] or gate["ratio"] <= 0:
+                raise ValueError("Invalid rejection model")
+            negatives = np.array(gate["support"])
+            negative_distances = np.sqrt(((features[indices, None, :]-negatives[None, :, :])**2).mean(axis=2)).min(axis=1)
+            rejected |= negative_distances <= distances * gate["ratio"]
         gated[indices[rejected]] = "_"
     return prediction, gated
 

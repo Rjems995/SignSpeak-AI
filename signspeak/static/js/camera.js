@@ -75,10 +75,10 @@ export class CameraController {
   }
   renderPrediction(hasHand,prediction,stable){
     const letter=document.getElementById('prediction-letter');if(letter)letter.textContent=prediction.label||'—';
-    const label=document.getElementById('prediction-label');if(label)label.textContent=prediction.label?`ASL letter ${prediction.label}`:hasHand?'No supported letter accepted':'Looking for your hand';
+    const label=document.getElementById('prediction-label');if(label)label.textContent=prediction.label?`ASL letter ${prediction.label}`:hasHand?'Sign not recognized.':'Looking for your hand';
     const hint=document.getElementById('prediction-hint');if(hint)hint.textContent=prediction.motion?'Movement accepted. Select Record J / Z to trace another.':prediction.label?(stable.progress>=1?'Letter held. Release briefly to repeat.':'Hold steady to confirm this letter.'):hasHand?'Hold an A–Z static shape, or record movement for J/Z.':'Keep your whole hand inside the camera.';
-    const confidence=document.getElementById('confidence-value');if(confidence)confidence.textContent=hasHand&&this.classifier?`${Math.round(prediction.confidence*100)}%`:'—';
-    const confidenceFill=document.getElementById('confidence-fill');if(confidenceFill)confidenceFill.style.width=`${hasHand?prediction.confidence*100:0}%`;
+    const confidence=document.getElementById('confidence-value');if(confidence)confidence.textContent=prediction.label?`${Math.round(prediction.confidence*100)}%`:'—';
+    const confidenceFill=document.getElementById('confidence-fill');if(confidenceFill)confidenceFill.style.width=`${prediction.label?prediction.confidence*100:0}%`;
     const hold=document.getElementById('hold-fill');if(hold)hold.style.width=`${stable.progress*100}%`;
   }
   recordMotion(){
@@ -97,11 +97,11 @@ export class CameraController {
     const frames=this.motionFrames;this.motionFrames=[];
     try{
       const prediction=this.motionClassifier.predict(frames,Number(settings.threshold));this.onSequence(frames);this.stabilizer.reset();
-      if(!prediction.label){document.getElementById('motion-status').textContent='No J/Z movement accepted. Review the lesson and trace once more.';return;}
+      if(!prediction.label){this.lastMotion=null;this.lastResult={...prediction,stable:null,progress:0,timestamp:performance.now()};this.renderPrediction(true,prediction,{progress:0});this.onResult(this.lastResult,this.points);document.getElementById('motion-status').textContent='Sign not recognized. Review the J/Z lesson and trace once more.';return;}
       const now=performance.now();this.lastMotion={...prediction,motion:true,stable:prediction.label,progress:1,timestamp:now};this.motionDisplayUntil=now+1600;
       this.renderPrediction(true,this.lastMotion,{progress:1});this.onResult(this.lastMotion,this.points);this.onCommit(prediction.label);
       document.getElementById('motion-status').textContent=`Movement model accepted ${prediction.label}. This experimental result may need correction.`;
-    }catch(error){document.getElementById('motion-status').textContent=error.message;}finally{this.onSequenceEnd({cancelled:false});}
+    }catch(error){this.lastMotion=null;this.lastResult={label:null,confidence:0,stable:null,progress:0,timestamp:performance.now()};this.stabilizer.reset();this.renderPrediction(Boolean(this.points),this.lastResult,{progress:0});this.onResult(this.lastResult,this.points);document.getElementById('motion-status').textContent=`Sign not recognized. ${error.message}`;}finally{this.onSequenceEnd({cancelled:false});}
   }
   clearMotion(){this.lastMotion=null;this.motionDisplayUntil=0;this.stabilizer.reset();}
   current(){if(this.running&&this.lastMotion&&performance.now()-this.lastMotion.timestamp<8000)return this.lastMotion;return this.running&&this.lastResult&&performance.now()-this.lastResult.timestamp<400?this.lastResult:null;}

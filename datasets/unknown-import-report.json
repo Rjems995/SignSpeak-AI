@@ -1,0 +1,1364 @@
+{
+  "sources": {
+    "train-no_gesture.json": {
+      "url": "https://rndml-team-cv.obs.ru-moscow-1.hc.sbercloud.ru/datasets/hagrid_v2/annotations_with_landmarks/annotations.zip",
+      "member": "annotations/train/no_gesture.json",
+      "bytes": 5612594,
+      "sha256": "b4a5f5bced1fed65c98069da225b20f762db602ef3674d05bb2fd3aac4a0ff23"
+    },
+    "val-no_gesture.json": {
+      "url": "https://rndml-team-cv.obs.ru-moscow-1.hc.sbercloud.ru/datasets/hagrid_v2/annotations_with_landmarks/annotations.zip",
+      "member": "annotations/val/no_gesture.json",
+      "bytes": 706543,
+      "sha256": "03cbbd25ab482591758769d2b3573ac5c36117edbfd7aa4c385a6651953263cd"
+    },
+    "test-no_gesture.json": {
+      "url": "https://rndml-team-cv.obs.ru-moscow-1.hc.sbercloud.ru/datasets/hagrid_v2/annotations_with_landmarks/annotations.zip",
+      "member": "annotations/test/no_gesture.json",
+      "bytes": 1844889,
+      "sha256": "44dc45a32d811585a780bc7491a991c988cc9596c17c321c8e8fb92bc10a0fb6"
+    },
+    "train-four.json": {
+      "url": "https://rndml-team-cv.obs.ru-moscow-1.hc.sbercloud.ru/datasets/hagrid_v2/annotations_with_landmarks/annotations.zip",
+      "member": "annotations/train/four.json",
+      "bytes": 85877553,
+      "sha256": "725d07956c2fa6ea1f7ebb96ee0bc099ce130048e4d7f73c4c58cf6ffdd6207a"
+    },
+    "val-four.json": {
+      "url": "https://rndml-team-cv.obs.ru-moscow-1.hc.sbercloud.ru/datasets/hagrid_v2/annotations_with_landmarks/annotations.zip",
+      "member": "annotations/val/four.json",
+      "bytes": 11125803,
+      "sha256": "64685a33fdaa3cb8d111ce78a8dbe003f892f694b474d29ea0e2c117390eae38"
+    },
+    "test-four.json": {
+      "url": "https://rndml-team-cv.obs.ru-moscow-1.hc.sbercloud.ru/datasets/hagrid_v2/annotations_with_landmarks/annotations.zip",
+      "member": "annotations/test/four.json",
+      "bytes": 18094756,
+      "sha256": "52ee095d55b9d3ad3377afa2ccee7b95cf0b6b443c8b50a053734ff5b472a119"
+    },
+    "ASLYset": {
+      "url": "https://data.mendeley.com/datasets/xs6mvhx6rh/1",
+      "archive_sha256": "e50202c30dfff4795b88762b765bbeb357e184c13fe22b8f6e0d836d02235c80"
+    }
+  },
+  "review_sha256": "d23c5fc42283fa8677a626ea0ab0751a695f0e858a0065bf5e7ccaeef2d0cf7a",
+  "selected_images": 162,
+  "tracked_unique": 151,
+  "tracking_failures": 11,
+  "curation": {
+    "input_rows": 151,
+    "usable_unique": 151,
+    "duplicate_rows": 0,
+    "conflicts": [],
+    "cross_participant_duplicates": [],
+    "invalid": []
+  },
+  "by_split": {
+    "train": 76,
+    "validation": 27,
+    "test": 48
+  },
+  "by_category": {
+    "unrelated_gesture": 117,
+    "relaxed_hand": 31,
+    "partial_flexion": 3
+  },
+  "selection": [
+    {
+      "source": "HaGRIDv2",
+      "source_file": "f09c88fd-5463-4a0b-a318-9d01a199a831.jpg",
+      "source_sha256": "54748d20c7b28ce3bebeddad0e7417925427e15110ee3fd971432c4b202a4356",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_2d84da20c251acaeb3186642fcb04f2e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "aafcb08d-cb38-4593-bf51-a005f774ffe6.jpg",
+      "source_sha256": "f9e22560b260d1b8ad7f0c196197594a1d44213342594ec5d757c1cb3040e6c3",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_b226507149021a1d7b7ac1e86d319125"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "62390152-7401-4a3a-ab28-31473e901b28.jpg",
+      "source_sha256": "de9051d2558320ba1e3f7c0ea60d655355a8b21397fbad39393880ca83545092",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_39aa8413c3f6f2fbd918ff4bd7a3fdc7"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "ae38d5c5-e146-4b16-94d3-514bf49ba27f.jpg",
+      "source_sha256": "7013ecd9f4ebfde24e7ffa0a8c3c5eeb81174e1787deaf8c196552e48ac1cd5d",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_b03043bc59a68cdcc3b2b0cd91419dd2"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "c13bb060-7f9d-49cd-ad17-e55021ef2e21.jpg",
+      "source_sha256": "f0e05b1668db8b803da78f5422b33bd6e8eb3dbbf0805242b8a5a5c990135ee0",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_982d97b6f224d9f6cc1668ed477d6b55"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "79c65456-4d42-4567-9711-a6f3073cd376.jpg",
+      "source_sha256": "0a32a2cda16d6584e71faf15cb49200313a67ed86b27ce675a58980dbb814a78",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_1fe1583425885ad6f31676b55ca2db24"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "100fde52-8328-4eeb-9fdd-c3b8a028e24e.jpg",
+      "source_sha256": "c68a18edbba598a63888968e38fcb3385517d6455f3b239908bb6488c8bb7c78",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_2c51fc55330d82de24acfd21d9c0cdae"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "759d76b8-ce65-45e4-b8d5-7452113cdae7.jpg",
+      "source_sha256": "b215eedf59f4899e56ae3b4d080dd8356cfe0cb22e37cf3dff7c41833095cd6f",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_cf1415fede112750ff1af2955d01e695"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "866d0d3b-4763-43b9-9e33-f05bb815b4af.jpg",
+      "source_sha256": "3340c90311e5594e5a18dc6e08619474619b2c737ed5b36642bddb98c726b923",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_0bb6f153a9a06c058b52e6a15a4bbf31"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "90a31d79-e6eb-492f-a890-d93097e0a32e.jpg",
+      "source_sha256": "7b2f9c5b41b5471470caeb5f4132036a051c70f3f5a2fedd071eca4b336fa018",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_942e28f8c87c4646b3096158e9e140dd"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "a6b1bb52-7f47-45d2-9e60-c81f0f6bc813.jpg",
+      "source_sha256": "50265c405ba14e6a4e75074daa5b50ca59d92bd7f66534ca3afe8dd4829a110c",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_d374afbf1ac594659b08941041cb7924"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "a0023d08-e41b-456d-bd80-1e5b61407102.jpg",
+      "source_sha256": "b5e913cf40f04c63a0ca54627b4cd8dada213476621173beb5af835939cd5487",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_5da52deb6e826917af1dd593901c151f"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "b202f1ad-6789-4a67-b18b-a2266bfbb159.jpg",
+      "source_sha256": "ab6622f7587d39842bdb14d8343c12e2628b427409f0d00eafb35cc63f8f8698",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_a69a1fe0322be2bcf2a0412db40b6f61"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "0bed4981-277a-4b2f-9911-6dd7a5714ad6.jpg",
+      "source_sha256": "af196ac702743610bac3dc1c60b9dc2e96a40c7e08bf2d6e6c929740db785df4",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_37456aed631dfd425ce2fa88394ac43c"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "a6df5430-f173-40a9-94ee-86311f5e150d.jpg",
+      "source_sha256": "b09aa175b2270e90408ca5794c780f7bb534917113aa2fe12cbfe116a23c22b5",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_0ae06f0192585d755f37b4c276ed7397"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "5857e2dd-05ab-41ad-88ec-d37796d8d98f.jpg",
+      "source_sha256": "c05051ce7e43c660cf88c3419be4ab7a75e31c0d040ee1cd5e42eea43bb55c51",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_d6120a00d3a50df8226c820deb7803c1"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "2f36cb57-ff51-4d08-9bc3-01b032e12915.jpg",
+      "source_sha256": "aa1d22932ab14337a0efea62e8cd38831920e9d09e799a4684d081a157df6ea1",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_cf760c3df51e9302abc444e70c1a3802"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "857930b6-f828-47e0-a959-90e811123fc7.jpg",
+      "source_sha256": "e37a538f1541920b1451fe100a4c11260a4088212f78d3a699a773c9445edf0d",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_cc0a5e0bd73ddb892680dca440887601"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "6659cf1d-dff8-4f96-8250-4ea3b8972add.jpg",
+      "source_sha256": "8540c376cd80c173da5a1809fe96acb479e9b51588671b0eb2e32b140d3d8712",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_d240c2e3156244ec9984432dbe54194e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "10e6b07b-516a-4f41-adac-7f83f930bb32.jpg",
+      "source_sha256": "4a878c33f382b5ac4d2a300c8bed3ac01cd2ce8e1fbd5104a271d4c2623d5aa3",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_a4f2ba838118e72c1069d2d8d2e49403"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "babd6327-2ca4-4dcc-9d4f-e019a7b1e846.jpg",
+      "source_sha256": "cfb906582469309b511834f4a9ccba6fc4bafaf9f12bffe9247992be6c538660",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_d9559b619614c86eb78ddc625a3f991a"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "efa58cc2-b92d-4a64-9bcb-c1b1f5e01ae4.jpg",
+      "source_sha256": "6976eb2f007f5e63bd71b57b634da96bddcaac0492a16c7757ba40ce6d299c2f",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_33c0d061c39500fc26c9ca05c2c40585"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "9cbada72-db91-46fb-aa28-93cde56f4578.jpg",
+      "source_sha256": "0b13a1407213f1484913fbafdbfa244fb683e3ad03ba6f6a7d850d2fa6ed398e",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_495434f9b40926e6fb182e63bd1ed813"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "547117b9-e69a-4c8b-a9fa-c2c38a2904bd.jpg",
+      "source_sha256": "ef1ada733ac942d9c86e283f373a54ab44fcf6a1201f859c5fe97375ed022e58",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_69d1bc1c7abd9401d58ba6d3134d0df3"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "e237a249-c2d8-4f3c-9b60-d7619ddf2ffb.jpg",
+      "source_sha256": "f6e50052fb33e8cae06c1270134b40b873df1fdbadfc036b33d70f1cbeeaa668",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_b68409ebb507c9f182bd540234683dca"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "ed55ce5d-737c-4497-9272-e53383fa26cc.jpg",
+      "source_sha256": "31a44c14d5d4f6a4d14c9d4c6306080eff1485f6f55ba120f26a207d816eea70",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_80b57d4110accaafaa3b5d827b2be704"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "bf02d7f2-33ae-4140-a7cc-aa018262494c.jpg",
+      "source_sha256": "efa475db34caeb3ace20088bf8a0618b6d73260fdf3772d0b685275aaaf9600b",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_2d7814c6fddc9e9ef10f8069a28c57c6"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "c3f84eb2-a1cd-481d-8e1a-19863c9342bf.jpg",
+      "source_sha256": "13ffab33f6c674a2cfcf716b56b8793dc994a625c07302e980316cf05c1e75a6",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_83a0ab5788d2f91daff8798cb3a8c8bf"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "3b8825fb-68a8-4a40-bde4-1c777631110e.jpg",
+      "source_sha256": "632db04c9d29bfdb98a9f36dee95ab5622735bf8cb596a1ae6bc59ac7bf49baf",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_e3ac7f573b3637e975e63a257dbeadb0"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "9f4031b7-8619-468f-b445-4dcbb02d1194.jpg",
+      "source_sha256": "2c25a22edc05dc8be7046c81c62c969b48f091dcf3382823e3e7ea6929db368b",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_2dd0e2d9d77c2eb3572ad9ffd88b7dd9"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "c6ed3adb-81b5-401f-a848-4acffd6db3af.jpg",
+      "source_sha256": "5f04bf8a0119f8140a457e6120d2c1da512ef7614ad9e18cada63bcb33bca78c",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c7297beaab70a40211b757ea4afff6bb"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "a450bfa4-5efd-4be4-b7fb-6224104d2e60.jpg",
+      "source_sha256": "1af53345572ca2b75be71d0b4c5835a044df5c7f258c9127268c618d3aee1cd8",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_4f3b9734dd98c692ae2635fe198c1e5d"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "5d4b4735-dce4-4154-ad4c-ee707c19d7d1.jpg",
+      "source_sha256": "48927c99f75348543cbeee4fb248fd6ef5336d319bac09ad6f4b2a201c87b62e",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_4ddcd492ab58968671d0c7589d79f312"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "eaffe5f6-b4ce-4661-b4ca-ff3ae8ffadca.jpg",
+      "source_sha256": "42232a14654aff950c1d03f4344dbb3e22ac6ee48134bd71eee2489b92741c4d",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c6c630662dcddf2b34f3237f3c01a14b"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "02683235-6047-4997-bb34-2d8fb7445558.jpg",
+      "source_sha256": "f79b0874ad7b54fa9ea5659d81c6b19e0f78c6c505f0b7544e7a29f8404121a8",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_39d8cd5bfd454c5b4af1b74000dc4b40"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "bb15c46d-cf32-4a82-bdbf-45c35a91c1c0.jpg",
+      "source_sha256": "8a5d98e362420e8a2fbd1bd0a1342260c23104612573897c5394f55a0a25b1b9",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_3ff4507ba38b763529e302b9ad845d8d"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "6f714bce-662a-40eb-97e1-2dd808173013.jpg",
+      "source_sha256": "e21fc7ed51270a73b0f35c3f68ea7b3d6040c31a2aed4ff4adec5ec7501b6895",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_185bd3a81d9d618518d10abebf0d17a8"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "074f5590-0539-4500-be91-a1f59f337fbd.jpg",
+      "source_sha256": "131b51a59782e0b05dc21ba8dccc2e2bc8a8e4a5717b2faf9c50db2850f01a02",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_9d79d9b35302e6440057af25c308ef13"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "0afabfdd-a6cc-472e-8b47-670bd7b922de.jpg",
+      "source_sha256": "4a7206e74b1b296a5811ed05e7b7e537f666c9510c01cba0af1e150a76fc64e0",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_f0ab23c61411031153240d771f0110a8"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "0fb061f2-fbaa-4f2d-a80b-d079ee842493.jpg",
+      "source_sha256": "0e97d78e90903f2ac05b4a74917ae977ab58e58ad8397c72c6af31c6d085614b",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_bcb1b4cf17bd1567dac1221586a2ec9c"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "156010f1-92ad-46c7-a889-a2529911ca8e.jpg",
+      "source_sha256": "f36c9387062864df6b0ad568f932461ba609a5b2883a1c1a8775189f0d8622e0",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c4c3dfe23f7799e045714d53f99b189e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "43057daa-7e1c-42d3-9970-f2acf9c69a36.jpg",
+      "source_sha256": "5a8d0972ab59465a9cb82869453fed3d481c9e02293f5beac7cbf034c8c0dde2",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_20d53e0777beb295376903e11817b744"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "148ddae3-87ee-4bf8-a392-9b14b639b326.jpg",
+      "source_sha256": "73ff5d69df2423ebad7a80c7c1a8d75c1e5b803396c4f806359377ccc482aec4",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c9d9eeef9242225814ecc91da596d924"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "bdd8d282-4cec-4902-b0cf-443ad88c26e0.jpg",
+      "source_sha256": "4f9395e8666d01e2257f29ed1e57320da702989a53267c0ab32f2b083d328672",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c668bb9dc2a93efc7406b65efd1e526e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "2c195d4a-8669-4c84-9637-81eef275f8a8.jpg",
+      "source_sha256": "240d1ffe5140c84a997e76b0fb35d1493061bd34ef8d658c3bb56381992efdab",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_f8affcd943ce3dc5d7040bd499c8bfd3"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "92494a92-e2be-484b-9908-082e1d34510d.jpg",
+      "source_sha256": "d9a70b055595b0c9dfd27315794365be8ebf2ee8a7538fbc22e5faad2fefe33c",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_eeca4c42239b5418f914ecb16d5fc846"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "dcc80f48-69f2-48f8-8c45-db65e1e57f93.jpg",
+      "source_sha256": "588402ed8aa9514b1b2349ad530ea59c82f700df95e5b8c8f1f04ab31589fed7",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c1f76e8edd4a69ebd58847ede305ae07"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "dede3316-a208-424b-ac43-943d41fe8f96.jpg",
+      "source_sha256": "f3066ddf0dc63094dec825b12859c6e346abcddd79dd13e39e1a81f46a22d2b2",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_44f4a5aab3b62201830065011737c597"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "32d4bce8-54b1-45d9-acc8-1b6d7bbfbcff.jpg",
+      "source_sha256": "d4a8239db2ccd69a10e511643f66d4ff62fff300da94d4a90d7bf986e0dea42e",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_9dd85d54f1c08c2474d7fd0d454a6ac5"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "0aecb120-7021-494d-a229-aa2d27e72b52.jpg",
+      "source_sha256": "ddb57ee280b9b7f932847413fe93929cd5ea910a635bf560e6ce10ddd94ed60b",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_85751b58670b2e4982098dfa6e8632af"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "d5603d45-f3f5-4d86-a575-0f06d8e9c7b9.jpg",
+      "source_sha256": "e3f5e90755654a5ae3496321eb7e6aea45f616e43acc36f8a56d4d45f75d5cdb",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_78dcd9b7a3b392e6dc3f19f6d99e60c5"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "d4740872-ceaa-4a07-b7c6-a9ea974d8bfd.jpg",
+      "source_sha256": "f771ad2fe7d79b034f73d67adaaca4bc2dc51df7d48e8bc97b25de3fb1718e79",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_981c6a1bd9fb62f470d614a7bd71ee6f"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "a0fe4564-9894-407e-8690-ac7b975d16f8.jpg",
+      "source_sha256": "a62ccd9c7f85e24d49f0fbdf11c63e5c16266a73eec4c92346043f40c7b7e427",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_a1e620b85542c283f46607e1a88d5bdb"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "1a25eae5-cb0a-44ec-accd-6146baf9afcf.jpg",
+      "source_sha256": "c1c8c40cf8c8f2f4bde2d6f7ae8980e64cb200dac281b4373601046b7ce0b6a9",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_df58c1b8d9df16beda823acc16038ad5"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "df838609-6c8c-4cad-beec-638ea04f1a13.jpg",
+      "source_sha256": "fd4de5119949059dea6b8cf209283ec34411ba0cb0c809517b2fff3c52000dbb",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_69da523dea0e7302d105529fdff6268b"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "d80d629e-61bd-4ef5-9c82-f5881b1434dd.jpg",
+      "source_sha256": "dcefdeaf6ab993bded67119648af78845bff01c5619f1cc9b6fb97d3ca04dbd6",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_0db9290ea568032e60872c465ad7682b"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "bcd7a3d3-ea1d-418f-a080-9f302ef4ffe3.jpg",
+      "source_sha256": "722ccc18483c11bd57572d451adef8404304e570e334e3cb11bcdcef81d3b901",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_cf6984d6ee12cac0ede4b600b9c1b0e1"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "f905e980-931f-4a6a-ab31-53cb06598c04.jpg",
+      "source_sha256": "01d33e630706f7b624e9835fab3828d92968dbb6c2fbc8948e6dce3bdde81806",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_6217dd98d6d80a6efc81402e39235c8f"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "c50229b4-add1-46b8-8ceb-bf4262b41f20.jpg",
+      "source_sha256": "1f83777b2830a5579ab842117b7d6c2864d84345fed0c339e1800c1631782511",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_be29b530751176898fc789fd05a9c7f5"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "f3261004-94a6-473a-9a9c-d460674911cd.jpg",
+      "source_sha256": "bb1922b694e4e15b065dfe8bb83b4211f134f93a23b034a3dd3b8dd4fe986b91",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_6e1be511a97b44178e884ece4853d0a0"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "36fb24d6-72a5-483b-8d05-d491577f3ae5.jpg",
+      "source_sha256": "b817ac6af69a3a8ad6a19c2205e6c3c9c8887e59c54dbde87924d61a80475d43",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_a19d680bec78a8def05c8449f830b6ef"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "3982ac49-9976-4729-a08f-51ea32daaca0.jpg",
+      "source_sha256": "e55709a38d7101489ff2a8e0db583fe800e61d9b5bb86e50c7ebcfc6d692c5e4",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_e7d103030b71317623e3d8e7cccc132c"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "6543d6b3-157e-4ae3-bd90-4da840a98aca.jpg",
+      "source_sha256": "e925975b7f54656a5ebff54d826979d399fdaee12b0f537cb8c2a7616c6a8ffd",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_e61eb6ca5af4edac235c26dfe0ba4e07"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "1025b133-0c1a-46c9-81be-cca4d4a8b1ca.jpg",
+      "source_sha256": "5c87cfb367180c20870454aef0cd443e9efd6f5c179e66998deda838324c9c42",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_783d831bf7d8548d3c33dba524783a60"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "3a23191d-b4eb-4d6a-abde-e093ddb8c132.jpg",
+      "source_sha256": "de7b0656757c4a8a3d2ddb6998968a4320cbf1a7ce46a0d549fe540c3de1e781",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_b8eea6f61b396542257432fbfe51e117"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "43024e9f-f12d-4faf-966f-be9fc7fff880.jpg",
+      "source_sha256": "55495b9551216fc3d05d1c192bd84ec0269eb5ce91dc1b8629d108f77ba179b6",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_db3f098e7ab6c6bf4095c2fabb4f1659"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "a4e040b7-ce70-4d3c-b400-cc9c6c7c2db3.jpg",
+      "source_sha256": "431b4862929cd343235d10880559d8cb1c532b5e0f6dfdf54ea48d196a4e36ca",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_713eb6d6d5aee86eec4db9053876efe8"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "839f162a-d145-41b3-8f1d-85e83b5e10af.jpg",
+      "source_sha256": "f7840edf5ba775ad708e1f37801e99e7e2ff4af9b141ab8255e11ebc44901cca",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_3db554dc5c87b04366b25a0734c53022"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "53320cd5-7ff9-4c1f-93cd-123dc203bf91.jpg",
+      "source_sha256": "f589c6d021bcdf0e12c63a7c3a10924cd2fee1e28796658edd6490959cc67c57",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_a140a1bf6e907f7c96695360db4ac8c1"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "8910735c-a1cb-45ad-a511-ddb1ba8385ac.jpg",
+      "source_sha256": "6dbda0e82877134149be7e62fae93a55150281151d18843700f74a43032a6828",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_eb62049c55d854169c944627405a83e0"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "cefb0496-37e2-4cbd-b547-99bd93b1c1af.jpg",
+      "source_sha256": "7eb8fb9368770cf258e45ef11e66e8c6359ca66791b7c745f9d42c19839beb8b",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_ead5e4e679845343f84ca297ea8e27d7"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "315da7f5-6b69-42d0-889c-4b1dceb8555e.jpg",
+      "source_sha256": "6ff0138426b12664c9024d321919bd21d13b1470fdd1ca18ca22354d13d98205",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_e3554ce2c835543f271317c50f8d6709"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "b96be5e8-9ff6-41c4-a847-dc3883dcfc1f.jpg",
+      "source_sha256": "73abf99c52962f718b3112e8fcfd007689fdbb44881ebbdcc7af3568d79c4834",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_174f8ba73c68e87175d7641c267b77de"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "54541bdc-ae6c-4a93-a60a-72b2fc881348.jpg",
+      "source_sha256": "920648886ff60fd70497b67dc074b7f13eea920c8532cdddd119ac16f16d87c0",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_03fbfcdfc42e217c72c12c7ca88e95f0"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "9c6f6ccf-3ae6-49d8-a91c-8950acc29d21.jpg",
+      "source_sha256": "e037e571b23fe6cf3ef5ebf5f58cd6f94a9de947f160bf8a3e59576953ff284e",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_942535c17e855bd88e1956008a24281c"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "6fe80aef-1dbc-4eda-83cd-b390135134bb.jpg",
+      "source_sha256": "abbf0a5d06380a3dc6eb159f404ea5f5893e67527a5205f470fc651922c2433c",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_b0851b00334ffe067a830c88a407c45b"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "bad482c1-61cf-40af-af96-3a32a4cfcbc9.jpg",
+      "source_sha256": "c364a69a9e94abc4ea5de3aa6b3eebcdf4a093b87a010bf3db7ac716b8483927",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_0a585e24176322af0b64577db9493182"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "5256a21e-0a22-4343-9685-4142ec822004.jpg",
+      "source_sha256": "10c385c52dfe513a146f125b585d0671c09db6c776fcdd621718081d2f9d8094",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c33d5c307e7b3e8903ab2651609fee9d"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "98b1a1ad-15da-4e0f-ab0b-35454903efa6.jpg",
+      "source_sha256": "282ddf68da438750e16d26eaab8b604775da55f39f83762c9c1d4b8cff420cef",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c9e31077741127e22ede6121abf413ea"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "31120a9d-6de3-4588-b243-ca4e65338b61.jpg",
+      "source_sha256": "51546b0b32ab7e3a983070abde776a3bb3f047fe2177c460a6fe40bda114f0c7",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_b239d9aaf1d21fe5adc93691cc1b4f21"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "5ea28020-fa0e-4a91-9107-1cf5c1305461.jpg",
+      "source_sha256": "0d31fb463efa9329f8bdd58f22aa92b4a86746d7930889ed59d3b5b1fa1f331f",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_3ae9a3c5d4ef7dc5f4ed6d514d13bed2"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "14aa0bea-b8e0-4297-8fae-01515b0be9dd.jpg",
+      "source_sha256": "adc211ef5fe8bf400ad73298e30dad76e8bb8847f45a2af47ca12c08f6a89e5f",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_d08d9992f6c972b101f6c8d778d9d764"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "b5eca389-e066-48f9-8fad-7b8a38502d3c.jpg",
+      "source_sha256": "c45947da3e356e6ec51eb607179a2deef48114f5170f541d786c6d068287fbe7",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_5b5616ae258dbd6703f1079d26434c14"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "797ed014-9243-4c68-b567-b6abcaf4e8ed.jpg",
+      "source_sha256": "9aaa6a86e133cd3fc5e66d5567d2abc53cdbbb40c4a7a683264000842dfac001",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_6f71781b88f3ad8e38cbb50d9326d97d"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "f7211fb3-7543-4cbd-a97a-20cdacbe378a.jpg",
+      "source_sha256": "f13965850d9077be0a09e28b9375b6c1424b0b00f3d64b9f181e0464bbaed37f",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_6d5e658d50590b2bfaffdde29d38930f"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "5c656fbf-9908-4f32-9773-1d0cc7e2ba77.jpg",
+      "source_sha256": "d6aebf607e14fb11826115527c5167f34961799f1291a61adece825954596d9a",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_489afbcbd9977e1a99a854959bfb03a7"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "5332237a-783e-480d-9b77-cbdfa9126e32.jpg",
+      "source_sha256": "7a932f5e727615a3f926166a1b486749e1667d68f79493639484b05f1c1dba6b",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_170a02dcd9f2f40350489d816b9a1b00"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "f6e735e2-1464-47ae-b175-afe0bfc5f154.jpg",
+      "source_sha256": "a63cf8b59fcd2fdc1abfc1cb1adb8d17cfc9a35d54772fd5ffcf242666993146",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c3ee03c81b1b3fe564780832bbf6903b"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "ae2e8821-c7db-408d-bdc2-864055dc70ff.jpg",
+      "source_sha256": "9a2436563ffaccfbb0180c2762acae213828404ab74596f7444e965db9432d6d",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_18bc5dd04f2c85f426f5d92d1ef70d7b"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "3102671d-0203-430b-b6db-0d2e78966253.jpg",
+      "source_sha256": "b58ee573d70bb6b9995e31da66886222c5cab71acf8f9c118d7c7a771958da97",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_257e0f0ea1cafdb2935a0daa38aabbff"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "ddada645-3f74-47ca-b457-2ee19fe3993f.jpg",
+      "source_sha256": "9ec91864cf2e776861887c96054f3db38efc9751ebdd3a2dac22f16062318de6",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_89317a11e56b8a5dcb03f7fbdccaad7d"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "5676d705-66a5-4237-80d0-2c58b4b2bc25.jpg",
+      "source_sha256": "90ad4381cf9057143128aad14412e74d6baa9066f064ed13e24ce6d457720ca4",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_3455a6015d0d2a3f1a58e90c6b24d4a3"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "7b680839-8627-4746-88af-c60c1708a360.jpg",
+      "source_sha256": "5241b8f1b5ee4a195a4e267545599b0db9f0b446a10e758ab663baa8bc0e7588",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_db7e7131e85bee367d6f5c870cd11698"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "6789b569-b5ee-41fa-b03a-39f324a70b5f.jpg",
+      "source_sha256": "3efe95fd02ab31f78e51f8305c59c30d05e53672bcfb88e9dad685363c293a7f",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_c6e88b4d090da744951f7c6638fdb31c"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "88aabebe-369b-45a3-9092-fa80bc5dfc84.jpg",
+      "source_sha256": "1eaa351e9452c53ed3eb362c73573909e5decfa2fc45ba1f612639cdfdd8e78f",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_e4ebe7bf2db63631fae022afeafe4924"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "0f2fc460-aeb7-4905-bcdb-16dbbd549a99.jpg",
+      "source_sha256": "96d3cf39530b1de7982a165c112106ec8f7ec02a4892b377550ca3fd7563d38d",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_1cda5ad6ac36b1fdfff7055f3e62d135"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "6613c96a-a41e-40ca-9744-af8fe4a18bbb.jpg",
+      "source_sha256": "3350434f310065bb6ae4b300afdfd443163462e56bc8a4aae2a1833533973922",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_4b308ea2dacc119c819f4f070610c627"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "a60910b9-3d07-4739-aaae-f8ad29739247.jpg",
+      "source_sha256": "68cd2c5ea68f6f00110d6a3d589ac28b019f1b8fbf08ef0b47947e0b6fa1b458",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_9a3cc505b74df08dd087d39005d1b4a7"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "b38a1d8d-3122-4b43-ac79-3474d6168760.jpg",
+      "source_sha256": "7de47ab74514f7a078ec34e94bbfeb3b1979da946ab0857424ca879f126d5236",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "hagrid_341862ffc5127aae6e06d2aec95cb7c5"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/63b3f03e-7ed7-4033-ad2a-44a47b802ba5.jpg",
+      "source_sha256": "aefa2635c0bb0925b4131783f3c5cb1102a2f79d4a724d03f896dc8c56e4d236",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_aa0835f7944e29462cfe719df2bde36e16a015c267d269af10908ec30a28c6bd"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/bd8c356f-991f-45b7-9ac1-ece9c6cc35e5.jpg",
+      "source_sha256": "e96ad57934f137fbbfb0ee2f1566b4f04f1a2576b2d1ef152e865ce6f435678d",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_80ee51ff35823b4cf5d799092c94fd0b32af180abb40d74a67bc8413789b7560"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/b67c7a53-cc7b-4d1c-a9d9-e857ff48e9f5.jpg",
+      "source_sha256": "1020cb855d3ee7e0ddbc158029de81518af1bc8331f556ccdda2551d0859d17e",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_f880d44910f866441905ad78e8b61a15cdfd06552f89895d9f2bfc80ba2ce3f5"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/229f6429-012b-4f50-9e32-4ce4e823fbd1.jpg",
+      "source_sha256": "a7af91df87d4af9c39c64b877a18eb93533f04c0007ab73c46d1e215d21cbf2a",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_c8abca0cb8df24ef5161b445538f86d3e2acadd6486fc68262643fb9bc18ca2e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/f91d3cf6-e92a-4458-983f-1c511536469d.jpg",
+      "source_sha256": "d24ffbd6fc3b83a8dfcae0197b10a9bd85a7d7ccbb3320e74771b0c08e895697",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_88f0a6d38907edd4ee0bf458d78e45bc0ba9a2800c2d49290916ecf1c72b0481"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/b7b89a66-3ef6-47e4-a034-6d07d5d5dce8.jpg",
+      "source_sha256": "7127d00045c18df54b2d6b5aed5dd6adef9452ccc4bf60fdfc04bc6d19f42a15",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_98ea57cabcf187767cdbd04f2ebbe062b719765737ce2e64c1d9614a5f80a32e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/754caf6d-0e1a-4074-af33-4ac1b87defd2.jpg",
+      "source_sha256": "03c224994be8367a203785b4a58997e6ff612986af931bacd6d080ca596ce5c9",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_a6cf16559fc3a9a2d7caaaa82a8c7135e14f67141620b639ccadeccae0615fcf"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/29334891-d7f3-4ff7-ab5d-0aa738462ef6.jpg",
+      "source_sha256": "d5fb246d27507b0c70503efe13c428b395501fe44f3dda09988b83f39c3129b1",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_3089dc19915dc2cab1e964af2c6cb27ac7310b36fceb9d5e0c635c71ebff154d"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/f9e60e1b-1988-4eae-8414-6f2fe99f4cc0.jpg",
+      "source_sha256": "a0bb5d884297025b5c73b364d81ab155fb5b402fff275b1fba99d02b7e4fe5c9",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_a8cbdba3d0f113b7608dddc5472eadd432bef7950c79863f36d23bc51b0a926f"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/8f99e1b7-bc6f-405f-88d1-64b73c7d4880.jpg",
+      "source_sha256": "d2c5d2db0dd23e613fa251113e96a39fef4f97f389f51b3bb19faf72523cbbcd",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_4d2166a7c1a78f33bb2924e34c38ee06569f1aea28a035b97a0c51e312bfb450"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/c4331459-983a-457e-a806-d8bfc6f4dab3.jpg",
+      "source_sha256": "88091d6e05474e5ece8c02a7005f8434513c55e980c3139e97ab55a9d381524e",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_c1772832290ce503f1e9194730aa923b26586142b3624f29965e837bdc1ce252"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/3d307c1e-be2f-42ee-b5dd-9345d185c1e5.jpg",
+      "source_sha256": "61bdb3be24fffad055c62d9ec5a47279b55add8408b3e1ef730800de1466310f",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_0eed149f4d988eb4174393be66568a1e17f8a2206718825d79f977a4b4e10450"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/28a27147-496e-4b6e-9e08-0486c9b8068c.jpg",
+      "source_sha256": "697a41cc7a52861d4b40b93ca827f772b7281537b75d16ac39e5b720fc3aed44",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_4065d6595a78b2a2234a411298d495f59f715f319075c7f413b601c44a7df831"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/4d630c1f-8342-43e5-9659-4dc2423b3fda.jpg",
+      "source_sha256": "74baa0b9a4e3ea53fdc7b01a34c2a7321ae94cb0676bd0aaee3fecf6f8b9f61a",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_cebfbac67b42236f64f11ded76ea32425823804876161b71af8aa69dff5190b1"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/17d2a5e2-02a6-4e18-98cb-a57b7f189c3d.jpg",
+      "source_sha256": "7a8345c862ffe2f53d5f26c0b335dfa8ffb23b6ea577949627bddce86bada32a",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_7d2771b2fb2a6b380837cdfb3ee33b60864457f4f3d4368309fa20356fc9911c"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/37bb173c-ba11-4925-b496-18a4e455a242.jpg",
+      "source_sha256": "c1bd9859a7e93f68cf2ceefb390e307b66219f1082d061a8cfaab3531c066df3",
+      "split": "train",
+      "category": "relaxed_hand",
+      "participant": "hagrid_8c641924879a54731504806f2d1e50af93f091b566f62274af0e0788908cea42"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/1a082f67-55c8-4725-bd5b-ddf953a9e9a3.jpg",
+      "source_sha256": "4dead9f1fabb83826bde2beb01362041b4535722e8e0ae37e8977b3cf98d1e14",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_b43c5d7b7140c95e321bedbb20ba2fccf9ffbe6d03c3a3e56200f3053fa7e9d8"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/10db3df6-dc42-45f3-8254-ed9eff4859f6.jpg",
+      "source_sha256": "ae094df9a3d0e97063b4582fbdc050afae1f03825dd92b970ca3371d2ef12087",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_4bb3ee1748be58e05bd1193939735e57bb3c0ca59a7ee38901744d6b9e94632e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/aabbc179-74c0-4a17-a141-9a52c16de30e.jpg",
+      "source_sha256": "1b248b26ec548053ad4902dcdfa5fd2feae79980bebe013b50383a57fe2a3ce0",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_799e07dbb3ee6942805c0d132f0006907c2c8d72cd0ba43c2cbd02b46f02d3b1"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/757c935a-7e76-46db-8e66-5bda546818cf.jpg",
+      "source_sha256": "3add7d6e73900613167d0a41ad00639e74d213d12e5b2f0e67072ccc85def61f",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_fe9b5bfd88579f02a5bfbc92847581dce1144433cdbbcd166fbf2e71e6c7480a"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/6328f512-5920-44e2-a2d5-a78244871c33.jpg",
+      "source_sha256": "b3fb19f16ca5e1bbdc472e94de33ac4533aa60e83bd2fb5346ff7fddecfa366c",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_71998347c8079fa9f8e10f989970b8cfb19cdf2fd058d7094fee52d288f443b2"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/b00d3d46-fee9-4e57-a152-5ef24b216391.jpg",
+      "source_sha256": "22acad10a0b3f073f59ff59b47390d10c04237c6704f06085534212e1c48852b",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_af7e21eec8132f268585073d9d9ef2f8c230e6469da7a62dd2dc78107b283f57"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/8ca50f2c-c4c4-4be3-b326-87ed53ff0862.jpg",
+      "source_sha256": "73973c6b1e9807f0c33e117a29685fedada83b1ebdf6129676bca42028f46a87",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_88e832f19f7e515a1414158c313b27cc4cb961e01529b2148cb5cefcec1b6eb8"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/24b624fd-9410-45e8-8a99-73848ee786b8.jpg",
+      "source_sha256": "85b644a42c4e4fc1205e3486b5cad13db95339ade0eee03c602f9ad9a6fae97e",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_a45d0dc85092eece3ed0b5cf2f9d74b7f580fca7db3d055b7d164c18f62830cb"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/a5b20601-91d2-43c8-b817-cf62801f9af9.jpg",
+      "source_sha256": "d26065c001f8bfe6cfb5037ebb419716dc5cdb09b7cfb7aecfd31506d2c0dc0e",
+      "split": "validation",
+      "category": "relaxed_hand",
+      "participant": "hagrid_d5b4f83ae2894e7bb79b338f9416aa9a7971757cbe833785898634dc01e601a7"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/6ba843c5-6673-47bb-80c8-247ac319490e.jpg",
+      "source_sha256": "328d08ed807449fba6767a5f3d73b09f1d4b99ac99c45fb15beb86ac1600f28f",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_f80ed70412c48e0ee075575822600c28f16097decbbbd5d523752460675aab95"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/b4cdb5b6-f2bb-4ae1-83f5-2242efaf3a83.jpg",
+      "source_sha256": "e490044e39d205beb4d6073bdd8596cf8def695c4dbc7e4c05175714c3b664c7",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_43983324d2f91e36b78bc3794fa0bbc1804b632270c6674f2251d820a7906a62"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/015f7744-2f95-4fe7-abb9-2037ba9178fb.jpg",
+      "source_sha256": "d55a14ca7a819785ded5e3da6cfd5712405a1c680671460bf86b91d53b50d49c",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_ac067bb46f5f2a5891c1c68f742aa61f2e827a1d6f31e484ab9ea6c94143878d"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/735d942f-9728-4c56-b6f4-76f4cacfc062.jpg",
+      "source_sha256": "d9e934253fc9cd2b9761c46d9886df93af06b16d1c4a69eb1e8ad6e3b780c656",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_debba1ec8bbbc50736a9a5998c3b3387f7c642f9a29c3cdad7c20952f6854095"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/c264694a-f9ab-480b-857b-32a0fc70f427.jpg",
+      "source_sha256": "dae1a29266b61652b0e9f065ff3818edf2f72f13df81c7a4b27ef9a2f084401b",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_21776f945382b1eb8fa65084241dddca3f4a93130932fe8fceb46f40a79afb88"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/6a92af45-3e65-43ab-9a70-ab57ee72848c.jpg",
+      "source_sha256": "6548a2d07f01f6962959c7ccfaa717d4db6d1e71c19be99b1f693ac2d0782164",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_29be0edb35e38bea636ad68bf238eeeb6da7fda571a07e2677f089fae9a74220"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/3ec5ed62-9424-4dca-9990-5dd9b66c269e.jpg",
+      "source_sha256": "ad212857915ceb3d832f94b22e2be125478eda37320103c57a7e4463cd281f72",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_3502f53779da60d93f9ca0b1a49831d277d57366953439444b8a6cfa67f7d9b1"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/7fb44672-c3f8-4aa6-a998-144f3274d066.jpg",
+      "source_sha256": "2ae8fa6eca0068d31ea98fd98ddc31450ae6cbdfcfbd88f5285df77b7bf579b8",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_34f23f227c09593cfc41e59a758695d4d842ea4c823d727f1a0f7d0da8ae95d7"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/4ef85510-3953-4b13-9a89-98d8b4f0c5b3.jpg",
+      "source_sha256": "ffeb3da1392dfc25991e189882cd3e717f7652b7da6c84eaf11864b3c69bdcd0",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_b6f43f8503d7521bd2b3b98fa81b12ea2f3c71784d8d323a840b3ac6051a6ea5"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/bccadd83-f62d-4041-b25f-7bcb2abd9baa.jpg",
+      "source_sha256": "624a270cd283bd790320e8dc3d0f1b95f52896338cf2273ce877a01f602c4172",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_065013676679119bae67ff8b305c312bb656e5341244afe5ab1e297b5df419e9"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/679037fe-d272-4814-b29c-0cf60898aa58.jpg",
+      "source_sha256": "310e0a72e77e90ceaee9bc533ce0960ae5e38c8a489fa79a03d6d382e1085160",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_1a9b93dbe928edf96f6e474606c3a301ef9cf127b41676d81ced3615d08aac4b"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/5f7728cd-686d-4a92-9478-e1e5d06d8480.jpg",
+      "source_sha256": "b6bf758283bb612c817460260430a37f3f298e2210e140ac4439b424e22cc6c7",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_3cc30e7b6cd6d84a8b825d95be1cb9297aef3c2631f27309bc5f1ed5498baece"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/f6011652-3669-4546-babc-19550ae38928.jpg",
+      "source_sha256": "f8afd3b0d432be24ce80aec1f5267308ae0bcaf75faf587cbdf3ca3d16fb007a",
+      "split": "test",
+      "category": "relaxed_hand",
+      "participant": "hagrid_11ad3cb2178f2946456d022e231669076d1f9d437921272caf7a4691656b2ce4"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/5c934086-d521-4aa1-be41-fbab2b964b2e.jpg",
+      "source_sha256": "9675c28d8458e5bbacc1885c2bed5feacd895529a7be8a72bc9daed61369dd5a",
+      "split": "train",
+      "category": "partial_flexion",
+      "participant": "hagrid_eca3dac65f4e605f4c585cf867fc9a96d59616b6e32daeae6ba75658afb66ac8"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/faaf73e7-2b18-4bd7-ba7e-952056a3123f.jpg",
+      "source_sha256": "496a5e538b3dcd1d2a0d7b7d60e2552f781a65b1c526d2b0acd1d878cb46f15c",
+      "split": "validation",
+      "category": "partial_flexion",
+      "participant": "hagrid_c908221b3c09de3d536c3ed72ab39b55c2def7f6e9b6e8d18b494e341da3e083"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/e7500500-0d60-477e-9665-e9adb26262ec.jpg",
+      "source_sha256": "076999e053624292b2f0132f040edac213067186e6063640100d8144a096d8f9",
+      "split": "test",
+      "category": "partial_flexion",
+      "participant": "hagrid_2caf1e36c1ba7cec8316870a9fd19cf54382d1d590151de36d68289903b2311e"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/a58641fb-d11b-46cc-8654-0eb8ac8bdf36.jpg",
+      "source_sha256": "8dd237aab8758ce1e9e6a63d62dec909a11e70860d89f586d06ca76a003e5187",
+      "split": "test",
+      "category": "partial_flexion",
+      "participant": "hagrid_3e9e51a70332073f67abd982b4635c3714787a0f979ea367282fa4cbc3d9c300"
+    },
+    {
+      "source": "HaGRIDv2",
+      "source_file": "four/5792501a-5a34-45db-8169-bc03a748fd8d.jpg",
+      "source_sha256": "155b7095504a38a1c30e1a911a3e59bd07f217037f5fd35ae8676808a82b6978",
+      "split": "test",
+      "category": "partial_flexion",
+      "participant": "hagrid_dbfa9b6ba903adb8776b328c2360bff63912b86bcf8353e2714d76e5d427f04f"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User1/fn/User1_FN_1.png",
+      "source_sha256": "1fa1a603735017f6110ccdf85903929a391ae915015f26c7ac60a77e11f71730",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user1"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User1/fn/User1_FN_11.png",
+      "source_sha256": "fa555cea050f14c4e73b16755e0e3f35b53a16df0165285df050b058b40e802e",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user1"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User1/fn/User1_FN_21.png",
+      "source_sha256": "6b0fdbc5d661ddab0a74f27f3572fc676493453e77ede26ece9c2d5e2a73898f",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user1"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User1/fn/User1_FN_31.png",
+      "source_sha256": "f6699a05efa5cd92935eb3133bf2247c5b2981456d28705ad4e73871c6dfd1e0",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user1"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User1/fn/User1_FN_41.png",
+      "source_sha256": "5c2c5b600b5842b7fbe22e7d8d727f6a6865cb5354880779c12650513b46a6e5",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user1"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User2/fn/User2_FN_1.png",
+      "source_sha256": "9d588aeab4991b5079389395fe8d39c68e8c53dad09cc16ec78b2087f53a0c01",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user2"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User2/fn/User2_FN_11.png",
+      "source_sha256": "f2870225a4d561f01507f4aa8e77e09d9ca8307b32bcccf5d8080f545ba8bc70",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user2"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User2/fn/User2_FN_21.png",
+      "source_sha256": "5673ad25ecfbee86ba3c9d9b29df656acfa2b56c171840004352d43baa2395bb",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user2"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User2/fn/User2_FN_31.png",
+      "source_sha256": "8e9068df6bd7623a8a6ff2b9c6b63590fb9d1b61698e713dcf8197162fb518a2",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user2"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User2/fn/User2_FN_41.png",
+      "source_sha256": "c15be362fc55712e29001f7494f2eb10941aa8a8f6d8e38139ad3946c920116e",
+      "split": "test",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user2"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User3/fn/User3_FN_1.png",
+      "source_sha256": "ddf49e75edb0d75c43134d7231b602e12ed52a4bb6a4007f046f09d09b89f3a0",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user3"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User3/fn/User3_FN_11.png",
+      "source_sha256": "db2a81ace82cf3eb409c9dc88544d714b92e40aec181539b026280162e404370",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user3"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User3/fn/User3_FN_21.png",
+      "source_sha256": "3d45ce1b63f4c494be6d9f305136aef0a2d46fe94f5acf0dbc0aaf151deb705f",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user3"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User3/fn/User3_FN_31.png",
+      "source_sha256": "0a3c2474c0c80af540cae53ea0768de186e4297790b434caa0f322603241b1c8",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user3"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User3/fn/User3_FN_41.png",
+      "source_sha256": "aabefd12061a8797a62cff9dce468247dc5f7744f0e91a0b1cbc6167614f1892",
+      "split": "validation",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user3"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User4/fn/User4_FN_1.png",
+      "source_sha256": "a093243bc1e5d3ec987fe451983c2633f5d0f25a96b5f1c4f99bf0722840ddb8",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user4"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User4/fn/User4_FN_11.png",
+      "source_sha256": "3773aa10812ec1f048c3602d599a91e7811d6d990f3646c45d7cd0b3a2750a8e",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user4"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User4/fn/User4_FN_21.png",
+      "source_sha256": "854ba1f5408c97c9e6aa3bfd6c9b0f63abf63ba185e6aa22e9e37bd17abe85cd",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user4"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User4/fn/User4_FN_31.png",
+      "source_sha256": "0962f099fb537d4953512be4ab2c5888ba00409e6a29625f6baf6566b5e089cd",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user4"
+    },
+    {
+      "source": "ASLYset",
+      "source_file": "ASLYset/images/User4/fn/User4_FN_41.png",
+      "source_sha256": "b2c1a670a30e8d9ef5d7d1ba893a431985f949031e6eaa87f701c8a44e400e69",
+      "split": "train",
+      "category": "unrelated_gesture",
+      "participant": "aslyset_user4"
+    }
+  ]
+}
