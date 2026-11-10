@@ -56,14 +56,14 @@ The checked-in classifier runs without installing machine learning dependencies 
 
 The static model uses [SigNN's pinned public coordinate file](https://github.com/AriAlavi/SigNN/blob/40bd651899e09a0099767457194062f77f774156/scripts/mediapipe_data_creation/training_data.json), distributed under the upstream Apache 2.0 license. Its 622 unique canonical samples are split into 373 training, 124 validation, and 125 test samples. Direction is preserved so orientation-dependent letters remain distinguishable.
 
-The J/Z model uses a deterministic 48-clip subset of the [SigNN public video dataset](https://www.kaggle.com/datasets/signnteam/asl-sign-language-alphabet-videos-j-z), whose Kaggle metadata declares CC0. Two clips failed tracking checks. The remaining 46 real sequences are split by source clip into 27 training, 9 validation, and 10 test clips, before augmentation.
+The installed J/Z model uses **188 real movements and 10 non-J/Z controls** from SigNN's CC0 videos and SignAlphaSet's CC BY 4.0 original AVIs. It splits 198 clips into 119 training, 39 validation and 40 test clips, preserving every original baseline split before augmentation. Per-clip signer IDs are unavailable. Full provenance, speed/size measurements, limitations and reproduction commands are in [MOTION_DATA.md](MOTION_DATA.md).
 
 | Model | Raw held-out accuracy | Accuracy after the default rejection gate |
 | --- | --- | --- |
 | 24 static letters | 74.4% on 125 samples | 68.8% on 125 samples |
-| J/Z movements | 100% on just 10 source clips | 70% on those 10 clips |
+| J/Z movements | 97.37% on 38 positive test clips | 84.21% on those 38 clips |
 
-Gated accuracy counts rejected valid examples as errors; it is not precision among accepted outputs. There are no held-out unsupported poses/movements in these expanded datasets, so unknown-gesture rejection rates are **unmeasured**. No participant IDs are provided. These small sample/clip holdouts do not estimate accuracy on unseen signers. Q has only two unique samples: one training, one test, no validation. Its gate uses a fixed conservative fallback, and the single Q test sample was not correctly classified. Several similar closed handshapes also remain difficult.
+Gated accuracy counts rejected valid examples as errors; it is not precision among accepted outputs. The motion model rejects 2/2 held-out non-J/Z controls. An independent, research-only ASLLVD benchmark yields 3/5 accepted correct J/Z predictions and 0/11 falsely accepted controls, versus 0/5 and 0/11 for the old model. These tiny control sets do not establish reliable unknown-gesture rejection. The public motion split has no per-clip signer IDs and does not estimate unseen-signer accuracy. Static unsupported-pose rejection remains unmeasured. In the unchanged static model, Q has only two unique samples: one training, one test, no validation. Its gate uses a fixed conservative fallback, and the single Q test sample was not correctly classified.
 
 Confidence is an uncalibrated model probability. Unsupported gestures can still receive high scores. Inspect/correct the generated text and collect more diverse, consented, participant-labeled data before relying on recognition. The new metrics replace the previous six-letter model's results.
 
@@ -72,7 +72,7 @@ See `signspeak/static/models/evaluation.json`, `motion-evaluation.json`, their m
 ## Using every letter
 
 - A-I and K-Y: hold one clear handshape steady until the hold indicator fills.
-- J and Z: enable the camera, select **Record J / Z**, and trace the letter once during the 2.4-second recording. J uses the little fingertip; Z uses the index fingertip. Coordinates are held temporarily in browser memory; no video is recorded or uploaded.
+- J and Z: enable the camera, select **Record J / Z**, trace once, and select **Finish movement**. Recording ends automatically after 4.5 seconds. J uses the little fingertip; Z uses the index fingertip. Coordinates are held temporarily in browser memory; no video is recorded or uploaded.
 - In practice, J/Z prompts show a moving reference. Record the movement, then select **Check my sign** within eight seconds of an accepted result.
 - Lower/release your hand before repeating a static letter. Use a new recording for another J/Z. Camera stop, tab hiding, and navigation cancel an unfinished recording.
 
@@ -101,7 +101,7 @@ $env:MPLCONFIGDIR = "$PWD\artifacts\matplotlib"
 
 The workshop and public data are documented in [DATA_COLLECTION.md](DATA_COLLECTION.md). The eligible ASLYset + ASL-HG pool contains **10,516 usable unique samples**, including **499 Q samples**, across **14 source signer IDs**. `datasets/public-balanced.json` selects 17 originals per signer/letter: **5,712 samples, 238 per static letter**. The workshop tracks signer/session, actual hand, lighting, angle and duplicates. Unknown public metadata stays unknown. SignAlphaSet and Massey imports are review-only; the audit explains why they are excluded from training.
 
-A new candidate scores **89.13% raw / 80.23% with rejection** on 1,224 images from three held-out source signers; the current model scores **57.60% / 45.51% on that same test**. E and gated M performance regress, verified left-hand/condition coverage and unsupported-sign evaluation are still missing, and the live model remains unchanged. The saved comparison is `datasets/public-candidate-evaluation.json`; reproduction commands and per-letter limits are in DATA_COLLECTION.md.
+A new static candidate scores **89.13% raw / 80.23% with rejection** on 1,224 images from three held-out source signers; the current static model scores **57.60% / 45.51% on that same test**. E and gated M performance regress, verified left-hand/condition coverage and unsupported-pose evaluation are still missing, and the live static model remains unchanged. The saved comparison is `datasets/public-candidate-evaluation.json`; reproduction commands and per-letter limits are in DATA_COLLECTION.md. The separate J/Z model has been updated as described in MOTION_DATA.md.
 
 1. Visit **http://127.0.0.1:5000/capture**. Give each consenting signer a pseudonymous participant ID. The form's consent checkbox specifically covers collecting hand coordinates. Use the same signer ID across sessions and label the actual hand, lighting and viewing angle.
 2. Enable the camera. Choose a letter, hold the correct shape, and capture individual samples while varying distance, hand position, lighting, and sessions. Check the labels with a knowledgeable ASL signer.
@@ -130,13 +130,13 @@ Create `datasets/private/` before downloading if it does not exist. The extracto
 
 ### Reproduce J/Z movement training
 
-The trained artifacts are bundled; downloads are needed only to retrain. The default subset downloads about 265 MB, not the full 4 GB dataset. Source videos stay ignored by Git. Provenance records version, file names, and SHA-256 hashes. Prepared coordinate sequences are in `datasets/motion.json`.
+The trained artifacts are bundled; downloads are needed only to import new recordings. The current reproducible input is `datasets/motion-expanded.json`; raw source videos remain ignored. The original 46-clip input at `datasets/motion.json` and all four original model artifacts under `datasets/baselines/motion-v1/` are retained for comparison and rollback. See [MOTION_DATA.md](MOTION_DATA.md) for the expanded import and separate research benchmark.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements-motion.txt
-.\.venv\Scripts\python.exe -m ml.download_motion
-.\.venv\Scripts\python.exe -m ml.extract_motion
-.\.venv\Scripts\python.exe -m ml.train_motion
+.\.venv\Scripts\python.exe -m ml.train_motion --dataset datasets/motion-expanded.json --freeze-baseline-splits datasets/baselines/motion-v1/motion-evaluation.json --output artifacts/motion-candidate
+.\.venv\Scripts\python.exe -m ml.evaluate --model-directory artifacts/motion-candidate
+node scripts/verify-motion-candidate.mjs artifacts/motion-candidate
 ```
 
 The extractor uses Google's actual hand-landmarker model on real frames and logs rejected clips. Motion features resample tracked wrist/thumb/index/middle/little landmarks to 16 time steps, preserve movement relative to the initial wrist, and reject a stationary hand. Models, scalers, reference sequences, and gates use training/validation clips only.

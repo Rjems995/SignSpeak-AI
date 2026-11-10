@@ -6,7 +6,7 @@ export function motionFeatures(frames){
   let time=frames.map(f=>f.t);
   const points=frames.map(f=>Array.from({length:21},(_,i)=>[f.points[i*2],f.points[i*2+1]]));
   if(time.some(t=>!Number.isFinite(t))||points.some(p=>p.some(v=>v.some(n=>!Number.isFinite(n))))||time.some((t,i)=>i&&t<=time[i-1]))throw new Error('Invalid movement coordinates.');
-  if(time.at(-1)-time[0]<450||time.some((t,i)=>i&&t-time[i-1]>500))throw new Error('Keep one hand in view throughout the movement.');
+  if(time.at(-1)-time[0]<250||time.some((t,i)=>i&&t-time[i-1]>500))throw new Error('Keep one hand in view throughout the movement.');
   const scale=median(points.map(p=>Math.hypot(p[9][0]-p[0][0],p[9][1]-p[0][1])));
   if(scale<1e-6)throw new Error('Bring your hand closer.');
   const cross=median(points.map(p=>(p[5][0]-p[0][0])*(p[17][1]-p[0][1])-(p[5][1]-p[0][1])*(p[17][0]-p[0][0]))),mirror=cross<0?-1:1;

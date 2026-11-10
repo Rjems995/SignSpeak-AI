@@ -48,9 +48,17 @@ test('real J/Z clips match Python temporal features and TF.js probabilities',()=
  const motion=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/motion-classifier.json',import.meta.url)));
  const evaluation=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/motion-evaluation.json',import.meta.url)));
  const classifier=new MotionClassifier(motion,tf);
- assert.deepEqual(motion.labels,['J','Z']);
+ assert.deepEqual(motion.labels.filter(label=>label!=='_'),['J','Z']);
  for(const example of evaluation.test_examples){const features=motionFeatures(example.frames);features.forEach((v,i)=>assert.ok(Math.abs(v-example.features[i])<1e-9));classifier.probabilities(features).forEach((v,i)=>assert.ok(Math.abs(v-example.probabilities[i])<.00002));}
  const points=evaluation.test_examples[0].frames[0].points;
  assert.throws(()=>motionFeatures(Array.from({length:20},(_,i)=>({t:i*100,points}))),/stationary/);
  assert.throws(()=>motionFeatures(evaluation.test_examples[0].frames.slice(0,3)),/eight/);
+});
+
+test('complete fast movement retains its trajectory and very short recordings are rejected',()=>{
+ const evaluation=JSON.parse(fs.readFileSync(new URL('../signspeak/static/models/motion-evaluation.json',import.meta.url)));
+ const frames=evaluation.test_examples.find(row=>row.expected==='J').frames;
+ const timed=duration=>frames.map(frame=>({...frame,t:(frame.t-frames[0].t)/(frames.at(-1).t-frames[0].t)*duration}));
+ motionFeatures(timed(300)).forEach((value,i)=>assert.ok(Math.abs(value-motionFeatures(frames)[i])<1e-9));
+ assert.throws(()=>motionFeatures(timed(150)),/throughout/);
 });

@@ -6,7 +6,7 @@ import {Readable,Transform} from 'node:stream';
 import {pipeline} from 'node:stream/promises';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const sources=JSON.parse(fs.readFileSync(path.join(root,'datasets','public-sources.json'),'utf8'));
+const sources=JSON.parse(fs.readFileSync(path.join(root,'datasets',process.argv.includes('--motion')?'motion-sources.json':'public-sources.json'),'utf8'));
 const key=process.argv[2],source=sources[key];if(!source)throw new Error(`Choose ${Object.keys(sources).join(', ')}.`);
 const directory=path.join(root,'datasets','public',key);fs.mkdirSync(directory,{recursive:true});
 const file=path.join(directory,source.archive);

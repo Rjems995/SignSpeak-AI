@@ -35,7 +35,7 @@ def curate(records):
             if any(record.get(key) is not None and not isinstance(record[key], str) for key in ["participant", "session", "hand", "lighting", "angle"]):
                 raise ValueError("Participant/session/condition metadata must be strings or null")
             motion = "frames" in record
-            if motion != (record["letter"] in {"J", "Z"}):
+            if (motion and record["letter"] not in {"J", "Z", "_"}) or (not motion and record["letter"] in {"J", "Z"}):
                 raise ValueError("J/Z require sequences; static letters require points")
             features = motion_features(record["frames"]) if motion else normalize(record["points"])
             fingerprint = hashlib.sha256(features.round(5).tobytes()).hexdigest()

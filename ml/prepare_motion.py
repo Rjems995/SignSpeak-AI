@@ -11,7 +11,7 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("datasets/private/motion.json"))
     args = parser.parse_args()
     raw = load_records(args.inputs)
-    if any(record.get("letter") not in {"J", "Z"} or "frames" not in record for record in raw):
+    if any(record.get("letter") not in {"J", "Z", "_"} or "frames" not in record for record in raw):
         raise ValueError("Use separate J/Z motion exports, not static-coordinate datasets")
     records, report = curate(raw)
     if report["invalid"] or report["conflicts"]:

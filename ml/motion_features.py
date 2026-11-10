@@ -13,7 +13,7 @@ def motion_features(frames):
     points = np.array([r["points"] for r in frames], dtype=float).reshape(-1, 21, 2)
     if not np.isfinite(points).all() or not np.isfinite(time).all() or np.any(np.diff(time) <= 0):
         raise ValueError("Motion needs finite coordinates and increasing timestamps")
-    if time[-1]-time[0] < 450 or np.diff(time).max() > 500:
+    if time[-1]-time[0] < 250 or np.diff(time).max() > 500:
         raise ValueError("Keep one hand in view throughout the movement")
     scale = np.median(np.linalg.norm(points[:, 9]-points[:, 0], axis=1))
     if scale < 1e-6:

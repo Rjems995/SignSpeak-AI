@@ -1,0 +1,198 @@
+{
+  "sources": [
+    "https://www.kaggle.com/datasets/signnteam/asl-sign-language-alphabet-videos-j-z",
+    "https://data.mendeley.com/datasets/8fmvr9m98w/3"
+  ],
+  "accepted": 198,
+  "class_counts": {
+    "J": 99,
+    "Z": 89,
+    "_": 10
+  },
+  "curation": {
+    "input_rows": 198,
+    "usable_unique": 198,
+    "duplicate_rows": 0,
+    "conflicts": [],
+    "cross_participant_duplicates": [],
+    "invalid": []
+  },
+  "duplicate_video_files": [],
+  "failures": [
+    {
+      "clip": "signn/J/99.avi",
+      "letter": "J",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signn/Z/7.avi",
+      "letter": "Z",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signn/Z/12.avi",
+      "letter": "Z",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signn/Z/29.avi",
+      "letter": "Z",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signn/Z/84.avi",
+      "letter": "Z",
+      "reason": "Keep one hand in view throughout the movement"
+    },
+    {
+      "clip": "signn/Z/90.avi",
+      "letter": "Z",
+      "reason": "Keep one hand in view throughout the movement"
+    },
+    {
+      "clip": "signn/Z/118.avi",
+      "letter": "Z",
+      "reason": "Keep one hand in view throughout the movement"
+    },
+    {
+      "clip": "signn/Z/262.avi",
+      "letter": "Z",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signn/Z/268.avi",
+      "letter": "Z",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/A/A_clip4.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/D/D_clip1.avi",
+      "letter": "_",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/I/I_clip1.avi",
+      "letter": "_",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/I/I_clip2.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/I/I_clip3.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/I/I_clip4.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/L/L_clip2.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/L/L_clip3.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/R/R_clip2.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/R/R_clip3.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/S/S_clip1.avi",
+      "letter": "_",
+      "reason": "Too few sampled frames with exactly one detected hand"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/S/S_clip2.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/S/S_clip3.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/S/S_clip4.avi",
+      "letter": "_",
+      "reason": "Trace a clear movement; a stationary hand is not J or Z"
+    },
+    {
+      "clip": "signalpha/ASL_dynamic/Z/Z_clip6.avi",
+      "letter": "Z",
+      "reason": "Keep one hand in view throughout the movement"
+    }
+  ],
+  "participant_metadata": "Unavailable per clip in both sources; no new signer count or signer-disjoint accuracy is claimed.",
+  "observed_ranges": {
+    "J": {
+      "active_duration_ms": {
+        "min": 450.0,
+        "median": 1800.0,
+        "max": 3666.0
+      },
+      "trajectory_extent_palm_lengths": {
+        "min": 1.2325712303274252,
+        "median": 2.7399459935295374,
+        "max": 4.910030922836988
+      },
+      "travel_speed_palm_lengths_per_second": {
+        "min": 1.0649967832330054,
+        "median": 3.509515381191266,
+        "max": 22.29764722926776
+      }
+    },
+    "Z": {
+      "active_duration_ms": {
+        "min": 750.0,
+        "median": 2400.0,
+        "max": 3967.0
+      },
+      "trajectory_extent_palm_lengths": {
+        "min": 0.8018726056679556,
+        "median": 2.2249908658661943,
+        "max": 6.965210978240353
+      },
+      "travel_speed_palm_lengths_per_second": {
+        "min": 1.171649402572303,
+        "median": 3.2104116518375343,
+        "max": 7.505007615816945
+      }
+    },
+    "_": {
+      "active_duration_ms": {
+        "min": 100.0,
+        "median": 950.0,
+        "max": 3300.0
+      },
+      "trajectory_extent_palm_lengths": {
+        "min": 0.07840310411445148,
+        "median": 0.575646637249149,
+        "max": 1.7935843558394615
+      },
+      "travel_speed_palm_lengths_per_second": {
+        "min": 0.7398579630485689,
+        "median": 1.1554365497828334,
+        "max": 7.882727324992325
+      }
+    }
+  },
+  "warning": "Speed and size values are measured landmark proxies from original recordings, not annotated signing speed, artificial video retiming, or additional real clips."
+}

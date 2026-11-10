@@ -1,0 +1,29 @@
+{
+  "asllvd": {
+    "name": "ASLLVD research benchmark",
+    "url": "https://www.bu.edu/asllrp/av/dai-asllvd.html",
+    "download_url": "https://www.bu.edu/asllrp/dai-asllvd-BU_glossing_with_variations_HS_information-extended-urls-RU.xlsx",
+    "archive": "annotations.xlsx",
+    "bytes": 1524218,
+    "sha256": "9cca0ed6aea2e2cc571d2081ab563fd920b75105e1d6bb2ed28c3ddcce73a3fb",
+    "license": "Research and education only; no redistribution or commercial use without explicit permission",
+    "training_eligible": false,
+    "attribution": "Neidle, Carol; Thangali, Ashwin; Sclaroff, Stan (2012), Challenges in Development of the American Sign Language Lexicon Video Dataset (ASLLVD) Corpus, LREC 2012. See original source for full credits and terms.",
+    "conditions": "Evaluation only. Source-annotated consultant IDs, sign start/end frame numbers and physical right-hand dominance. Processed MOVs stack frontal/profile views and play all originally captured 60-fps frames at 15 fps; correct timestamps to capture time. Keep clips, source annotation subset and coordinates in ignored local caches."
+  },
+  "signalpha_motion": {
+    "name": "SignAlphaSet dynamic V3",
+    "url": "https://data.mendeley.com/datasets/8fmvr9m98w/3",
+    "paper": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12173717/",
+    "dataset": "8fmvr9m98w",
+    "file": "9dcdeaa8-4df1-4eb9-98df-3231f66a10c7",
+    "archive": "ASL_dynamic.zip",
+    "bytes": 1247063491,
+    "sha256": "4eb5104150e723229fb1554c276f7a6e83be0597560085fb21de4f3c991bbf9f",
+    "license": "CC BY 4.0",
+    "attribution": "Garg, Bindu; Kasar, Manisha; Kashyap, Achyut; Vats, Amber; Sharma, Gunjan; Hange, Aditya (2025), SignAlphaSet, Mendeley Data, V3, doi:10.17632/8fmvr9m98w.3",
+    "participants": "Paper reports the three static-dataset participants also recorded dynamic signs; original video filenames do not identify individual signers. Do not invent per-clip signer IDs.",
+    "conditions": "No source speed, motion-size, hand, lighting or camera-angle labels. Measure duration and palm-relative trajectory extent from the originals and mark these as derived observations.",
+    "selection": "Use original AVI files only, never the accompanying extracted JPG frames as independent movements. Audit video duplicates and motion quality before training."
+  }
+}

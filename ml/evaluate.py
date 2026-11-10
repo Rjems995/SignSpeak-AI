@@ -25,7 +25,10 @@ def evaluate(prefix="", directory=ROOT):
 
 
 def main(directory=ROOT):
-    evaluate(directory=directory)
+    if not any((directory/name).exists() for name in ["classifier.json", "motion-classifier.json"]):
+        raise ValueError("No exported classifier found in the selected directory")
+    if (directory / "classifier.json").exists():
+        evaluate(directory=directory)
     if (directory / "motion-classifier.json").exists():
         evaluate("motion-", directory)
 

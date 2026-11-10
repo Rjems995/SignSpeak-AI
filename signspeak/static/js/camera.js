@@ -50,7 +50,8 @@ export class CameraController {
   frame(){
     if(!this.running)return;
     this.raf=requestAnimationFrame(()=>this.frame());const now=performance.now();
-    if(this.video.readyState<2||now-this.lastFrame<90||this.video.currentTime===this.lastVideoTime)return;
+    const sampleInterval=this.recording?30:90;
+    if(this.video.readyState<2||now-this.lastFrame<sampleInterval||this.video.currentTime===this.lastVideoTime)return;
     this.lastFrame=now;this.lastVideoTime=this.video.currentTime;
     try{
       const result=this.landmarker.detectForVideo(this.video,now);const single=result.landmarks.length===1;
@@ -82,16 +83,17 @@ export class CameraController {
   }
   recordMotion(){
     if(!this.running||!this.motionClassifier)return toast('Enable the camera and movement model first.');
-    if(this.recording)return;
+    if(this.recording)return this.finishMotion();
     if(!this.points||performance.now()-this.lastSeen>400)return toast('Bring one clearly visible hand into view before recording.');
     if(this.onSequenceStart()===false)return false;
-    this.recording=true;this.lastMotion=null;this.motionFrames=[];this.motionStart=performance.now();this.motionDuration=config.model.motion?.recording_ms||2400;this.stabilizer.reset();this.lastResult=null;
-    document.getElementById('record-motion').disabled=true;document.getElementById('motion-status').textContent='Recording now. Trace J or Z once with one hand.';
+    this.recording=true;this.lastMotion=null;this.motionFrames=[];this.motionStart=performance.now();this.motionDuration=Math.max(4500,Number(config.model.motion?.recording_ms)||0);this.stabilizer.reset();this.lastResult=null;
+    document.getElementById('record-motion').textContent='Finish movement';document.getElementById('motion-status').textContent='Recording now. Trace J or Z once, then select Finish movement. Recording ends automatically after 4.5 seconds.';
     this.motionTimer=setTimeout(()=>this.finishMotion(),this.motionDuration);
     return true;
   }
   finishMotion(){
-    this.recording=false;if(!this.running)return;document.getElementById('record-motion').disabled=false;
+    if(!this.recording)return;
+    clearTimeout(this.motionTimer);this.recording=false;if(!this.running)return;document.getElementById('record-motion').disabled=false;document.getElementById('record-motion').textContent='Record J / Z';
     const frames=this.motionFrames;this.motionFrames=[];
     try{
       const prediction=this.motionClassifier.predict(frames,Number(settings.threshold));this.onSequence(frames);this.stabilizer.reset();
@@ -103,5 +105,5 @@ export class CameraController {
   }
   clearMotion(){this.lastMotion=null;this.motionDisplayUntil=0;this.stabilizer.reset();}
   current(){if(this.running&&this.lastMotion&&performance.now()-this.lastMotion.timestamp<8000)return this.lastMotion;return this.running&&this.lastResult&&performance.now()-this.lastResult.timestamp<400?this.lastResult:null;}
-  stop(){++this.token;clearTimeout(this.motionTimer);const wasRecording=this.recording;this.recording=false;if(wasRecording)this.onSequenceEnd({cancelled:true});this.lastMotion=null;this.motionFrames=[];this.motionDisplayUntil=0;document.getElementById('record-motion').disabled=true;document.getElementById('motion-status').textContent='Hold static letters steady. For J or Z, select Record J / Z and trace once in 2.4 seconds.';this.loading=false;this.running=false;cancelAnimationFrame(this.raf);this.stream?.getTracks().forEach(t=>t.stop());this.stream=null;this.video.pause();this.video.srcObject=null;this.points=null;this.observation=null;this.lastResult=null;this.stabilizer.reset();drawHand(this.canvas,null);document.getElementById('camera-viewport').classList.remove('running');document.getElementById('camera-empty').hidden=false;document.getElementById('hand-status').hidden=true;this.startButton.disabled=false;this.startButton.textContent='Enable camera';this.stopButton.disabled=true;this.status('Camera off');this.renderPrediction(false,{label:null,confidence:0},{progress:0});this.onState(false);this.onResult(null,null);}
+  stop(){++this.token;clearTimeout(this.motionTimer);const wasRecording=this.recording;this.recording=false;if(wasRecording)this.onSequenceEnd({cancelled:true});this.lastMotion=null;this.motionFrames=[];this.motionDisplayUntil=0;document.getElementById('record-motion').disabled=true;document.getElementById('record-motion').textContent='Record J / Z';document.getElementById('motion-status').textContent='Hold static letters steady. For J or Z, record one movement and select Finish movement. You have up to 4.5 seconds.';this.loading=false;this.running=false;cancelAnimationFrame(this.raf);this.stream?.getTracks().forEach(t=>t.stop());this.stream=null;this.video.pause();this.video.srcObject=null;this.points=null;this.observation=null;this.lastResult=null;this.stabilizer.reset();drawHand(this.canvas,null);document.getElementById('camera-viewport').classList.remove('running');document.getElementById('camera-empty').hidden=false;document.getElementById('hand-status').hidden=true;this.startButton.disabled=false;this.startButton.textContent='Enable camera';this.stopButton.disabled=true;this.status('Camera off');this.renderPrediction(false,{label:null,confidence:0},{progress:0});this.onState(false);this.onResult(null,null);}
 }
