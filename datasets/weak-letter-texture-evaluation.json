@@ -1,0 +1,697 @@
+{
+  "hog-validation.json": {
+    "method": "TRAIN/VALIDATION-only binary R texture expert; current315primary weights unchanged.",
+    "patch_npz_sha256": "a19b69ad1625a9094f098e6d1c74c7116c51aaac31932d13975d9f05d64e995d",
+    "patch_metadata_sha256": "b0304038b390f29ea3f45a7aa8b03bb1d9c338d0f6728c82e3e33bed02622f30",
+    "primary_model_sha256": "2d4c9390eb498ac7c5bd969e4b8ecd8ab99ba5f8276fb6014e687bbe648800c6",
+    "feature_spec": {
+      "pixels": [
+        64,
+        64
+      ],
+      "gray": "uint8/255",
+      "gradients": "center differences; outer border zero",
+      "bins": 9,
+      "orientation": "unsigned modulo pi; angular linear interpolation",
+      "cells": [
+        8,
+        8
+      ],
+      "block_cells": [
+        2,
+        2
+      ],
+      "block_stride": 1,
+      "block_order": "TL,TR,BL,BR each9bins",
+      "normalization": "sqrt(sum(block\u00b2)+1e-10), clip.2, renormalize same",
+      "features": 1764
+    },
+    "baseline": {
+      "known_samples": 1224,
+      "correct_accepted": 1127,
+      "gated_accuracy": 0.920751633986928,
+      "incorrect_accepted": 30,
+      "R_correct": 38,
+      "R_false_acceptances": 0,
+      "new_wrong_R": 0,
+      "EMT_correct": {
+        "E": 51,
+        "M": 47,
+        "T": 47
+      },
+      "by_participant": {
+        "asl_hg_p4": {
+          "R_total": 17,
+          "R_correct": 17,
+          "R_false_acceptances": 0
+        },
+        "asl_hg_p9": {
+          "R_total": 17,
+          "R_correct": 17,
+          "R_false_acceptances": 0
+        },
+        "aslyset_user3": {
+          "R_total": 17,
+          "R_correct": 4,
+          "R_false_acceptances": 0
+        }
+      }
+    },
+    "baseline_unknown_false_acceptances": 0,
+    "fits": [
+      {
+        "C": 0.1,
+        "iterations": [
+          80
+        ],
+        "seconds": 0.7044415473937988,
+        "trials": [
+          {
+            "threshold": 0.85,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1096,
+              "gated_accuracy": 0.8954248366013072,
+              "incorrect_accepted": 62,
+              "R_correct": 39,
+              "R_false_acceptances": 32,
+              "new_wrong_R": 32,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 32
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 5,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 33,
+            "eligible": false
+          },
+          {
+            "threshold": 0.9,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1099,
+              "gated_accuracy": 0.8978758169934641,
+              "incorrect_accepted": 59,
+              "R_correct": 39,
+              "R_false_acceptances": 29,
+              "new_wrong_R": 29,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 29
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 5,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 30,
+            "eligible": false
+          },
+          {
+            "threshold": 0.95,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1106,
+              "gated_accuracy": 0.9035947712418301,
+              "incorrect_accepted": 51,
+              "R_correct": 38,
+              "R_false_acceptances": 21,
+              "new_wrong_R": 21,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 21
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 4,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 21,
+            "eligible": false
+          },
+          {
+            "threshold": 0.99,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1114,
+              "gated_accuracy": 0.9101307189542484,
+              "incorrect_accepted": 43,
+              "R_correct": 38,
+              "R_false_acceptances": 13,
+              "new_wrong_R": 13,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 13
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 4,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 13,
+            "eligible": false
+          }
+        ]
+      },
+      {
+        "C": 1,
+        "iterations": [
+          73
+        ],
+        "seconds": 0.605186939239502,
+        "trials": [
+          {
+            "threshold": 0.85,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1097,
+              "gated_accuracy": 0.8962418300653595,
+              "incorrect_accepted": 61,
+              "R_correct": 39,
+              "R_false_acceptances": 31,
+              "new_wrong_R": 31,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 31
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 5,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 32,
+            "eligible": false
+          },
+          {
+            "threshold": 0.9,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1101,
+              "gated_accuracy": 0.8995098039215687,
+              "incorrect_accepted": 57,
+              "R_correct": 39,
+              "R_false_acceptances": 27,
+              "new_wrong_R": 27,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 27
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 5,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 28,
+            "eligible": false
+          },
+          {
+            "threshold": 0.95,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1104,
+              "gated_accuracy": 0.9019607843137255,
+              "incorrect_accepted": 54,
+              "R_correct": 39,
+              "R_false_acceptances": 24,
+              "new_wrong_R": 24,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 24
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 5,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 25,
+            "eligible": false
+          },
+          {
+            "threshold": 0.99,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1112,
+              "gated_accuracy": 0.9084967320261438,
+              "incorrect_accepted": 45,
+              "R_correct": 38,
+              "R_false_acceptances": 15,
+              "new_wrong_R": 15,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 15
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 4,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 15,
+            "eligible": false
+          }
+        ]
+      },
+      {
+        "C": 10,
+        "iterations": [
+          39
+        ],
+        "seconds": 0.3499791622161865,
+        "trials": [
+          {
+            "threshold": 0.85,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1108,
+              "gated_accuracy": 0.9052287581699346,
+              "incorrect_accepted": 49,
+              "R_correct": 38,
+              "R_false_acceptances": 19,
+              "new_wrong_R": 19,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 19
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 4,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 19,
+            "eligible": false
+          },
+          {
+            "threshold": 0.9,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1109,
+              "gated_accuracy": 0.9060457516339869,
+              "incorrect_accepted": 48,
+              "R_correct": 38,
+              "R_false_acceptances": 18,
+              "new_wrong_R": 18,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 18
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 4,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 18,
+            "eligible": false
+          },
+          {
+            "threshold": 0.95,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1114,
+              "gated_accuracy": 0.9101307189542484,
+              "incorrect_accepted": 43,
+              "R_correct": 38,
+              "R_false_acceptances": 13,
+              "new_wrong_R": 13,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 13
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 4,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 13,
+            "eligible": false
+          },
+          {
+            "threshold": 0.99,
+            "known": {
+              "known_samples": 1224,
+              "correct_accepted": 1116,
+              "gated_accuracy": 0.9117647058823529,
+              "incorrect_accepted": 41,
+              "R_correct": 38,
+              "R_false_acceptances": 11,
+              "new_wrong_R": 11,
+              "EMT_correct": {
+                "E": 51,
+                "M": 47,
+                "T": 47
+              },
+              "by_participant": {
+                "asl_hg_p4": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 11
+                },
+                "asl_hg_p9": {
+                  "R_total": 17,
+                  "R_correct": 17,
+                  "R_false_acceptances": 0
+                },
+                "aslyset_user3": {
+                  "R_total": 17,
+                  "R_correct": 4,
+                  "R_false_acceptances": 0
+                }
+              }
+            },
+            "unknown_false_acceptances": 0,
+            "overrides": 11,
+            "eligible": false
+          }
+        ]
+      }
+    ],
+    "test_predictions_used": false,
+    "fresh_test_predictions_used": false
+  },
+  "hog-rbf-validation.json": {
+    "method": "Nystroem256 RBF gamma1/1764 thenbalancedLogisticRegressionC100, training/validation only",
+    "seconds": 1.8650281429290771,
+    "iterations": [
+      75
+    ],
+    "trials": [
+      {
+        "threshold": 0.85,
+        "known": {
+          "known_samples": 1224,
+          "correct_accepted": 1117,
+          "gated_accuracy": 0.9125816993464052,
+          "incorrect_accepted": 40,
+          "R_correct": 39,
+          "R_false_acceptances": 11,
+          "new_wrong_R": 11,
+          "EMT_correct": {
+            "E": 51,
+            "M": 47,
+            "T": 47
+          },
+          "by_participant": {
+            "asl_hg_p4": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 11
+            },
+            "asl_hg_p9": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 0
+            },
+            "aslyset_user3": {
+              "R_total": 17,
+              "R_correct": 5,
+              "R_false_acceptances": 0
+            }
+          }
+        },
+        "unknown_false_acceptances": 0,
+        "overrides": 12,
+        "eligible": false
+      },
+      {
+        "threshold": 0.9,
+        "known": {
+          "known_samples": 1224,
+          "correct_accepted": 1125,
+          "gated_accuracy": 0.9191176470588235,
+          "incorrect_accepted": 32,
+          "R_correct": 38,
+          "R_false_acceptances": 2,
+          "new_wrong_R": 2,
+          "EMT_correct": {
+            "E": 51,
+            "M": 47,
+            "T": 47
+          },
+          "by_participant": {
+            "asl_hg_p4": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 2
+            },
+            "asl_hg_p9": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 0
+            },
+            "aslyset_user3": {
+              "R_total": 17,
+              "R_correct": 4,
+              "R_false_acceptances": 0
+            }
+          }
+        },
+        "unknown_false_acceptances": 0,
+        "overrides": 2,
+        "eligible": false
+      },
+      {
+        "threshold": 0.95,
+        "known": {
+          "known_samples": 1224,
+          "correct_accepted": 1125,
+          "gated_accuracy": 0.9191176470588235,
+          "incorrect_accepted": 32,
+          "R_correct": 38,
+          "R_false_acceptances": 2,
+          "new_wrong_R": 2,
+          "EMT_correct": {
+            "E": 51,
+            "M": 47,
+            "T": 47
+          },
+          "by_participant": {
+            "asl_hg_p4": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 2
+            },
+            "asl_hg_p9": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 0
+            },
+            "aslyset_user3": {
+              "R_total": 17,
+              "R_correct": 4,
+              "R_false_acceptances": 0
+            }
+          }
+        },
+        "unknown_false_acceptances": 0,
+        "overrides": 2,
+        "eligible": false
+      },
+      {
+        "threshold": 0.99,
+        "known": {
+          "known_samples": 1224,
+          "correct_accepted": 1127,
+          "gated_accuracy": 0.920751633986928,
+          "incorrect_accepted": 30,
+          "R_correct": 38,
+          "R_false_acceptances": 0,
+          "new_wrong_R": 0,
+          "EMT_correct": {
+            "E": 51,
+            "M": 47,
+            "T": 47
+          },
+          "by_participant": {
+            "asl_hg_p4": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 0
+            },
+            "asl_hg_p9": {
+              "R_total": 17,
+              "R_correct": 17,
+              "R_false_acceptances": 0
+            },
+            "aslyset_user3": {
+              "R_total": 17,
+              "R_correct": 4,
+              "R_false_acceptances": 0
+            }
+          }
+        },
+        "unknown_false_acceptances": 0,
+        "overrides": 0,
+        "eligible": true
+      }
+    ],
+    "test_predictions_used": false,
+    "fresh_test_predictions_used": false
+  },
+  "decision": "No useful eligible R texture expert: improvements add wrong letters; the conservative RBF threshold makes zero overrides. No texture expert installed."
+}

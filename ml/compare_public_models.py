@@ -7,21 +7,30 @@ import numpy as np
 from .data_quality import ROOT
 
 
-def predict(model, features):
+def probabilities(model, features):
     x = (features - np.array(model["mean"])) / np.array(model["scale"])
+    if model.get('kernel_basis'):
+        basis = model['kernel_basis']
+        centers = np.array(basis['centers'])
+        squared = np.maximum(0,(x*x).sum(axis=1,keepdims=True)+(centers*centers).sum(axis=1)[None,:]-2*x@centers.T)
+        x = np.exp(-basis['gamma']*squared)
     for i, layer in enumerate(model["layers"]):
         x = x @ np.array(layer["kernel"]) + np.array(layer["bias"])
         if i < len(model["layers"])-1:
             x = np.maximum(0, x)
     exp = np.exp(x-x.max(axis=1, keepdims=True))
-    probabilities = exp/exp.sum(axis=1, keepdims=True)
-    prediction = np.array(model["labels"])[probabilities.argmax(axis=1)]
+    return exp/exp.sum(axis=1, keepdims=True)
+
+
+def predict(model, features):
+    probability = probabilities(model,features)
+    prediction = np.array(model["labels"])[probability.argmax(axis=1)]
     gated = prediction.copy()
     for label in set(prediction)-{"_"}:
         indices = np.where(prediction == label)[0]
         support = np.array(model["support"][label])
         distances = np.sqrt(((features[indices, None, :]-support[None, :, :])**2).mean(axis=2)).min(axis=1)
-        rejected = (probabilities[indices].max(axis=1) < .85) | (distances > model["distance_thresholds"][label])
+        rejected = (probability[indices].max(axis=1) < .85) | (distances > model["distance_thresholds"][label])
         if model.get("rejection"):
             gate = model["rejection"]
             if gate["version"] != "negative-distance-ratio-v1" or not gate["support"] or gate["ratio"] <= 0:
@@ -30,6 +39,21 @@ def predict(model, features):
             negative_distances = np.sqrt(((features[indices, None, :]-negatives[None, :, :])**2).mean(axis=2)).min(axis=1)
             rejected |= negative_distances <= distances * gate["ratio"]
         gated[indices[rejected]] = "_"
+    if model.get('rescue'):
+        rescue = model['rescue']
+        if rescue['version']!='gated-legacy-agreement-v1':
+            raise ValueError('Unknown legacy rescue version')
+        _, legacy = predict(rescue['model'],features[:,:42])
+        for label in rescue['labels']:
+            use = (legacy==label)&(probability[:,model['labels'].index(label)]>=rescue['min_primary_probabilities'][label])
+            gated[use] = label
+    if model.get('topology_expert'):
+        from .topology_features import topology_probabilities
+        expert = model['topology_expert']
+        allowed = expert['allowed_primary_labels']
+        use = (np.isin(prediction,allowed) & np.isin(gated,allowed+['_']) &
+               (topology_probabilities(expert,features[:,:42]) >= max(.85,expert['threshold'])))
+        gated[use] = 'R'
     return prediction, gated
 
 
@@ -52,6 +76,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidate", type=Path, default=ROOT / "artifacts/public-candidate")
     parser.add_argument("--dataset", type=Path, default=ROOT / "datasets/public-balanced.json")
+    parser.add_argument("--baseline",type=Path,default=ROOT / 'datasets/baselines/static-v1',help='Preserved historical 42-feature classifier directory')
     args = parser.parse_args()
     dataset_bytes = args.dataset.read_bytes()
     rows = json.loads(dataset_bytes)
@@ -72,7 +97,7 @@ def main():
               "test_samples": len(test), "test_participants": sorted({r["participant"] for r in test}),
               "method": "Same frozen participant-disjoint test for both exported models. No test-based parameter or threshold tuning.",
               "limitations": ["No verified left-hand test cohort", "Per-image lighting and camera angles unknown", "No unsupported-sign false-acceptance benchmark", "Public still images do not establish live webcam performance", "J/Z motion model not changed"]}
-    for name, directory in [("published_baseline", ROOT / "signspeak/static/models"), ("public_candidate", args.candidate)]:
+    for name, directory in [("published_baseline", args.baseline), ("public_candidate", args.candidate)]:
         model_bytes = (directory / "classifier.json").read_bytes()
         model = json.loads(model_bytes)
         prediction, gated = predict(model, x)

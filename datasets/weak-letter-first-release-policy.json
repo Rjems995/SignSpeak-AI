@@ -1,0 +1,14 @@
+{
+  "validation_choice_sha256": "0f68f8af2275de7e4fab4a36ef25c43e612d309ae56b51b56abf48546ab98118",
+  "candidate_classifier_sha256": "187cfc256d49068f707659204262f99af25742b154f32875491029cf5360e872",
+  "confidence_threshold": 0.85,
+  "minimum_correct_test_by_letter": {
+    "E": 46,
+    "M": 24,
+    "R": 18,
+    "T": 20
+  },
+  "minimum_gated_test_accuracy": 0.8022875816993464,
+  "maximum_unknown_test_false_acceptances": 2,
+  "test_use": "Single release check after validation-only selection; no test-based threshold or weight tuning."
+}

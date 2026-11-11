@@ -67,7 +67,7 @@ export class CameraController {
       if(now<this.motionDisplayUntil)return;
       document.getElementById('hand-status').textContent=result.landmarks.length>1?'Use one hand at a time':single?'Hand detected · hold your letter steady':'Bring one hand into view';
       let prediction={label:null,confidence:0,candidate:null};
-      if(this.points&&this.classifier)prediction=this.classifier.predict(this.points,Number(settings.threshold));
+      if(this.points&&this.classifier)prediction=this.classifier.predict(this.points,Number(settings.threshold),result.worldLandmarks?.[0]);
       const stable=this.stabilizer.update(prediction.label,now);this.lastResult={...prediction,stable:stable.stable,progress:stable.progress,timestamp:now};
       this.renderPrediction(single,prediction,stable);this.onResult(this.lastResult,this.points);
       if(stable.commit)this.onCommit(stable.commit);

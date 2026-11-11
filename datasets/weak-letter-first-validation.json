@@ -1,0 +1,4993 @@
+{
+  "decision": "FROZEN BEFORE OPENING FINAL TEST",
+  "test_predictions_used_for_selection": false,
+  "policy": {
+    "grid": [
+      1e-05,
+      0.0001,
+      0.001,
+      0.01,
+      0.05,
+      0.1
+    ],
+    "confidence_threshold": 0.85,
+    "negative_distance_ratio": 1,
+    "floors": {
+      "E": 49,
+      "M": 28,
+      "R": 38,
+      "T": 29
+    },
+    "denominator_per_letter": 51,
+    "minimum_gated_accuracy": 0.85,
+    "maximum_unknown_false_acceptances": 0,
+    "selection": "Maximize minimum focused recall, then mean focused recall, then all-letter gated accuracy; ties favor higher minimum primary probability, then E, then R."
+  },
+  "input_sha256": {
+    "artifacts/weak-experiment/depth273-coreset-classifier.json": "06893f294bad18b31cf7e98ec9fb6d682692a2d48e6db4a2f80d23391491df83",
+    "signspeak/static/models/classifier.json": "f08b7e1fa387457486aa10c7da1c40cfdf51c0e5af1dac52e64ae876d17a86f8",
+    "artifacts/weak-depth/aslyset-depth.json": "23afa7c746274c54518ebee1bb8a6ccf3711957666c280ba98b65c75fc06d012",
+    "artifacts/weak-depth/asl_hg-depth.json": "80a6e5311a88a91dfbdb7479e04006c0ebeb03ec97b98f1396470aa06006f461",
+    "artifacts/weak-depth/unknown-depth.json": "20f67e3c587b5b98c673008e66e98c8b25a1e52b439ee817ee56b44d9548ee5e"
+  },
+  "selected": {
+    "e_min_primary_probability": 0.01,
+    "r_min_primary_probability": 0.0001,
+    "eligible": true,
+    "gated_accuracy": 0.934640522875817,
+    "minimum_focused_correct": 38,
+    "mean_focused_correct": 43.75,
+    "unknown_false_acceptances": 0,
+    "accepted": 1175,
+    "incorrect_accepted": 31,
+    "accuracy_when_accepted": 0.9736170212765958,
+    "by_letter": {
+      "A": {
+        "correct_accepted": 48,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "B": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "C": {
+        "correct_accepted": 48,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "D": {
+        "correct_accepted": 31,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "E": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "F": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "G": {
+        "correct_accepted": 50,
+        "false_accepted": 1,
+        "total": 51
+      },
+      "H": {
+        "correct_accepted": 42,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "I": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "K": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "L": {
+        "correct_accepted": 50,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "M": {
+        "correct_accepted": 39,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "N": {
+        "correct_accepted": 51,
+        "false_accepted": 1,
+        "total": 51
+      },
+      "O": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "P": {
+        "correct_accepted": 47,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "Q": {
+        "correct_accepted": 48,
+        "false_accepted": 1,
+        "total": 51
+      },
+      "R": {
+        "correct_accepted": 38,
+        "false_accepted": 1,
+        "total": 51
+      },
+      "S": {
+        "correct_accepted": 50,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "T": {
+        "correct_accepted": 47,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "U": {
+        "correct_accepted": 49,
+        "false_accepted": 10,
+        "total": 51
+      },
+      "V": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "W": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      },
+      "X": {
+        "correct_accepted": 47,
+        "false_accepted": 17,
+        "total": 51
+      },
+      "Y": {
+        "correct_accepted": 51,
+        "false_accepted": 0,
+        "total": 51
+      }
+    }
+  },
+  "trials": [
+    {
+      "e_min_primary_probability": 1e-05,
+      "r_min_primary_probability": 1e-05,
+      "eligible": true,
+      "gated_accuracy": 0.9313725490196079,
+      "minimum_focused_correct": 35,
+      "mean_focused_correct": 42.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 35,
+      "accuracy_when_accepted": 0.9702127659574468,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 4,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 35,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 1e-05,
+      "r_min_primary_probability": 0.0001,
+      "eligible": true,
+      "gated_accuracy": 0.9313725490196079,
+      "minimum_focused_correct": 35,
+      "mean_focused_correct": 42.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 35,
+      "accuracy_when_accepted": 0.9702127659574468,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 4,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 35,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 1e-05,
+      "r_min_primary_probability": 0.001,
+      "eligible": false,
+      "gated_accuracy": 0.9305555555555556,
+      "minimum_focused_correct": 35,
+      "mean_focused_correct": 42.5,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 36,
+      "accuracy_when_accepted": 0.9693617021276596,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 4,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 35,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 37,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 11,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 1e-05,
+      "r_min_primary_probability": 0.01,
+      "eligible": false,
+      "gated_accuracy": 0.9297385620915033,
+      "minimum_focused_correct": 35,
+      "mean_focused_correct": 42.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 37,
+      "accuracy_when_accepted": 0.9685106382978723,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 4,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 35,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 1e-05,
+      "r_min_primary_probability": 0.05,
+      "eligible": false,
+      "gated_accuracy": 0.9297385620915033,
+      "minimum_focused_correct": 35,
+      "mean_focused_correct": 42.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 37,
+      "accuracy_when_accepted": 0.9685106382978723,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 4,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 35,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 1e-05,
+      "r_min_primary_probability": 0.1,
+      "eligible": false,
+      "gated_accuracy": 0.9297385620915033,
+      "minimum_focused_correct": 35,
+      "mean_focused_correct": 42.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 37,
+      "accuracy_when_accepted": 0.9685106382978723,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 4,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 35,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.0001,
+      "r_min_primary_probability": 1e-05,
+      "eligible": true,
+      "gated_accuracy": 0.934640522875817,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 31,
+      "accuracy_when_accepted": 0.9736170212765958,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.0001,
+      "r_min_primary_probability": 0.0001,
+      "eligible": true,
+      "gated_accuracy": 0.934640522875817,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 31,
+      "accuracy_when_accepted": 0.9736170212765958,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.0001,
+      "r_min_primary_probability": 0.001,
+      "eligible": false,
+      "gated_accuracy": 0.9338235294117647,
+      "minimum_focused_correct": 37,
+      "mean_focused_correct": 43.5,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 32,
+      "accuracy_when_accepted": 0.9727659574468085,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 37,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 11,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.0001,
+      "r_min_primary_probability": 0.01,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.0001,
+      "r_min_primary_probability": 0.05,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.0001,
+      "r_min_primary_probability": 0.1,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.001,
+      "r_min_primary_probability": 1e-05,
+      "eligible": true,
+      "gated_accuracy": 0.934640522875817,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 31,
+      "accuracy_when_accepted": 0.9736170212765958,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.001,
+      "r_min_primary_probability": 0.0001,
+      "eligible": true,
+      "gated_accuracy": 0.934640522875817,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 31,
+      "accuracy_when_accepted": 0.9736170212765958,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.001,
+      "r_min_primary_probability": 0.001,
+      "eligible": false,
+      "gated_accuracy": 0.9338235294117647,
+      "minimum_focused_correct": 37,
+      "mean_focused_correct": 43.5,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 32,
+      "accuracy_when_accepted": 0.9727659574468085,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 37,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 11,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.001,
+      "r_min_primary_probability": 0.01,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.001,
+      "r_min_primary_probability": 0.05,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.001,
+      "r_min_primary_probability": 0.1,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.01,
+      "r_min_primary_probability": 1e-05,
+      "eligible": true,
+      "gated_accuracy": 0.934640522875817,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 31,
+      "accuracy_when_accepted": 0.9736170212765958,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.01,
+      "r_min_primary_probability": 0.0001,
+      "eligible": true,
+      "gated_accuracy": 0.934640522875817,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 31,
+      "accuracy_when_accepted": 0.9736170212765958,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.01,
+      "r_min_primary_probability": 0.001,
+      "eligible": false,
+      "gated_accuracy": 0.9338235294117647,
+      "minimum_focused_correct": 37,
+      "mean_focused_correct": 43.5,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 32,
+      "accuracy_when_accepted": 0.9727659574468085,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 37,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 11,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.01,
+      "r_min_primary_probability": 0.01,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.01,
+      "r_min_primary_probability": 0.05,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.01,
+      "r_min_primary_probability": 0.1,
+      "eligible": false,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.05,
+      "r_min_primary_probability": 1e-05,
+      "eligible": true,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 49,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 2,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.05,
+      "r_min_primary_probability": 0.0001,
+      "eligible": true,
+      "gated_accuracy": 0.9330065359477124,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 43.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 33,
+      "accuracy_when_accepted": 0.9719148936170213,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 49,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 2,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.05,
+      "r_min_primary_probability": 0.001,
+      "eligible": false,
+      "gated_accuracy": 0.9321895424836601,
+      "minimum_focused_correct": 37,
+      "mean_focused_correct": 43.0,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 34,
+      "accuracy_when_accepted": 0.971063829787234,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 49,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 37,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 2,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 11,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.05,
+      "r_min_primary_probability": 0.01,
+      "eligible": false,
+      "gated_accuracy": 0.9313725490196079,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 42.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 35,
+      "accuracy_when_accepted": 0.9702127659574468,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 49,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 2,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.05,
+      "r_min_primary_probability": 0.05,
+      "eligible": false,
+      "gated_accuracy": 0.9313725490196079,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 42.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 35,
+      "accuracy_when_accepted": 0.9702127659574468,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 49,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 2,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.05,
+      "r_min_primary_probability": 0.1,
+      "eligible": false,
+      "gated_accuracy": 0.9313725490196079,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 42.75,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 35,
+      "accuracy_when_accepted": 0.9702127659574468,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 49,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 2,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.1,
+      "r_min_primary_probability": 1e-05,
+      "eligible": false,
+      "gated_accuracy": 0.9305555555555556,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 42.5,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 36,
+      "accuracy_when_accepted": 0.9693617021276596,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 46,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 5,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.1,
+      "r_min_primary_probability": 0.0001,
+      "eligible": false,
+      "gated_accuracy": 0.9305555555555556,
+      "minimum_focused_correct": 38,
+      "mean_focused_correct": 42.5,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 36,
+      "accuracy_when_accepted": 0.9693617021276596,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 46,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 38,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 5,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 10,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.1,
+      "r_min_primary_probability": 0.001,
+      "eligible": false,
+      "gated_accuracy": 0.9297385620915033,
+      "minimum_focused_correct": 37,
+      "mean_focused_correct": 42.25,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 37,
+      "accuracy_when_accepted": 0.9685106382978723,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 46,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 37,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 5,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 11,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.1,
+      "r_min_primary_probability": 0.01,
+      "eligible": false,
+      "gated_accuracy": 0.928921568627451,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 42.0,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 38,
+      "accuracy_when_accepted": 0.9676595744680851,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 46,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 5,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.1,
+      "r_min_primary_probability": 0.05,
+      "eligible": false,
+      "gated_accuracy": 0.928921568627451,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 42.0,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 38,
+      "accuracy_when_accepted": 0.9676595744680851,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 46,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 5,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    },
+    {
+      "e_min_primary_probability": 0.1,
+      "r_min_primary_probability": 0.1,
+      "eligible": false,
+      "gated_accuracy": 0.928921568627451,
+      "minimum_focused_correct": 36,
+      "mean_focused_correct": 42.0,
+      "unknown_false_acceptances": 0,
+      "accepted": 1175,
+      "incorrect_accepted": 38,
+      "accuracy_when_accepted": 0.9676595744680851,
+      "by_letter": {
+        "A": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "B": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "C": {
+          "correct_accepted": 48,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "D": {
+          "correct_accepted": 31,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "E": {
+          "correct_accepted": 46,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "F": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "G": {
+          "correct_accepted": 50,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "H": {
+          "correct_accepted": 42,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "I": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "K": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "L": {
+          "correct_accepted": 50,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "M": {
+          "correct_accepted": 39,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "N": {
+          "correct_accepted": 51,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "O": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "P": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "Q": {
+          "correct_accepted": 48,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "R": {
+          "correct_accepted": 36,
+          "false_accepted": 1,
+          "total": 51
+        },
+        "S": {
+          "correct_accepted": 50,
+          "false_accepted": 5,
+          "total": 51
+        },
+        "T": {
+          "correct_accepted": 47,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "U": {
+          "correct_accepted": 49,
+          "false_accepted": 12,
+          "total": 51
+        },
+        "V": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "W": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        },
+        "X": {
+          "correct_accepted": 47,
+          "false_accepted": 17,
+          "total": 51
+        },
+        "Y": {
+          "correct_accepted": 51,
+          "false_accepted": 0,
+          "total": 51
+        }
+      }
+    }
+  ]
+}

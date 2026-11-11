@@ -1,0 +1,1097 @@
+{
+  "version": 1,
+  "method": "Three bounded binary-R topology fits using train/validation only.",
+  "test_predictions_used": false,
+  "fresh_test_predictions_used": false,
+  "input_sha256": {
+    "dataset": "1f2b78e14dabb2ce7ca45c668395c534eb31a46fae4475991e9140c4a6333430",
+    "unknown": "4f3d210e4ee2d01a48f6ee6181e8cce1054c3e9ee1965bf8a35a0fb8b2f63f6f",
+    "selection": "bda238070db9406d701c8cde7cbb665bc58e35ad298e8762b0758da33be17f44",
+    "primary": "2d4c9390eb498ac7c5bd969e4b8ecd8ab99ba5f8276fb6014e687bbe648800c6"
+  },
+  "source_audit": {
+    "dataset_sha256": "77334ffb6a9dfc07cce318db59547f817582d81cec688a5d027ac5a32f08c385",
+    "participant_ids": {
+      "train": [
+        "asl_hg_p1",
+        "asl_hg_p2",
+        "asl_hg_p3",
+        "asl_hg_p5",
+        "asl_hg_p6",
+        "asl_hg_p7",
+        "aslyset_user1",
+        "aslyset_user4"
+      ],
+      "validation": [
+        "asl_hg_p4",
+        "asl_hg_p9",
+        "aslyset_user3"
+      ],
+      "test": [
+        "asl_hg_p10",
+        "asl_hg_p8",
+        "aslyset_user2"
+      ]
+    },
+    "source_hashes": {
+      "aslyset-landmarks.json": "f54e51d6c642132cb511012109b0933595604458078dc2096314aa163a537577",
+      "asl_hg-landmarks.json": "83001d7bc080f0400f360648c4db4e6d313935682641e891ddd5ce17ef901d75"
+    },
+    "curation": {
+      "input_rows": 10576,
+      "usable_unique": 10516,
+      "duplicate_rows": 32,
+      "conflicts": [],
+      "cross_participant_duplicates": [
+        {
+          "fingerprint": "7b563836edd1ada63f26fdcd80400bb03ebd4770220b52504df8f8fc6374a586",
+          "rows": 2
+        },
+        {
+          "fingerprint": "acc4416a4f3765d24ee4a9b55b9d454de8ec6b2d52f0270d1c566748a8fa065c",
+          "rows": 2
+        },
+        {
+          "fingerprint": "77fcb5bcab715d84578e4ecd50cb492efc1b4ccc5a710409a07ba9591c114d3f",
+          "rows": 2
+        },
+        {
+          "fingerprint": "42a444d01346b641822b63d57a6c5032c66d3e513451491046577a7a81cac5c9",
+          "rows": 2
+        },
+        {
+          "fingerprint": "07eb56d02cb884ab1d2c7639e4c6cec548d807b159569b63acc9c1082205b99f",
+          "rows": 2
+        },
+        {
+          "fingerprint": "ccfc425c3a6a87c692da108c58277bde258f4736647ab471a1f4882e320f5275",
+          "rows": 2
+        },
+        {
+          "fingerprint": "2dad41736acd0aea5536e9c5efb149b24d4fb1631e6ca02c0e15d19223326b55",
+          "rows": 2
+        },
+        {
+          "fingerprint": "9df8d6b3b1794da03a0b99186c52b0549b50f15306cbbc044b19ed876c332ca9",
+          "rows": 2
+        },
+        {
+          "fingerprint": "c5bade50ad324629a2f960bc105971e07c116564237dff2624637f4e05c68bf1",
+          "rows": 2
+        },
+        {
+          "fingerprint": "94fc80267f0e59b685677a1b0673305cbba2daf953882b3a984c79ca02ad6923",
+          "rows": 2
+        },
+        {
+          "fingerprint": "b652344ec344b6ae5953966adf952b1923ddffd9d527050467a460de639b0ab6",
+          "rows": 2
+        },
+        {
+          "fingerprint": "e0f8d17cd5b91252aa4888718fe5db791206442e8c280afe4ba326f01afc4a0c",
+          "rows": 2
+        },
+        {
+          "fingerprint": "8942e4553758c3ba5ddc0b02c3b0ef2a4ba93b4b63d43a26d26097e239848257",
+          "rows": 2
+        },
+        {
+          "fingerprint": "c06c874ab2bfa52098c273e5f9ace12f9f2e547d51f7de9609a2ccc7ae130030",
+          "rows": 2
+        }
+      ],
+      "invalid": []
+    }
+  },
+  "feature_spec": {
+    "version": "finger-crossing-r-v1",
+    "features": 12,
+    "input": "First 42 canonical normalized image XY values",
+    "ordered_names": [
+      "tip_mcp_order_product",
+      "tip_aligned_x_difference",
+      "pip_aligned_x_difference",
+      "mcp_aligned_x_difference",
+      "index_extension",
+      "middle_extension",
+      "ring_extension",
+      "pinky_extension",
+      "thumb_index_mcp_distance",
+      "thumb_middle_mcp_distance",
+      "index_middle_tip_distance",
+      "tip_aligned_y_difference"
+    ]
+  },
+  "counts": {
+    "train": 9056,
+    "validation": 1251,
+    "R_training": 675
+  },
+  "split_fingerprint_sha256": {
+    "train": "14a9f5cc8a7014281480dee734c501d1e7b2db86e47a7f2c603292d72af471ef",
+    "validation": "bf625a8ff5044c86f7dbda0773b1b74cdca3aa0de25f3ffa1631e6ebbc844e2c",
+    "unknown_train": "c873b24b988627ce314e02b2af3b0a34e5981c6148a7d6277576e0eb159899ff",
+    "unknown_validation": "7b0568c8bb956b6623ce9658ebbc2eabffacc0ffae26cf187c799e68bedd0b7d"
+  },
+  "baseline": {
+    "samples": 1224,
+    "gated_accuracy": 0.920751633986928,
+    "correct_accepted": 1127,
+    "incorrect_accepted": 30,
+    "R_correct": 38,
+    "R_false_acceptances": 0,
+    "new_wrong_R": 0,
+    "EMT_correct": {
+      "E": 51,
+      "M": 47,
+      "T": 47
+    },
+    "by_participant": {
+      "asl_hg_p4": {
+        "R_samples": 17,
+        "R_correct": 17,
+        "R_false_acceptances": 0
+      },
+      "asl_hg_p9": {
+        "R_samples": 17,
+        "R_correct": 17,
+        "R_false_acceptances": 0
+      },
+      "aslyset_user3": {
+        "R_samples": 17,
+        "R_correct": 4,
+        "R_false_acceptances": 0
+      }
+    }
+  },
+  "baseline_unknown_false_acceptances": 0,
+  "policy": {
+    "C": [
+      0.1,
+      1,
+      10
+    ],
+    "thresholds": [
+      0.85,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "require_strict_R_recall_gain": true,
+    "maximum_new_wrong_R": 0,
+    "maximum_unknown_false_acceptances": 0,
+    "retain_known_EMT_correct_acceptances": true,
+    "override_raw_labels": [
+      "R",
+      "U",
+      "V",
+      "D"
+    ],
+    "override_accepted_labels": [
+      "R",
+      "U",
+      "V",
+      "D",
+      "_"
+    ],
+    "selection_order": [
+      "R_correct descending",
+      "gated_accuracy descending",
+      "threshold descending"
+    ]
+  },
+  "fits": [
+    {
+      "C": 0.1,
+      "iterations": [
+        28
+      ],
+      "trials": [
+        {
+          "threshold": 0.85,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        },
+        {
+          "threshold": 0.9,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        },
+        {
+          "threshold": 0.95,
+          "eligible": true,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9264705882352942,
+            "correct_accepted": 1134,
+            "incorrect_accepted": 25,
+            "R_correct": 45,
+            "R_false_acceptances": 0,
+            "new_wrong_R": 0,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 11,
+                "R_false_acceptances": 0
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 7
+        },
+        {
+          "threshold": 0.99,
+          "eligible": true,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9248366013071896,
+            "correct_accepted": 1132,
+            "incorrect_accepted": 27,
+            "R_correct": 43,
+            "R_false_acceptances": 0,
+            "new_wrong_R": 0,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 9,
+                "R_false_acceptances": 0
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 5
+        }
+      ]
+    },
+    {
+      "C": 1,
+      "iterations": [
+        46
+      ],
+      "trials": [
+        {
+          "threshold": 0.85,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        },
+        {
+          "threshold": 0.9,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        },
+        {
+          "threshold": 0.95,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        },
+        {
+          "threshold": 0.99,
+          "eligible": true,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9264705882352942,
+            "correct_accepted": 1134,
+            "incorrect_accepted": 25,
+            "R_correct": 45,
+            "R_false_acceptances": 0,
+            "new_wrong_R": 0,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 11,
+                "R_false_acceptances": 0
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 7
+        }
+      ]
+    },
+    {
+      "C": 10,
+      "iterations": [
+        67
+      ],
+      "trials": [
+        {
+          "threshold": 0.85,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9264705882352942,
+            "correct_accepted": 1134,
+            "incorrect_accepted": 26,
+            "R_correct": 46,
+            "R_false_acceptances": 2,
+            "new_wrong_R": 2,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 2
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 10
+        },
+        {
+          "threshold": 0.9,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        },
+        {
+          "threshold": 0.95,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        },
+        {
+          "threshold": 0.99,
+          "eligible": false,
+          "known": {
+            "samples": 1224,
+            "gated_accuracy": 0.9272875816993464,
+            "correct_accepted": 1135,
+            "incorrect_accepted": 25,
+            "R_correct": 46,
+            "R_false_acceptances": 1,
+            "new_wrong_R": 1,
+            "EMT_correct": {
+              "E": 51,
+              "M": 47,
+              "T": 47
+            },
+            "by_participant": {
+              "asl_hg_p4": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "asl_hg_p9": {
+                "R_samples": 17,
+                "R_correct": 17,
+                "R_false_acceptances": 0
+              },
+              "aslyset_user3": {
+                "R_samples": 17,
+                "R_correct": 12,
+                "R_false_acceptances": 1
+              }
+            }
+          },
+          "unknown_false_acceptances": 0,
+          "overrides": 9
+        }
+      ]
+    }
+  ],
+  "candidate_exported": true,
+  "limitations": [
+    "A binary R score does not independently verify an ASL sign.",
+    "Still-image geometry and validation gains do not establish live or new-signer accuracy.",
+    "The primary weights and E/R legacy rescue remain fixed."
+  ],
+  "test_vectors": [
+    {
+      "fingerprint": "04e7aa1f0bf5c1bedf88fd2054e4d2891c9b102f1209786099db0b3238bad198",
+      "letter": "R",
+      "xy": [
+        -0.0,
+        0.0,
+        -0.21345086202448485,
+        -0.17627356227064772,
+        -0.26554659874873066,
+        -0.4334864774010701,
+        -0.0902793408774263,
+        -0.5305122807305936,
+        0.14934264548985846,
+        -0.5304611243486413,
+        -0.09024191775237395,
+        -1.0156316840983814,
+        -0.024542703405889085,
+        -1.3769598531015008,
+        0.04802983435330627,
+        -1.606596731708259,
+        0.15330022679699967,
+        -1.8252391081723451,
+        0.10911999601845883,
+        -0.9940285843319253,
+        0.07131611641856177,
+        -1.4284269499911517,
+        0.05076721578488751,
+        -1.7313015709881963,
+        0.08040203918356441,
+        -2.0138362085221573,
+        0.28441111542362685,
+        -0.8511508695277153,
+        0.426832371101625,
+        -1.1308633227687377,
+        0.29554123347818606,
+        -0.865334577253977,
+        0.1822470140249894,
+        -0.6543436848716945,
+        0.43751306832413356,
+        -0.6053090911104462,
+        0.5086257608748649,
+        -0.7617442771262805,
+        0.36598013811226393,
+        -0.5930092428994342,
+        0.23448025498394587,
+        -0.44014985364892273
+      ],
+      "features": [
+        -0.018657717648754082,
+        -0.09304259707301055,
+        0.08967031755814762,
+        0.20052877107582634,
+        0.4544870120668869,
+        0.5852344697424858,
+        -0.5294846208114321,
+        -0.41723337626034535,
+        0.5411018711775514,
+        0.4653091998723566,
+        0.20219547971624072,
+        -0.17951625872769905
+      ],
+      "probability": 0.9998550983906791
+    },
+    {
+      "fingerprint": "006581c8f3222bbe6ee61c3c03508fa35023a176bfc5f1acd90a8b977682a0c7",
+      "letter": "U",
+      "xy": [
+        -0.0,
+        0.0,
+        -0.254081237540003,
+        -0.15804790207652522,
+        -0.34248933455856756,
+        -0.4197263920451992,
+        -0.18326873688881806,
+        -0.560415356202375,
+        0.03639377630649462,
+        -0.6257358049476652,
+        -0.2458653039561487,
+        -1.0140287382836595,
+        -0.2554395103088928,
+        -1.4042907459857557,
+        -0.26447383108616496,
+        -1.6486639605419526,
+        -0.2560253146877138,
+        -1.8777247485801363,
+        -0.051613550091123235,
+        -0.99866713245555,
+        -0.08084779699968937,
+        -1.4682696320592328,
+        -0.13668859408788933,
+        -1.7666803117638177,
+        -0.16484986256790063,
+        -2.0329232394689547,
+        0.12005104328624397,
+        -0.8746847331594909,
+        0.18308220873201814,
+        -1.1799832333664473,
+        0.08782446631090796,
+        -0.906082598003378,
+        -0.0005143449392895113,
+        -0.7013893429909903,
+        0.25954992248087994,
+        -0.6718059501516334,
+        0.22663266149303787,
+        -0.7907419001305112,
+        0.09755436186080621,
+        -0.6027071175047267,
+        -0.017893389316910074,
+        -0.4397225365048253
+      ],
+      "features": [
+        0.019139214951035145,
+        0.09906427240238888,
+        0.17766118312213136,
+        0.19319997499495706,
+        0.46776490599783105,
+        0.5691023089298846,
+        -0.49271244320132523,
+        -0.3824918853049942,
+        0.4800433214506626,
+        0.38317497900626296,
+        0.17999870733818893,
+        -0.15028574309229814
+      ],
+      "probability": 0.7965648011741913
+    },
+    {
+      "fingerprint": "0600279c1a40bdbae4db27864c0c4eb08a3364fc14a40878b1b19974126c6300",
+      "letter": "V",
+      "xy": [
+        -0.0,
+        0.0,
+        -0.2769015258614094,
+        -0.12023026456440265,
+        -0.4075086652889203,
+        -0.3671380503443655,
+        -0.23890561416648276,
+        -0.4749441683303122,
+        0.02904728922614516,
+        -0.514406814970606,
+        -0.28456615052719253,
+        -1.0323752450150712,
+        -0.4520149450187107,
+        -1.4664888769408233,
+        -0.5761345860416905,
+        -1.738322360780362,
+        -0.6547425632014139,
+        -1.9877223865158449,
+        -0.012452073915496626,
+        -0.9999224699221451,
+        0.06545947902054189,
+        -1.5303356072223362,
+        0.0904733570970731,
+        -1.8731035375940028,
+        0.12616405403453582,
+        -2.178009805398801,
+        0.20255345715170903,
+        -0.8463071629783269,
+        0.2512897388918567,
+        -0.9950399137962889,
+        0.12065423232672169,
+        -0.7395081883281794,
+        0.014802148332459018,
+        -0.5914684532793816,
+        0.3379621194475997,
+        -0.6316945937323163,
+        0.29087904810014625,
+        -0.5972729413780191,
+        0.1343588583035094,
+        -0.3768079457697893,
+        0.0003289708363222363,
+        -0.2439118642063972
+      ],
+      "features": [
+        0.2127909508900945,
+        0.7832155464902375,
+        0.5182293284115971,
+        0.27168887523193064,
+        0.558209327056115,
+        0.649925885155608,
+        -0.43462651379953543,
+        -0.4204263722096139,
+        0.6055119190541574,
+        0.4872860026146696,
+        0.8037564597737499,
+        -0.18054875896563272
+      ],
+      "probability": 8.13952438488149e-14
+    },
+    {
+      "fingerprint": "016ee3a598b038eb717eb07aae5442f70d24251a4696b110c9ac1eca3ef76f0b",
+      "letter": "D",
+      "xy": [
+        -0.0,
+        0.0,
+        -0.26625014322467117,
+        -0.24905036929215818,
+        -0.3690412665936534,
+        -0.6243807069024798,
+        -0.40071708501983533,
+        -0.8858455787311176,
+        -0.40474098550927023,
+        -1.0993077775749698,
+        -0.23478926606686898,
+        -1.0246134505819393,
+        -0.16533324457531856,
+        -1.4635665351756717,
+        -0.18437567290652407,
+        -1.7103021422281246,
+        -0.14164524351822602,
+        -1.9111343710951019,
+        -0.10016578809705863,
+        -0.9949707608241034,
+        -0.0869643953112231,
+        -1.4650391591043812,
+        -0.2861094536101229,
+        -1.3895261084550499,
+        -0.3760396174873741,
+        -1.229056008734076,
+        0.01669938434566074,
+        -0.9026993945633621,
+        0.06702194974730384,
+        -1.3399874078136729,
+        -0.16622194910969654,
+        -1.3217237140655813,
+        -0.31336069155697716,
+        -1.2206351517961336,
+        0.11092863667651481,
+        -0.7546035452196732,
+        0.08503150241185217,
+        -1.031310304910711,
+        -0.11303306165297705,
+        -1.0877375180375486,
+        -0.27140215651559,
+        -1.0755992558092682
+      ],
+      "features": [
+        -0.039494414263028875,
+        -0.301536465310816,
+        0.07812222011359628,
+        0.13097724091949892,
+        0.44350080948922765,
+        -0.18232250461517507,
+        -0.08144618456828501,
+        0.07450210920854117,
+        0.18564166942357105,
+        0.3219507166371248,
+        0.7212292388342889,
+        0.6551697299458721
+      ],
+      "probability": 5.6313204074609e-07
+    },
+    {
+      "fingerprint": "047ba1f5bf63892acba84149d2dc06cfcc6ac7b637378a1aaf36fe9a65b21a1a",
+      "letter": "E",
+      "xy": [
+        -0.0,
+        0.0,
+        -0.31037032649424146,
+        -0.053037146038132324,
+        -0.5197038730909708,
+        -0.2708207505991974,
+        -0.5627483194205896,
+        -0.4715593711213514,
+        -0.3775641122609059,
+        -0.535747870850094,
+        -0.37818489247626985,
+        -0.9533717972898997,
+        -0.3296340034584483,
+        -1.396001763135939,
+        -0.4255541464262337,
+        -1.3433680951478113,
+        -0.4242945502066807,
+        -1.1172813370313883,
+        -0.16288586327575943,
+        -0.9866449186738412,
+        -0.11670842588734491,
+        -1.518399025898475,
+        -0.20777694166120325,
+        -1.4092621405197963,
+        -0.22988387346372663,
+        -1.1720313012082568,
+        0.03916006103638779,
+        -0.9408802681296635,
+        0.08609587425491191,
+        -1.4138214133948663,
+        -0.015759497735399752,
+        -1.3284156989623306,
+        -0.022207583140159717,
+        -1.1079254170283255,
+        0.25218861714368557,
+        -0.8380820898235155,
+        0.2707247536586772,
+        -1.201132628277046,
+        0.17939355534757725,
+        -1.1737095022684418,
+        0.14922288054135693,
+        -1.013335849836114
+      ],
+      "features": [
+        0.04372820991549543,
+        0.20073230152364452,
+        0.23001872297388765,
+        0.217843414256597,
+        -0.2392584466893839,
+        -0.3285142752766679,
+        -0.30829246652643194,
+        -0.2070000485510448,
+        0.41762438782125266,
+        0.49939453173167514,
+        0.20197294325978857,
+        -0.02235202304138162
+      ],
+      "probability": 1.0387338391985132e-07
+    },
+    {
+      "fingerprint": "c0f427bb0b855fab2b61e0150b33eaccc28f8790a531c54c92202b291754a427",
+      "letter": "_",
+      "xy": [
+        -0.0,
+        0.0,
+        0.43841146571721873,
+        -0.09900392552089601,
+        0.7234970022833243,
+        -0.31018150128691957,
+        0.9699312461348029,
+        -0.4220487857295829,
+        1.1780368682568827,
+        -0.4713808313222776,
+        0.4786635269011175,
+        -0.9066668509538526,
+        0.952215808089414,
+        -0.9803127846063554,
+        1.2406493421831029,
+        -0.9176734214313663,
+        1.431310135082512,
+        -0.8200808954150068,
+        0.4287238987085777,
+        -0.9034355642081604,
+        0.98526441116159,
+        -1.0122074384281667,
+        1.2768906144628454,
+        -0.9379564966783605,
+        1.4984746155583246,
+        -0.8143846655135403,
+        0.40799286001932494,
+        -0.8260317150122655,
+        0.9799878251744232,
+        -0.8498327049545961,
+        1.2521035900470372,
+        -0.7460699545132562,
+        1.4466890690433742,
+        -0.6647019435147938,
+        0.4324952588763543,
+        -0.6525131042589563,
+        0.8855213173553834,
+        -0.6153727584804788,
+        1.1224682332847988,
+        -0.534943010630553,
+        1.3014765416245615,
+        -0.4654488914103249
+      ],
+      "features": [
+        -0.002760396857331459,
+        0.06312089020471101,
+        0.016183283028355533,
+        -0.043731906321014424,
+        0.282951877068498,
+        0.2929216763565663,
+        0.2949384839054696,
+        0.30385582513857834,
+        0.8237699857884041,
+        0.8649515700560295,
+        0.06740559674593932,
+        -0.02364884124943578
+      ],
+      "probability": 6.194741495895306e-08
+    }
+  ],
+  "selected": {
+    "C": 1,
+    "threshold": 0.99,
+    "eligible": true,
+    "known": {
+      "samples": 1224,
+      "gated_accuracy": 0.9264705882352942,
+      "correct_accepted": 1134,
+      "incorrect_accepted": 25,
+      "R_correct": 45,
+      "R_false_acceptances": 0,
+      "new_wrong_R": 0,
+      "EMT_correct": {
+        "E": 51,
+        "M": 47,
+        "T": 47
+      },
+      "by_participant": {
+        "asl_hg_p4": {
+          "R_samples": 17,
+          "R_correct": 17,
+          "R_false_acceptances": 0
+        },
+        "asl_hg_p9": {
+          "R_samples": 17,
+          "R_correct": 17,
+          "R_false_acceptances": 0
+        },
+        "aslyset_user3": {
+          "R_samples": 17,
+          "R_correct": 11,
+          "R_false_acceptances": 0
+        }
+      }
+    },
+    "unknown_false_acceptances": 0,
+    "overrides": 7
+  }
+}

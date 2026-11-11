@@ -1,0 +1,63 @@
+{
+  "validation_choice_sha256": "cca963b0d1fef66ad18f675a44ac61447c4f10a3ba8013c16cc529a64fb6e755",
+  "candidate_classifier_sha256": "2baccf23d470b9009cf3192090974f581f9ef314ff12437329cc5139c91d8221",
+  "confidence_threshold": 0.85,
+  "minimum_correct_test_by_letter": {
+    "E": 54,
+    "M": 30,
+    "R": 30,
+    "T": 30
+  },
+  "minimum_gated_test_accuracy": 0.8,
+  "maximum_unknown_test_false_acceptances": 2,
+  "minimum_r_precision": 0.85,
+  "test_use": "Repeated development regression on the same 840 tracked source images already inspected for the v4 candidate, with the same previously assessed test participants. Topology feature design used validation images; specialist weights and threshold selected on training/validation only. Historical unknown test is also reused. This is not an independent holdout or estimate of live webcam accuracy.",
+  "evaluation_cohort": {
+    "version": "frozen-static-depth-cohort-v1",
+    "positive_dataset_sha256": "1f2b78e14dabb2ce7ca45c668395c534eb31a46fae4475991e9140c4a6333430",
+    "unknown_dataset_sha256": "4f3d210e4ee2d01a48f6ee6181e8cce1054c3e9ee1965bf8a35a0fb8b2f63f6f",
+    "test_split": "fresh_test",
+    "known": {
+      "train": {
+        "count": 8980,
+        "fingerprint_sha256": "89be81371b935896c422a702f723f8cd98477ee287bde1680e618c03e210c4db"
+      },
+      "validation": {
+        "count": 1224,
+        "fingerprint_sha256": "4a4e1592443b836fedaaab44505cfeff08b8b03a062cb9b032a5b39f138ed602"
+      },
+      "test": {
+        "count": 840,
+        "fingerprint_sha256": "4723261abac0988502d3345fd5e43384a94ab86c2d9b2ebcf6995b7a5baf999d"
+      }
+    },
+    "unknown": {
+      "train": {
+        "count": 76,
+        "fingerprint_sha256": "e87f299650162298cc9ec0260e8f8596c89eccd42dcc00d4cde0ec4605af2c28"
+      },
+      "validation": {
+        "count": 27,
+        "fingerprint_sha256": "19fdbeecfc0a43d5aff84c024df68a680af3e07f56a79b141a533b489c88fb3e"
+      },
+      "test": {
+        "count": 48,
+        "fingerprint_sha256": "5bf3fd18468add0ba53427c303e96a72074a64e5977567082adc7c6388bcb75c"
+      }
+    },
+    "unknown_tracking_failures": {
+      "train": {
+        "count": 6,
+        "source_identity_sha256": "513d2590582c51207767d54a147cd4eab35d472490bd8c28779527616bc9f184"
+      },
+      "validation": {
+        "count": 2,
+        "source_identity_sha256": "a9a0ae00211c7f9df47376c8b32524eb8aa75af69816f642c4ff4c2cb392fc93"
+      },
+      "test": {
+        "count": 3,
+        "source_identity_sha256": "6ddbe7d16e0eaa2ec50439b2a4b81b393527fc78fe1bb04a3b976e7af2bfee30"
+      }
+    }
+  }
+}

@@ -4,6 +4,8 @@ The `/capture` workshop collects real coordinate samples with consistent partici
 
 ## Latest public-data expansion
 
+The later [weak-letter investigation](WEAK_LETTERS.md) expands training-only source images to 8,980 while retaining the original validation cohort and initially reserving 840 tracked test images. A broader source-hash scan finds 100 cross-person V duplicate groups and quarantines 36 formerly selected images. The historical datasets/counts below remain frozen for reproducibility. The latest candidate adds a learned finger-crossing classifier and improves E/M/R/T correct acceptances against the earlier public candidate to 60/39/39/30 out of 60 each. Overall **657/840 (78.21%)** fails the unchanged 80% release minimum, so it is not promoted. This final check reuses the preceding candidate's benchmark and previously assessed signer IDs; it is a development regression, not an independent holdout. It adds no signer, physical-hand or condition annotations and does not close those gaps.
+
 The training-eligible public pool now combines ASLYset with the original raw images from [ASL-HG, Mendeley Data V1](https://data.mendeley.com/datasets/j4y5w2c8w9/1), CC BY 4.0. The ASL-HG publisher describes ten volunteers and varied indoor/outdoor acquisition. Original filenames retain P1–P10 signer IDs. They do **not** annotate each image's physical hand, lighting intensity, camera angle, or recording session. Those fields remain unknown, even when MediaPipe predicts handedness.
 
 | Stage | Samples |

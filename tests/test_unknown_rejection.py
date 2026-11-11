@@ -35,9 +35,9 @@ def test_negative_provenance_geometry_and_participants_never_cross_splits():
             assert not set(parts[split])&set(report['unknown_participants'][other])
 
 
-def test_installed_support_only_uses_unknown_training_and_keeps_class_weights():
+def test_historical_support_only_uses_unknown_training_and_keeps_class_weights():
     baseline = read('datasets/baselines/static-v1/classifier.json')
-    model = read('signspeak/static/models/classifier.json')
+    model = read('datasets/baselines/static-v2/classifier.json')
     report = read('datasets/unknown-evaluation.json')
     assert {k:v for k,v in model.items() if k!='rejection'}==baseline
     gate = model['rejection']
@@ -52,7 +52,7 @@ def test_installed_support_only_uses_unknown_training_and_keeps_class_weights():
 
 
 def test_frozen_unknown_and_known_tests_match_report_including_tracking_failures():
-    model = read('signspeak/static/models/classifier.json')
+    model = read('datasets/baselines/static-v2/classifier.json')
     report = read('datasets/unknown-evaluation.json')
     data = read('datasets/unknown-hands.json')
     rows = [r for r in data['samples'] if r['split']=='test']
@@ -67,6 +67,6 @@ def test_frozen_unknown_and_known_tests_match_report_including_tracking_failures
     _, gated = predict(model,np.array([r['features'] for r in legacy]))
     truth = np.array([r['letter'] for r in legacy])
     assert int((gated==truth).sum())==report['candidate']['test']['legacy_known']['correct_accepted']==85
-    current = read('signspeak/static/models/evaluation.json')
+    current = read('datasets/baselines/static-v2/evaluation.json')
     assert current['gated_accuracy_at_threshold_085']==85/125
     assert current['rejection_benchmark']['false_acceptances']==2
