@@ -8,7 +8,9 @@
     "test:collection-browser": "node tests/collection-browser.mjs",
     "test:motion-browser": "node tests/motion-browser.mjs",
     "test:rejection-browser": "node tests/rejection-browser.mjs",
-    "test:weak-letters-browser": "node tests/weak-letters-browser.mjs"
+    "test:weak-letters-browser": "node tests/weak-letters-browser.mjs",
+    "test:ui-browser": "node tests/ui-ux-browser.mjs",
+    "test:navigation-browser": "node tests/navigation-browser.mjs"
   },
   "devDependencies": {"@tensorflow/tfjs": "4.22.0", "playwright": "1.56.1"}
 }

@@ -3,7 +3,13 @@ const storageKey=`signspeak:settings:${config.user_id??'guest'}`;
 export function readStorage(key,fallback) {try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}}
 export function writeStorage(key,value) {try{localStorage.setItem(key,JSON.stringify(value));return true;}catch{return false;}}
 export const settings={...config.settings,...readStorage(storageKey,{})};
-document.documentElement.dataset.theme=settings.theme==='dark'?'dark':'light';
+function applyTheme(theme){
+  const dark=theme==='dark';document.documentElement.dataset.theme=dark?'dark':'light';
+  const toggle=document.getElementById('theme-toggle');
+  toggle.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
+  toggle.setAttribute('aria-pressed',String(dark));
+}
+applyTheme(settings.theme);
 export function persistSettings(){return writeStorage(storageKey,settings);}
 let toastTimer;
 export function toast(message){const el=document.getElementById('toast');el.textContent=message;el.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.hidden=true,5000);}
@@ -16,10 +22,12 @@ export async function api(path,options={}) {
 export function makeIcon(name) {const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('icon');svg.setAttribute('aria-hidden','true');const use=document.createElementNS(svg.namespaceURI,'use');use.setAttribute('href',`/static/icons.svg#${name}`);svg.append(use);return svg;}
 export function confirmAction(title,message){const dialog=document.getElementById('confirm-dialog');document.getElementById('confirm-title').textContent=title;document.getElementById('confirm-message').textContent=message;return new Promise(resolve=>{dialog.addEventListener('close',()=>resolve(dialog.returnValue==='confirm'),{once:true});dialog.showModal();});}
 export async function copyText(text){if(!text.trim())return toast('Add a few letters first.');try{await navigator.clipboard.writeText(text);toast('Copied. Your words are ready to share.');}catch{toast('Clipboard is unavailable. Select your text and use Ctrl+C or Copy.');}}
-document.getElementById('theme-toggle').addEventListener('click',()=>{settings.theme=settings.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=settings.theme;persistSettings();});
-const menu=document.getElementById('menu-toggle');menu.addEventListener('click',()=>{const open=document.getElementById('sidebar').classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
-document.addEventListener('click',e=>{const sidebar=document.getElementById('sidebar');if(sidebar.classList.contains('open')&&!sidebar.contains(e.target)&&!menu.contains(e.target)){sidebar.classList.remove('open');menu.setAttribute('aria-expanded','false');}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('sidebar').classList.remove('open');menu.setAttribute('aria-expanded','false');}});
+document.getElementById('theme-toggle').addEventListener('click',()=>{
+  settings.theme=settings.theme==='dark'?'light':'dark';applyTheme(settings.theme);persistSettings();
+  const select=document.getElementById('theme');if(select)select.value=settings.theme;
+});
+import {initNavigation} from './navigation.js';
+initNavigation();
 document.querySelectorAll('[data-date]').forEach(el=>el.textContent=new Date(el.dataset.date).toLocaleDateString(undefined,{month:'short',day:'numeric'}));
 
 export class Speaker {
@@ -34,21 +42,45 @@ export const speaker=new Speaker();window.addEventListener('pagehide',()=>speake
 
 async function initTranslator(){
   const text=document.getElementById('translation-text');const count=document.getElementById('character-count');
-  const update=()=>{count.textContent=`${text.value.length} character${text.value.length===1?'':'s'}`;for(const id of ['speak-text','copy-text','save-text','clear-text','delete-letter'])document.getElementById(id).disabled=!text.value.trim();document.getElementById('save-text').disabled=!text.value.trim()||!settings.save_history;};
+  let saving=false;
+  const update=()=>{
+    count.textContent=`${text.value.length} / 5,000 characters`;
+    for(const id of ['speak-text','copy-text'])document.getElementById(id).disabled=!text.value.trim();
+    for(const id of ['clear-text','delete-letter'])document.getElementById(id).disabled=!text.value.length;
+    document.getElementById('save-text').disabled=saving||!text.value.trim()||!settings.save_history||!config.authenticated;
+  };
+  const saveHint=document.getElementById('save-hint');
+  if(config.authenticated&&!settings.save_history){
+    const link=document.createElement('a');link.href='/settings';link.textContent='Enable saving in Settings';
+    saveHint.replaceChildren('Saving is turned off. ',link,'.');
+  }
+  const insertAtCursor=value=>{
+    const start=text.selectionStart,end=text.selectionEnd;
+    if(text.value.length-(end-start)+value.length>text.maxLength)return;
+    text.setRangeText(value,start,end,'end');update();text.focus();
+  };
   text.addEventListener('input',update);
-  document.getElementById('add-space').addEventListener('click',()=>{if(text.value.length<5000)text.value+=' ';update();text.focus();});
-  document.getElementById('delete-letter').addEventListener('click',()=>{text.value=text.value.slice(0,-1);update();text.focus();});
+  document.getElementById('add-space').addEventListener('click',()=>insertAtCursor(' '));
+  document.getElementById('delete-letter').addEventListener('click',()=>{
+    const start=text.selectionStart,end=text.selectionEnd;
+    const previous=Array.from(text.value.slice(0,start)).at(-1)?.length||0;
+    text.setRangeText('',start===end?start-previous:start,end,'end');update();text.focus();
+  });
   document.getElementById('clear-text').addEventListener('click',async()=>{if(await confirmAction('Clear this text?','This removes the current text from the editor.')){text.value='';speaker.stop();update();}});
   document.getElementById('copy-text').addEventListener('click',()=>copyText(text.value));
   document.getElementById('speak-text').addEventListener('click',()=>speaker.speak(text.value));
   document.getElementById('pause-speech').addEventListener('click',()=>speaker.toggle());
   document.getElementById('stop-speech').addEventListener('click',()=>speaker.stop());
-  const save=document.getElementById('save-text');save.addEventListener('click',async()=>{if(!config.authenticated)return toast('Sign in to save your translations.');save.disabled=true;try{await api('/api/history',{method:'POST',body:JSON.stringify({text:text.value})});toast('Saved to your private history.');}catch(error){toast(error.message);}finally{update();}});
+  const save=document.getElementById('save-text');save.addEventListener('click',async()=>{if(!config.authenticated||!settings.save_history||saving)return;saving=true;update();try{await api('/api/history',{method:'POST',body:JSON.stringify({text:text.value})});toast('Saved to your private history.');}catch(error){toast(error.message);}finally{saving=false;update();}});
   const report=document.getElementById('model-report');const m=config.model;report.textContent=m.ready?`Static model: ${m.static_labels.length} letters, ${m.training_samples} unique training samples, ${(m.test_accuracy*100).toFixed(1)}% raw accuracy on ${m.test_samples} held-out samples. Split: ${m.split}. ${m.motion?.ready?`J/Z model: ${(m.motion.test_accuracy*100).toFixed(1)}% raw accuracy on only ${m.motion.test_samples} held-out source clips; ${m.motion.split}.`: 'J/Z movement model is not installed.'} ${m.low_support_warning||''} Experimental source-image and clip benchmarks do not establish live accuracy.`:'No trained classifier is installed. Hand tracking and manual text editing remain available.';
   const {CameraController}=await import('./camera.js');const camera=new CameraController({onCommit:letter=>{if(text.value.length<5000){text.value+=letter;update();}else toast('This translation has reached 5,000 characters. Save it and start another.');}});camera.bind();update();
 }
 
 async function initLearn(){
+  const markCurrentLetter=()=>document.querySelectorAll('.alphabet-nav a').forEach(link=>{
+    if(link.hash===window.location.hash)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+  });
+  window.addEventListener('hashchange',markCurrentLetter);markCurrentLetter();
   const key=`signspeak:learning:${config.user_id??'guest'}`;const completed=new Set(readStorage(key,[]));
   document.querySelectorAll('.mark-learned:disabled').forEach(el=>completed.add(el.dataset.letter));
   const render=()=>{document.getElementById('learn-count').textContent=`${completed.size} / ${config.alphabet.length}`;document.getElementById('learn-progress').value=completed.size;document.querySelectorAll('.mark-learned').forEach(btn=>{if(completed.has(btn.dataset.letter)){btn.disabled=true;btn.textContent='Explored ✓';document.querySelector(`[data-completed="${btn.dataset.letter}"]`).textContent='Explored ✓';}});};render();
@@ -70,7 +102,7 @@ function initSettings(){
   document.getElementById('find-cameras').addEventListener('click',async e=>{const button=e.currentTarget;button.disabled=true;let stream;try{if(!navigator.mediaDevices?.getUserMedia)throw new Error('Camera access requires HTTPS or localhost and a supported browser.');stream=await navigator.mediaDevices.getUserMedia({video:true,audio:false});await listCameras();toast('Available cameras updated. The camera has been stopped.');}catch(error){toast(error.name==='NotAllowedError'?'Camera permission was denied. You can allow it in your browser settings.':error.message);}finally{stream?.getTracks().forEach(t=>t.stop());button.disabled=false;}});
   if(navigator.mediaDevices?.enumerateDevices)listCameras().catch(()=>{});
   document.getElementById('test-voice').addEventListener('click',()=>speaker.speak('A little gesture. A new connection.',{rate:Number(form.rate.value),voice:form.voice.value}));
-  form.addEventListener('submit',async e=>{e.preventDefault();const button=form.querySelector('[type=submit]');button.disabled=true;const next={...settings};for(const key of Object.keys(config.settings)){const input=form.elements.namedItem(key);if(input)next[key]=input.type==='checkbox'?input.checked:input.type==='range'?Number(input.value):input.value;}try{if(config.authenticated)await api('/api/settings',{method:'POST',body:JSON.stringify(next)});Object.assign(settings,next);const stored=persistSettings();document.documentElement.dataset.theme=settings.theme;toast(config.authenticated?'Your preferences are saved.':stored?'Preferences saved in this browser.':'This browser blocks local storage. Preferences apply until you leave this page.');}catch(error){toast(error.message);}finally{button.disabled=false;}});
+  form.addEventListener('submit',async e=>{e.preventDefault();const button=form.querySelector('[type=submit]');button.disabled=true;const next={...settings};for(const key of Object.keys(config.settings)){const input=form.elements.namedItem(key);if(input)next[key]=input.type==='checkbox'?input.checked:input.type==='range'?Number(input.value):input.value;}try{if(config.authenticated)await api('/api/settings',{method:'POST',body:JSON.stringify(next)});Object.assign(settings,next);const stored=persistSettings();applyTheme(settings.theme);toast(config.authenticated?'Your preferences are saved.':stored?'Preferences saved in this browser.':'This browser blocks local storage. Preferences apply until you leave this page.');}catch(error){toast(error.message);}finally{button.disabled=false;}});
 }
 
 function initProfile(){document.getElementById('profile-form').addEventListener('submit',async e=>{e.preventDefault();try{await api('/api/profile',{method:'POST',body:JSON.stringify({name:document.getElementById('profile-name').value})});toast('Your profile is updated.');}catch(error){toast(error.message);}});document.getElementById('delete-account-form').addEventListener('submit',async e=>{e.preventDefault();if(!await confirmAction('Permanently delete your account?','Your profile, translations, practice records, and learning progress will all be deleted.'))return;try{await api('/api/profile/delete',{method:'POST',body:JSON.stringify({password:document.getElementById('delete-password').value})});try{localStorage.removeItem(storageKey);localStorage.removeItem(`signspeak:learning:${config.user_id}`);}catch{}window.location.assign('/');}catch(error){toast(error.message);}});}

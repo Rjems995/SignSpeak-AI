@@ -1,9 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="page-heading"><div><span class="eyebrow">LIVE TRANSLATOR</span><h1>Let your hands do the talking.</h1><p>One steady hand. One letter at a time. A little more connection.</p></div><span class="tag">ASL · A-Z</span></div>
-<div class="translator-layout"><div>{% include 'camera.html' %}<div class="prediction-bar" aria-live="polite"><span class="prediction-letter" id="prediction-letter">—</span><div class="prediction-detail"><strong id="prediction-label">Ready when you are</strong><span id="prediction-hint">Enable your camera to begin.</span></div><div class="confidence"><span id="confidence-value">—</span><small>MODEL SCORE</small><div class="confidence-track"><span id="confidence-fill"></span></div></div></div><div class="hold-progress"><span id="hold-fill"></span></div><div class="camera-tip">{{ icon('info') }} Hold static letters steady. Use Record J / Z to trace a movement. Release briefly to repeat a static letter.</div></div>
-<section class="card translation-panel"><div class="card-header"><h2>Your words, coming together</h2>{{ icon('message') }}</div><p class="muted small-text">Recognized letters appear here. You can edit them anytime.</p><label class="sr-only" for="translation-text">Translated text</label><textarea id="translation-text" maxlength="5000" placeholder="Every conversation starts with a little hello…"></textarea><div class="text-meta"><span id="character-count">0 characters</span><span>Editable text</span></div><div class="editing-actions"><button class="button small secondary" id="add-space">Space</button><button class="button small secondary" id="delete-letter">{{ icon('backspace') }} Delete</button><button class="button small ghost" id="clear-text">Clear</button></div><div class="speech-controls"><button class="button primary" id="speak-text">{{ icon('volume') }} Read aloud</button><button class="icon-button" id="pause-speech" aria-label="Pause or resume speech" disabled>{{ icon('pause') }}</button><button class="icon-button" id="stop-speech" aria-label="Stop speech" disabled>{{ icon('stop') }}</button></div><div class="button-row"><button class="button secondary" id="copy-text">{{ icon('copy') }} Copy text</button><button class="button secondary" id="save-text">{{ icon('save') }} Save</button></div><div class="privacy-note">{{ icon('lock') }} {% if current_user.is_authenticated %}Only you can access your saved translations.{% else %}<a href="{{ url_for('web.login_page') }}">Sign in</a> to save translations to your history.{% endif %}</div></section></div>
-<div class="supported-strip"><div><strong>The full alphabet</strong><span>24 static shapes + J/Z movement</span></div><div class="supported-letters">{% for letter in letters %}<a href="{{ url_for('web.learn') }}#letter-{{ letter }}" aria-label="Learn ASL letter {{ letter }}">{{ letter }}</a>{% endfor %}</div><a class="text-link" href="{{ url_for('web.learn') }}">Need a hand? {{ icon('arrow') }}</a></div>
+<div class="page-heading">
+  <div><span class="eyebrow">LIVE TRANSLATOR</span><h1>Turn signs into letters.</h1><p>Hold one hand steady to spell. Record a short movement for J or Z.</p></div>
+  <span class="tag">ASL A–Z · Experimental</span>
+</div>
+<nav class="workspace-tabs" aria-label="Translator sections">
+  <a href="#camera-workspace">{{ icon('hand') }} <span>1. Sign a letter</span></a>
+  <a href="#text-workspace">{{ icon('message') }} <span>2. Edit &amp; share</span></a>
+</nav>
+<div class="translator-layout">
+  <section id="camera-workspace" aria-label="Sign a letter">
+    {% include 'camera.html' %}
+    <div class="prediction-bar"><span class="prediction-letter" id="prediction-letter">—</span><div class="prediction-detail"><strong id="prediction-label">Ready when you are</strong><span id="prediction-hint">Enable your camera to begin.</span></div><div class="confidence"><span id="confidence-value">—</span><small>MODEL SCORE</small><div class="confidence-track"><span id="confidence-fill"></span></div></div></div>
+    <p id="prediction-announcement" class="sr-only" role="status" aria-live="polite"></p>
+    <div class="hold-progress"><span id="hold-fill"></span></div>
+    <div class="camera-tip">{{ icon('info') }} Release your hand briefly before repeating a letter. Check recognized text before sharing.</div>
+  </section>
+  <section class="card translation-panel" id="text-workspace" aria-labelledby="text-heading">
+    <div class="card-header"><h2 id="text-heading">Your text</h2>{{ icon('message') }}</div>
+    <p class="muted small-text" id="editor-help">Letters appear here as you sign. You can also type or correct them.</p>
+    <label class="sr-only" for="translation-text">Translated text</label>
+    <textarea id="translation-text" maxlength="5000" aria-describedby="editor-help character-count" placeholder="Start signing, or type your message…"></textarea>
+    <div class="text-meta"><span id="character-count">0 / 5,000 characters</span><span>Editable text</span></div>
+    <div class="editing-actions"><button class="button small secondary" id="add-space">Space</button><button class="button small secondary" id="delete-letter">{{ icon('backspace') }} Delete</button><button class="button small ghost" id="clear-text">Clear</button></div>
+    <div class="speech-controls"><button class="button primary" id="speak-text">{{ icon('volume') }} Read aloud</button><button class="icon-button" id="pause-speech" aria-label="Pause or resume speech" disabled>{{ icon('pause') }}</button><button class="icon-button" id="stop-speech" aria-label="Stop speech" disabled>{{ icon('stop') }}</button></div>
+    <div class="button-row"><button class="button secondary" id="copy-text">{{ icon('copy') }} Copy text</button><button class="button secondary" id="save-text" aria-describedby="save-hint">{{ icon('save') }} Save text</button></div>
+    <p class="privacy-note" id="save-hint">{{ icon('lock') }} {% if current_user.is_authenticated %}Only you can access your saved translations.{% else %}<span><a href="{{ url_for('web.login_page') }}">Sign in</a> to save text. You can copy it without an account.</span>{% endif %}</p>
+  </section>
+</div>
+<div class="supported-strip"><div><strong>Find a handshape</strong><span>24 static letters + J/Z movement</span></div><div class="supported-letters">{% for letter in letters %}<a href="{{ url_for('web.learn') }}#letter-{{ letter }}" aria-label="Learn ASL letter {{ letter }}">{{ letter }}</a>{% endfor %}</div><a class="text-link" href="{{ url_for('web.learn') }}">Explore lessons {{ icon('arrow') }}</a></div>
 <details class="model-details"><summary>About this experimental recognition model</summary><p>One trained model recognizes 24 static handshapes. A separate trained sequence model recognizes recorded J/Z movements. Scores are uncalibrated probabilities. Unknown gestures may still be accepted; full ASL translation is outside this version.</p><p id="model-report">Loading model information…</p><a href="{{ url_for('static', filename='models/evaluation.json') }}">Read the evaluation report</a></details>
 {% endblock %}
-

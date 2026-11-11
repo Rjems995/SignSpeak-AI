@@ -5,6 +5,17 @@ import {MotionClassifier} from './motion.js';
 const MP_BASE='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21';
 const LANDMARK_MODEL='https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
 let resources;
+function cameraErrorMessage(error){
+  const messages={
+    NotAllowedError:'Camera permission was denied. Allow camera access in your browser settings, then select Enable camera again.',
+    SecurityError:'This browser has blocked camera access. Open the app over HTTPS or localhost and allow camera permission.',
+    NotFoundError:'No camera was found. Connect a camera, then select Enable camera again.',
+    NotReadableError:'Your camera is busy or unavailable. Close other apps using it, check the connection and retry.',
+    OverconstrainedError:'The selected camera is unavailable. Choose the default camera in Settings, then retry.',
+    AbortError:'The camera could not start. Check its connection, close other camera apps and retry.'
+  };
+  return messages[error.name]||'Hand tracking could not load. Check your internet connection and select Enable camera to retry.';
+}
 function loadTf(){if(window.tf)return Promise.resolve(window.tf);return new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js';script.crossOrigin='anonymous';script.onload=()=>resolve(window.tf);script.onerror=()=>{script.remove();reject(new Error('TensorFlow.js could not load. Check your connection and retry.'));};document.head.append(script);});}
 async function loadResources(){
   if(!resources)resources=(async()=>{
@@ -26,11 +37,15 @@ export class CameraController {
     this.stabilizer=new Stabilizer(Number(settings.hold_ms));this.video=document.getElementById('webcam');this.canvas=document.getElementById('landmark-canvas');this.startButton=document.getElementById('camera-start');this.stopButton=document.getElementById('camera-stop');
   }
   bind(){this.startButton.addEventListener('click',()=>this.start());this.stopButton.addEventListener('click',()=>this.stop());document.getElementById('record-motion').addEventListener('click',()=>this.recordMotion());document.getElementById('show-landmarks').checked=settings.landmarks;document.getElementById('show-landmarks').addEventListener('change',e=>settings.landmarks=e.target.checked);window.addEventListener('pagehide',()=>this.stop());document.addEventListener('visibilitychange',()=>{if(document.hidden)this.stop();});}
-  status(text,active=false){const el=document.getElementById('camera-status');el.replaceChildren();const dot=document.createElement('span');dot.className=`status-dot${active?'':' gray'}`;el.append(dot,document.createTextNode(text));}
+  status(text,active=false){const el=document.getElementById('camera-status');if(el.textContent.trim()===text)return;el.replaceChildren();const dot=document.createElement('span');dot.className=`status-dot${active?'':' gray'}`;dot.setAttribute('aria-hidden','true');el.append(dot,document.createTextNode(text));}
+  clearError(){const el=document.getElementById('camera-error');if(el){el.hidden=true;el.textContent='';}}
+  showError(message,status='Camera unavailable'){const el=document.getElementById('camera-error');if(el){el.textContent=message;el.hidden=false;}else toast(message);this.status(status);}
+  announce(key,message){const el=document.getElementById('prediction-announcement');if(el&&this.announcementKey!==key){this.announcementKey=key;el.textContent=message;}}
   async start(){
     if(this.running||this.loading)return;
-    if(!navigator.mediaDevices?.getUserMedia)return toast('Camera access needs HTTPS or localhost and a browser with webcam support.');
-    const token=++this.token;this.loading=true;this.startButton.disabled=true;this.startButton.textContent='Preparing your camera…';this.stopButton.disabled=false;this.status('Requesting permission');
+    this.clearError();
+    if(!navigator.mediaDevices?.getUserMedia)return this.showError('Camera access needs HTTPS or localhost and a browser with webcam support.');
+    const token=++this.token;this.loading=true;this.startButton.disabled=true;this.startButton.setAttribute('aria-busy','true');this.startButton.textContent='Preparing your camera…';this.stopButton.disabled=false;this.status('Requesting permission');
     try{
       const stream=await navigator.mediaDevices.getUserMedia({video:settings.camera?{deviceId:{exact:settings.camera},width:{ideal:640},height:{ideal:480}}:{facingMode:'user',width:{ideal:640},height:{ideal:480}},audio:false});
       if(token!==this.token){stream.getTracks().forEach(t=>t.stop());return;}
@@ -42,10 +57,10 @@ export class CameraController {
       document.getElementById('camera-viewport').style.aspectRatio=`${this.video.videoWidth}/${this.video.videoHeight}`;
       document.getElementById('camera-viewport').classList.add('running');document.getElementById('camera-empty').hidden=true;document.getElementById('hand-status').hidden=false;
       this.running=true;this.lastVideoTime=-1;this.lastFrame=0;this.stabilizer.reset();this.status('Camera on',true);document.getElementById('record-motion').disabled=!this.motionClassifier;this.onState(true);if(!this.classifier)toast('Hand tracking is ready. Install a trained classifier to enable letter recognition.');
-      stream.getVideoTracks()[0]?.addEventListener('ended',()=>{if(this.running){this.stop();toast('Your camera disconnected. Reconnect it and enable the camera again.');}},{once:true});
+      stream.getVideoTracks()[0]?.addEventListener('ended',()=>{if(this.running){this.stop();this.showError('Your camera disconnected. Reconnect it, then select Enable camera again.','Camera disconnected');}},{once:true});
       this.frame();
-    }catch(error){if(token===this.token){this.stop();const messages={NotAllowedError:'Camera permission was denied. Allow camera access in your browser and try again.',NotFoundError:'No camera was found. Connect a camera and try again.',NotReadableError:'Your camera is busy. Close other apps using it and retry.',OverconstrainedError:'The selected camera is unavailable. Choose the default camera in Settings.'};toast(messages[error.name]||`${error.message||'Hand tracking could not load.'} Check your connection and try again.`);}}
-    finally{if(token===this.token){this.loading=false;this.startButton.disabled=false;this.startButton.textContent='Enable camera';}}
+    }catch(error){if(token===this.token){this.stop();this.showError(cameraErrorMessage(error));}}
+    finally{if(token===this.token){this.loading=false;this.startButton.disabled=false;this.startButton.removeAttribute('aria-busy');this.startButton.textContent='Enable camera';}}
   }
   frame(){
     if(!this.running)return;
@@ -71,15 +86,20 @@ export class CameraController {
       const stable=this.stabilizer.update(prediction.label,now);this.lastResult={...prediction,stable:stable.stable,progress:stable.progress,timestamp:now};
       this.renderPrediction(single,prediction,stable);this.onResult(this.lastResult,this.points);
       if(stable.commit)this.onCommit(stable.commit);
-    }catch(error){console.error(error);this.stop();toast('Hand tracking stopped unexpectedly. Enable the camera to retry.');}
+    }catch(error){console.error(error);this.stop();try{this.landmarker?.close?.();}catch{}resources=null;this.showError('Hand tracking stopped unexpectedly. Select Enable camera to retry.','Tracking stopped');}
   }
   renderPrediction(hasHand,prediction,stable){
     const letter=document.getElementById('prediction-letter');if(letter)letter.textContent=prediction.label||'—';
-    const label=document.getElementById('prediction-label');if(label)label.textContent=prediction.label?`ASL letter ${prediction.label}`:hasHand?'Sign not recognized.':'Looking for your hand';
-    const hint=document.getElementById('prediction-hint');if(hint)hint.textContent=prediction.motion?'Movement accepted. Select Record J / Z to trace another.':prediction.label?(stable.progress>=1?'Letter held. Release briefly to repeat.':'Hold steady to confirm this letter.'):hasHand?'Hold an A–Z static shape, or record movement for J/Z.':'Keep your whole hand inside the camera.';
+    const label=document.getElementById('prediction-label');if(label)label.textContent=prediction.label?`ASL letter ${prediction.label}`:!this.running?'Camera off':hasHand?'Sign not recognized.':'Looking for your hand';
+    const hint=document.getElementById('prediction-hint');if(hint)hint.textContent=prediction.motion?'Movement accepted. Select Record J / Z to trace another.':prediction.label?(stable.progress>=1?'Letter held. Release briefly to repeat.':'Hold steady to confirm this letter.'):!this.running?'Enable your camera to continue.':hasHand?'Hold an A–Z static shape, or record movement for J/Z.':'Keep your whole hand inside the camera.';
     const confidence=document.getElementById('confidence-value');if(confidence)confidence.textContent=prediction.label?`${Math.round(prediction.confidence*100)}%`:'—';
     const confidenceFill=document.getElementById('confidence-fill');if(confidenceFill)confidenceFill.style.width=`${prediction.label?prediction.confidence*100:0}%`;
     const hold=document.getElementById('hold-fill');if(hold)hold.style.width=`${stable.progress*100}%`;
+    if(prediction.label){
+      const confirmed=stable.progress>=1;
+      this.announce(`${prediction.motion?'motion':'letter'}:${prediction.label}:${confirmed?'confirmed':'holding'}`,
+        prediction.motion?`Movement ${prediction.label} accepted.`:confirmed?`Letter ${prediction.label} confirmed. Release briefly to repeat.`:`Letter ${prediction.label} detected. Hold steady.`);
+    }else this.announce(this.running?(hasHand?'unrecognized':'no-hand'):'camera-off',this.running?(hasHand?'Sign not recognized.':'No hand detected. Keep your whole hand inside the camera.'):'Camera off.');
   }
   recordMotion(){
     if(!this.running||!this.motionClassifier)return toast('Enable the camera and movement model first.');
@@ -87,6 +107,7 @@ export class CameraController {
     if(!this.points||performance.now()-this.lastSeen>400)return toast('Bring one clearly visible hand into view before recording.');
     if(this.onSequenceStart()===false)return false;
     this.recording=true;this.lastMotion=null;this.motionFrames=[];this.motionStart=performance.now();this.motionDuration=Math.max(4500,Number(config.model.motion?.recording_ms)||0);this.stabilizer.reset();this.lastResult=null;
+    this.announce('recording','Recording J or Z. Trace once, then select Finish movement.');
     document.getElementById('record-motion').textContent='Finish movement';document.getElementById('motion-status').textContent='Recording now. Trace J or Z once, then select Finish movement. Recording ends automatically after 4.5 seconds.';
     this.motionTimer=setTimeout(()=>this.finishMotion(),this.motionDuration);
     return true;
@@ -105,5 +126,5 @@ export class CameraController {
   }
   clearMotion(){this.lastMotion=null;this.motionDisplayUntil=0;this.stabilizer.reset();}
   current(){if(this.running&&this.lastMotion&&performance.now()-this.lastMotion.timestamp<8000)return this.lastMotion;return this.running&&this.lastResult&&performance.now()-this.lastResult.timestamp<400?this.lastResult:null;}
-  stop(){++this.token;clearTimeout(this.motionTimer);const wasRecording=this.recording;this.recording=false;if(wasRecording)this.onSequenceEnd({cancelled:true});this.lastMotion=null;this.motionFrames=[];this.motionDisplayUntil=0;document.getElementById('record-motion').disabled=true;document.getElementById('record-motion').textContent='Record J / Z';document.getElementById('motion-status').textContent='Hold static letters steady. For J or Z, record one movement and select Finish movement. You have up to 4.5 seconds.';this.loading=false;this.running=false;cancelAnimationFrame(this.raf);this.stream?.getTracks().forEach(t=>t.stop());this.stream=null;this.video.pause();this.video.srcObject=null;this.points=null;this.observation=null;this.lastResult=null;this.stabilizer.reset();drawHand(this.canvas,null);document.getElementById('camera-viewport').classList.remove('running');document.getElementById('camera-empty').hidden=false;document.getElementById('hand-status').hidden=true;this.startButton.disabled=false;this.startButton.textContent='Enable camera';this.stopButton.disabled=true;this.status('Camera off');this.renderPrediction(false,{label:null,confidence:0},{progress:0});this.onState(false);this.onResult(null,null);}
+  stop(){++this.token;clearTimeout(this.motionTimer);const wasRecording=this.recording;this.recording=false;if(wasRecording)this.onSequenceEnd({cancelled:true});this.lastMotion=null;this.motionFrames=[];this.motionDisplayUntil=0;document.getElementById('record-motion').disabled=true;document.getElementById('record-motion').textContent='Record J / Z';document.getElementById('motion-status').textContent='Hold static letters steady. For J or Z, record one movement and select Finish movement. You have up to 4.5 seconds.';this.loading=false;this.running=false;cancelAnimationFrame(this.raf);this.stream?.getTracks().forEach(t=>t.stop());this.stream=null;this.video.pause();this.video.srcObject=null;this.points=null;this.observation=null;this.lastResult=null;this.stabilizer.reset();drawHand(this.canvas,null);document.getElementById('camera-viewport').classList.remove('running');document.getElementById('camera-empty').hidden=false;document.getElementById('hand-status').hidden=true;this.startButton.disabled=false;this.startButton.removeAttribute('aria-busy');this.startButton.textContent='Enable camera';this.stopButton.disabled=true;this.status('Camera off');this.renderPrediction(false,{label:null,confidence:0},{progress:0});this.onState(false);this.onResult(null,null);}
 }
