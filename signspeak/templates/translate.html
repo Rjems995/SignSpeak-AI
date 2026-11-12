@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/translator.css') }}">{% endblock %}
 {% block content %}
 <div class="page-heading">
   <div><span class="eyebrow">LIVE TRANSLATOR</span><h1>Turn signs into letters.</h1><p>Hold one hand steady to spell. Record a short movement for J or Z.</p></div>
-  <span class="tag">ASL A–Z · Experimental</span>
+  <div class="translator-tools"><span class="tag">ASL A–Z · Experimental</span><button class="button secondary" type="button" id="translator-help-open" aria-haspopup="dialog">{{ icon('info') }} Help</button></div>
 </div>
-<nav class="workspace-tabs" aria-label="Translator sections">
-  <a href="#camera-workspace">{{ icon('hand') }} <span>1. Sign a letter</span></a>
-  <a href="#text-workspace">{{ icon('message') }} <span>2. Edit &amp; share</span></a>
-</nav>
+<div class="workspace-tabs" aria-label="Translator sections">
+  <button class="button secondary" type="button" id="workspace-tab-camera" data-workspace-view="camera" aria-controls="camera-workspace">{{ icon('hand') }} Camera <span id="workspace-camera-indicator" hidden>On</span></button>
+  <button class="button secondary" type="button" id="workspace-tab-text" data-workspace-view="text" aria-controls="text-workspace">{{ icon('message') }} Your text</button>
+</div>
 <div class="translator-layout">
   <section id="camera-workspace" aria-label="Sign a letter">
     {% include 'camera.html' %}
@@ -28,6 +29,10 @@
     <p class="privacy-note" id="save-hint">{{ icon('lock') }} {% if current_user.is_authenticated %}Only you can access your saved translations.{% else %}<span><a href="{{ url_for('web.login_page') }}">Sign in</a> to save text. You can copy it without an account.</span>{% endif %}</p>
   </section>
 </div>
+<dialog id="translator-help" aria-labelledby="translator-help-heading">
+<div class="translator-help-heading"><h2 id="translator-help-heading">Signing guide</h2><button class="icon-button" type="button" id="translator-help-close" aria-label="Close signing guide"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+<p>Hold one static handshape until the letter is confirmed. Release briefly to repeat it. For J or Z, select <strong>Record J / Z</strong>, trace once, then select <strong>Finish movement</strong>. Check your text before sharing.</p>
 <div class="supported-strip"><div><strong>Find a handshape</strong><span>24 static letters + J/Z movement</span></div><div class="supported-letters">{% for letter in letters %}<a href="{{ url_for('web.learn') }}#letter-{{ letter }}" aria-label="Learn ASL letter {{ letter }}">{{ letter }}</a>{% endfor %}</div><a class="text-link" href="{{ url_for('web.learn') }}">Explore lessons {{ icon('arrow') }}</a></div>
 <details class="model-details"><summary>About this experimental recognition model</summary><p>One trained model recognizes 24 static handshapes. A separate trained sequence model recognizes recorded J/Z movements. Scores are uncalibrated probabilities. Unknown gestures may still be accepted; full ASL translation is outside this version.</p><p id="model-report">Loading model information…</p><a href="{{ url_for('static', filename='models/evaluation.json') }}">Read the evaluation report</a></details>
+</dialog>
 {% endblock %}

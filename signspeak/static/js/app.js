@@ -41,6 +41,7 @@ export class Speaker {
 export const speaker=new Speaker();window.addEventListener('pagehide',()=>speaker.stop());
 
 async function initTranslator(){
+  const {initTranslatorLayout}=await import('./translator-layout.js');initTranslatorLayout();
   const text=document.getElementById('translation-text');const count=document.getElementById('character-count');
   let saving=false;
   const update=()=>{
