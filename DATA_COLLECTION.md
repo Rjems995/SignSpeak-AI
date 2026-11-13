@@ -8,16 +8,16 @@ The later [weak-letter investigation](WEAK_LETTERS.md) expands training-only sou
 
 The training-eligible public pool now combines ASLYset with the original raw images from [ASL-HG, Mendeley Data V1](https://data.mendeley.com/datasets/j4y5w2c8w9/1), CC BY 4.0. The ASL-HG publisher describes ten volunteers and varied indoor/outdoor acquisition. Original filenames retain P1–P10 signer IDs. They do **not** annotate each image's physical hand, lighting intensity, camera angle, or recording session. Those fields remain unknown, even when MediaPipe predicts handedness.
 
-| Stage | Samples |
-| --- | ---: |
-| ASL-HG raw static images selected deterministically | 5,800 |
-| ASL-HG valid single-hand detections | 5,788 |
-| ASL-HG usable unique records after curation | 5,746 |
-| ASL-HG Q examples | 300 |
-| Eligible ASLYset + ASL-HG pool | 10,516 |
-| Q examples in the combined pool | 499 |
-| Balanced candidate: 14 source signer IDs × 24 static letters × 17 originals | 5,712 |
-| Each static letter in that candidate, including Q | 238 |
+| Stage                                                                       | Samples |
+| --------------------------------------------------------------------------- | ------: |
+| ASL-HG raw static images selected deterministically                         |   5,800 |
+| ASL-HG valid single-hand detections                                         |   5,788 |
+| ASL-HG usable unique records after curation                                 |   5,746 |
+| ASL-HG Q examples                                                           |     300 |
+| Eligible ASLYset + ASL-HG pool                                              |  10,516 |
+| Q examples in the combined pool                                             |     499 |
+| Balanced candidate: 14 source signer IDs × 24 static letters × 17 originals |   5,712 |
+| Each static letter in that candidate, including Q                           |     238 |
 
 Selection adds extra original Q, E, S, M, N, T, U, V, R and P images to the pool. Curation removes 14 within-signer duplicates and quarantines all 28 ASL-HG rows in 14 identical-coordinate groups assigned to different signer IDs. Some of these are byte-identical source images under different IDs; those IDs are publisher labels, not independently verified identities. ASLYset contributes another 18 within-signer duplicate removals. No conflicting labels or invalid geometry remain in this import. The balanced candidate uses the smallest available signer/letter cell (17), capped at 20; it never repeats images to fill a quota. This is **signer/letter balance**, not hand or condition balance.
 
@@ -31,10 +31,10 @@ Added files:
 
 Two additional sources were downloaded, checksum-verified and inspected, but **excluded from training**:
 
-| Source | Valid unique review samples | Reason |
-| --- | ---: | --- |
-| [SignAlphaSet V3](https://data.mendeley.com/datasets/8fmvr9m98w/3) | 1,495 | The related paper reports three participants and both physical hands, but individual files identify neither signer nor hand. It describes augmentation without per-file original/augmentation flags. No synthetic variation is counted as new physical-hand or environmental evidence. |
-| [Massey MU HandImages ASL](https://mro.massey.ac.nz/server/api/core/bitstreams/09187662-5ebe-4563-8515-3d7e5e1d2a33/content), pinned JPEG mirror | 895 | Source filename codes identify bottom/top/left/right/diffuse **light direction**, not hand or camera angle. The original paper's section 7 now resolves redistribution terms; coordinates are bundled as a frozen lighting benchmark, outside training. Actual hand/per-image camera angles remain unknown. Detection failed for 780 of 1,675 selected images. |
+| Source                                                                                                                                           | Valid unique review samples | Reason                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [SignAlphaSet V3](https://data.mendeley.com/datasets/8fmvr9m98w/3)                                                                               |                       1,495 | The related paper reports three participants and both physical hands, but individual files identify neither signer nor hand. It describes augmentation without per-file original/augmentation flags. No synthetic variation is counted as new physical-hand or environmental evidence.                                                                         |
+| [Massey MU HandImages ASL](https://mro.massey.ac.nz/server/api/core/bitstreams/09187662-5ebe-4563-8515-3d7e5e1d2a33/content), pinned JPEG mirror |                         895 | Source filename codes identify bottom/top/left/right/diffuse **light direction**, not hand or camera angle. The original paper's section 7 now resolves redistribution terms; coordinates are bundled as a frozen lighting benchmark, outside training. Actual hand/per-image camera angles remain unknown. Detection failed for 780 of 1,675 selected images. |
 
 SignAlphaSet's 41 detection failures and Massey's 780 failures are recorded in their import reports. SignAlphaSet static coordinates remain under ignored `artifacts/public-review/`; the licensed Massey benchmark is now at `datasets/massey-landmarks.json`. Both original archives remain ignored under `datasets/public/`. These sources do not increase the frozen training candidate's signer count. MediaPipe `observed_hand` and confidence remain estimates: unknown mirroring and detector errors prevent treating them as physical-hand ground truth. [CONDITION_DATA.md](CONDITION_DATA.md) records the latest evidence review, paired camera diagnostic and remaining left-hand/joint-annotation gaps.
 
@@ -42,10 +42,10 @@ SignAlphaSet's 41 detection failures and Massey's 780 failures are recorded in t
 
 The candidate uses 8 source signers for training (3,264 originals), 3 for validation (1,224), and 3 for testing (1,224). Splits are participant-disjoint and stratified by source; both sources occur in every split. The test signer IDs are `asl_hg_p10`, `asl_hg_p8`, and `aslyset_user2`. Parameters and rejection thresholds were not tuned on test results. Original/augmented copies cannot cross these splits; augmentation occurs only after selecting training originals.
 
-| Model on the same frozen test | Raw accuracy | Correct after 0.85 confidence/distance rejection |
-| --- | ---: | ---: |
-| Current published static model | 57.60% | 45.51% |
-| New public-data candidate | 89.13% | 80.23% |
+| Model on the same frozen test  | Raw accuracy | Correct after 0.85 confidence/distance rejection |
+| ------------------------------ | -----------: | -----------------------------------------------: |
+| Current published static model |       57.60% |                                           45.51% |
+| New public-data candidate      |       89.13% |                                           80.23% |
 
 The candidate accepts 83.82% of test samples; 95.71% of accepted predictions are correct. Rejected letters count as failures in the gated accuracy above. Q recall is 100% raw and 90.20% gated on **51 test images**, versus 0% for the current model on these same Q images. S raw recall improves to 94.12%. E raw recall regresses from 98.04% to 78.43%, and gated M recall regresses from 47.06% to 29.41%. T raw recall remains 35.29%; R and M gated recall are each 29.41%. These weaknesses prevent interpreting the overall score as reliable recognition of every letter.
 
@@ -82,14 +82,14 @@ node scripts/download-public-source.mjs massey
 
 ASLYset, by Miguel Rivera (2019), is available under CC BY 4.0 at [doi:10.17632/xs6mvhx6rh.1](https://data.mendeley.com/datasets/xs6mvhx6rh/1). Its source folders identify four signers. The publisher describes right-hand images at varied distances/positions. It does not provide per-image lighting, angle, or session labels. Those fields remain `unknown`/null in this project.
 
-| Stage | Real sample count |
-| --- | ---: |
-| Source static-letter images (24 letters, 4 signers, 50 per cell) | 4,800 |
-| Exactly one hand detected with valid geometry | 4,788 |
-| Unique usable coordinate samples after curation | 4,770 |
-| Q examples among those unique samples | 199 |
-| Balanced subset (40 per signer per letter, right hand only) | 3,840 |
-| Each static letter in the balanced subset, including Q | 160 |
+| Stage                                                            | Real sample count |
+| ---------------------------------------------------------------- | ----------------: |
+| Source static-letter images (24 letters, 4 signers, 50 per cell) |             4,800 |
+| Exactly one hand detected with valid geometry                    |             4,788 |
+| Unique usable coordinate samples after curation                  |             4,770 |
+| Q examples among those unique samples                            |               199 |
+| Balanced subset (40 per signer per letter, right hand only)      |             3,840 |
+| Each static letter in the balanced subset, including Q           |               160 |
 
 Files:
 

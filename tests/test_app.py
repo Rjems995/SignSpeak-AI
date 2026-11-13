@@ -49,7 +49,7 @@ def test_full_alphabet_lessons_and_capabilities(app):
 
 
 def test_collection_workshop_labels_and_actual_public_source_counts(app):
-    html = app.test_client().get("/capture").get_data(as_text=True)
+    html = " ".join(app.test_client().get("/capture").get_data(as_text=True).split())
     for element in ["capture-session", "capture-hand", "capture-lighting", "capture-angle", "capture-verified", "download-static", "download-motion", "coverage-rows"]:
         assert f'id="{element}"' in html
     assert "4770 usable unique static samples" in html

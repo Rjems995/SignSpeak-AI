@@ -4,11 +4,11 @@ The live motion model now uses **188 real J/Z movements**, up from 46, plus **10
 
 ## Original recordings and provenance
 
-| Source | Accepted J | Accepted Z | Accepted non-J/Z controls |
-| --- | ---: | ---: | ---: |
-| [SigNN J/Z video dataset V1](https://www.kaggle.com/datasets/signnteam/asl-sign-language-alphabet-videos-j-z), CC0 | 89 | 80 | 0 |
-| [SignAlphaSet dynamic V3](https://data.mendeley.com/datasets/8fmvr9m98w/3), CC BY 4.0 | 10 | 9 | 10 |
-| Total training/evaluation pool | 99 | 89 | 10 |
+| Source                                                                                                             | Accepted J | Accepted Z | Accepted non-J/Z controls |
+| ------------------------------------------------------------------------------------------------------------------ | ---------: | ---------: | ------------------------: |
+| [SigNN J/Z video dataset V1](https://www.kaggle.com/datasets/signnteam/asl-sign-language-alphabet-videos-j-z), CC0 |         89 |         80 |                         0 |
+| [SignAlphaSet dynamic V3](https://data.mendeley.com/datasets/8fmvr9m98w/3), CC BY 4.0                              |         10 |          9 |                        10 |
+| Total training/evaluation pool                                                                                     |         99 |         89 |                        10 |
 
 A deterministic 72-per-letter SigNN selection is combined with the original 48 files, yielding 178 original videos. The verified SignAlphaSet archive contributes 20 J/Z AVIs and 24 candidate controls from A/D/I/L/R/S. Still images extracted from those AVIs are never counted as separate movements. Of 222 selected videos, 198 pass tracking and movement validation; 24 rejection records are retained. No accepted video hashes or canonical trajectory fingerprints are repeated. Source labels, clip hashes, licenses and source URLs survive preparation.
 
@@ -23,9 +23,9 @@ The static SignAlphaSet import remains review-only. This motion import specifica
 These are measurements from detected landmarks, not source capture labels. Active-interval detection and MediaPipe errors affect them. Duration is not interchangeable with travel speed; trajectory extent is expressed in median palm lengths.
 
 | Positive recordings | Active-duration range | Trajectory-extent range |
-| --- | ---: | ---: |
-| J | 450–3,666 ms | 1.23–4.91 palm lengths |
-| Z | 750–3,967 ms | 0.80–6.97 palm lengths |
+| ------------------- | --------------------: | ----------------------: |
+| J                   |          450–3,666 ms |  1.23–4.91 palm lengths |
+| Z                   |          750–3,967 ms |  0.80–6.97 palm lengths |
 
 `datasets/motion-expansion-audit.json` also records travel-speed proxies and medians. The comparison divides held-out positives into lower/middle/upper thirds using **training-only** quantile boundaries for duration, extent and travel speed. Correct gated recognition improves in all nine reported groups. The largest-extent group remains weak: 66.7% on 15 test clips, versus 53.3% for the old model. The longest-duration group reaches only 62.5% on eight clips. These small bins do not establish universal speed or motion-size robustness. No mirrored, resized or retimed copy is counted as a new recording or signer.
 
@@ -33,12 +33,12 @@ These are measurements from detected landmarks, not source capture labels. Activ
 
 The new model uses **119 training clips, 39 validation clips and 40 test clips**. Six training clips, two validation clips and two test clips are non-J/Z controls. Every original baseline clip remains in its original partition. Exact video hashes and normalized trajectory fingerprints cannot cross partitions. Gates use validation data; support points and animated references use training data. No test-based parameter or threshold tuning was performed.
 
-| Same frozen evaluation | Old model | Installed expanded model |
-| --- | ---: | ---: |
-| Raw J/Z accuracy, 38 positive test clips | 100% | 97.37% |
-| Correct J/Z recognition after rejection, same 38 clips | 71.05% | 84.21% |
-| False acceptance, two held-out non-J/Z controls | 0/2 | 0/2 |
-| Correct after rejection, original ten test clips | 7/10 | 9/10 |
+| Same frozen evaluation                                 | Old model | Installed expanded model |
+| ------------------------------------------------------ | --------: | -----------------------: |
+| Raw J/Z accuracy, 38 positive test clips               |      100% |                   97.37% |
+| Correct J/Z recognition after rejection, same 38 clips |    71.05% |                   84.21% |
+| False acceptance, two held-out non-J/Z controls        |       0/2 |                      0/2 |
+| Correct after rejection, original ten test clips       |      7/10 |                     9/10 |
 
 The expanded model has one additional raw Z miss, classified as unsupported. It accepts more correct movements after rejection rather than weakening rejection based on test results. Including the two controls, raw accuracy is 97.5% and gated accuracy is 85% on all 40 clips. The model metadata shown in the app reports the **positive J/Z** figure (37/38), so controls do not inflate that displayed score.
 
@@ -52,10 +52,10 @@ The source describes right-hand-dominant signers without identifying the actual 
 
 The source's processed MOVs stack synchronized frontal/profile views and play captured 60-fps frames at 15 fps. Extraction uses only the frontal panel, corrects timestamps to capture time, selects the raised signing hand, and follows the published sign start/end frames for positives. The profile view is never counted as another performance. Actual context frames are retained for controls. In particular, a fluent J performance lasting about 333 ms exposed the previous overly restrictive minimum-duration check.
 
-| Independent research test | Old model | Installed expanded model |
-| --- | ---: | ---: |
-| Correct J/Z recognition after rejection | 0/5 | 3/5 |
-| False acceptance of D/I/L controls | 0/11 | 0/11 |
+| Independent research test               | Old model | Installed expanded model |
+| --------------------------------------- | --------: | -----------------------: |
+| Correct J/Z recognition after rejection |       0/5 |                      3/5 |
+| False acceptance of D/I/L controls      |      0/11 |                     0/11 |
 
 Both models use the same updated preprocessing for this comparison. Five positive clips and eleven controls are a **tiny benchmark**, not a reliable estimate of accuracy on all new signers. Raw native-signer J/Z classification drops from 5/5 to 4/5, while accepted correct predictions improve. Native J remains 2/3 accepted; native Z is only 1/2 accepted. No real live-webcam benchmark was collected.
 

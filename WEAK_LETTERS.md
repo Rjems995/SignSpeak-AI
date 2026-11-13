@@ -13,11 +13,11 @@ The earlier public-data candidate was also never deployed. On the **same 840
 successfully tracked images**, correct accepted letters are:
 
 | Letter | Earlier public candidate | Latest topology candidate |
-|---|---:|---:|
-| E | 40/60 (66.7%) | 60/60 (100%) |
-| M | 19/60 (31.7%) | 39/60 (65%) |
-| R | 23/60 (38.3%) | 39/60 (65%) |
-| T | 20/60 (33.3%) | 30/60 (50%) |
+| ------ | -----------------------: | ------------------------: |
+| E      |            40/60 (66.7%) |              60/60 (100%) |
+| M      |            19/60 (31.7%) |               39/60 (65%) |
+| R      |            23/60 (38.3%) |               39/60 (65%) |
+| T      |            20/60 (33.3%) |               30/60 (50%) |
 
 All-letter correct acceptance changes **632/840 (75.24%) → 657/840 (78.21%)**.
 The latest candidate meets the declared E/M/R/T count minima, accepted-R precision

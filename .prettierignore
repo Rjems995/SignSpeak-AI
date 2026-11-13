@@ -1,0 +1,22 @@
+# Installed dependencies, local state and caches
+node_modules/
+.venv/
+instance/
+artifacts/
+__pycache__/
+.pytest_cache/
+.git/
+.agents/
+.codex/
+.aws/
+.env*
+*.log
+
+# Frozen provenance, source data and exported model artifacts
+datasets/
+signspeak/static/models/
+signspeak/static/data/
+
+# Python has its own formatting tools; it is not supported by this setup.
+**/*.py
+**/*.pyc

@@ -1,8 +1,95 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="page-heading"><div><span class="eyebrow">LEARN AMERICAN SIGN LANGUAGE</span><h1>Small signs. Meaningful progress.</h1><p>Explore every letter from A to Z. Hold the 24 static shapes; trace J and Z.</p></div><span class="tag">26 letters · 2 with movement</span></div>
-<div class="learning-intro"><div><h2>Begin with the shape of a hello.</h2><p>These letters are a starting point for fingerspelling. ASL is a complete language with its own grammar, expressions, and culture. Learning from Deaf educators is an essential next step.</p><a class="text-link" href="https://www.lifeprint.com/asl101/fingerspelling/fingerspelling.htm" target="_blank" rel="noopener">Explore ASL University’s fingerspelling guide ↗</a></div><div class="learning-progress"><strong id="learn-count">{{ completed|length }} / {{ letters|length }}</strong><span>letters explored</span><progress id="learn-progress" value="{{ completed|length }}" max="{{ letters|length }}" aria-label="Letters explored"></progress></div></div>
-<nav class="alphabet-nav" aria-label="Jump to an ASL letter">{% for letter, info in letters.items() %}<a href="#letter-{{ letter }}" class="{{ 'motion-letter' if info.motion }}" aria-label="{{ letter }}{{ ', movement letter' if info.motion }}">{{ letter }}</a>{% endfor %}</nav>
-<div class="alphabet-grid">{% for letter, info in letters.items() %}<article class="letter-card" id="letter-{{ letter }}"><div class="letter-card-top"><span>{{ info.group }}</span><span class="learn-badge" data-completed="{{ letter }}">{{ 'Explored ✓' if letter in completed else ('Trace movement' if info.motion else 'Hold shape') }}</span></div><div class="letter-visual"><span class="large-letter">{{ letter }}</span><canvas class="reference-hand" data-letter="{{ letter }}" data-motion="{{ 'true' if info.motion else 'false' }}" width="220" height="200" aria-label="Recorded {{ 'movement' if info.motion else 'landmark' }} reference for ASL letter {{ letter }}"></canvas></div><h2>{{ info.title }}</h2><ol>{% for step in info.steps %}<li>{{ step }}</li>{% endfor %}</ol><div class="letter-card-actions"><a class="button secondary small" href="{{ url_for('web.practice', letter=letter) }}">Practice {{ letter }} {{ icon('arrow') }}</a><button class="text-link mark-learned" data-letter="{{ letter }}" {% if letter in completed %}disabled{% endif %}>{{ 'Explored ✓' if letter in completed else 'Mark explored' }}</button></div></article>{% endfor %}</div><p class="footnote">References show recorded landmark geometry; J/Z include fingertip movement trails. Use the written steps and <a href="https://www.lifeprint.com/asl101/fingerspelling/abc.htm" target="_blank" rel="noopener">ASL University’s visual alphabet</a> for full handshape demonstrations. Q has very limited model training data. “Explored” records lesson review, not recognition accuracy or proficiency.</p>
+  <div class="page-heading">
+    <div>
+      <span class="eyebrow">LEARN AMERICAN SIGN LANGUAGE</span>
+      <h1>Small signs. Meaningful progress.</h1>
+      <p>Explore every letter from A to Z. Hold the 24 static shapes; trace J and Z.</p>
+    </div>
+    <span class="tag">26 letters · 2 with movement</span>
+  </div>
+  <div class="learning-intro">
+    <div>
+      <h2>Begin with the shape of a hello.</h2>
+      <p>
+        These letters are a starting point for fingerspelling. ASL is a complete language with its
+        own grammar, expressions, and culture. Learning from Deaf educators is an essential next
+        step.
+      </p>
+      <a
+        class="text-link"
+        href="https://www.lifeprint.com/asl101/fingerspelling/fingerspelling.htm"
+        target="_blank"
+        rel="noopener"
+        >Explore ASL University’s fingerspelling guide ↗</a
+      >
+    </div>
+    <div class="learning-progress">
+      <strong id="learn-count">{{ completed|length }} / {{ letters|length }}</strong
+      ><span>letters explored</span
+      ><progress
+        id="learn-progress"
+        value="{{ completed|length }}"
+        max="{{ letters|length }}"
+        aria-label="Letters explored"
+      ></progress>
+    </div>
+  </div>
+  <nav class="alphabet-nav" aria-label="Jump to an ASL letter">
+    {% for letter, info in letters.items() %}
+      <a
+        href="#letter-{{ letter }}"
+        class="{{ 'motion-letter' if info.motion }}"
+        aria-label="{{ letter }}{{ ', movement letter' if info.motion }}"
+        >{{ letter }}</a
+      >
+    {% endfor %}
+  </nav>
+  <div class="alphabet-grid">
+    {% for letter, info in letters.items() %}
+      <article class="letter-card" id="letter-{{ letter }}">
+        <div class="letter-card-top">
+          <span>{{ info.group }}</span
+          ><span class="learn-badge" data-completed="{{ letter }}"
+            >{{ 'Explored ✓' if letter in completed else ('Trace movement' if info.motion else 'Hold shape') }}</span
+          >
+        </div>
+        <div class="letter-visual">
+          <span class="large-letter">{{ letter }}</span
+          ><canvas
+            class="reference-hand"
+            data-letter="{{ letter }}"
+            data-motion="{{ 'true' if info.motion else 'false' }}"
+            width="220"
+            height="200"
+            aria-label="Recorded {{ 'movement' if info.motion else 'landmark' }} reference for ASL letter {{ letter }}"
+          ></canvas>
+        </div>
+        <h2>{{ info.title }}</h2>
+        <ol>
+          {% for step in info.steps %}<li>{{ step }}</li>{% endfor %}
+        </ol>
+        <div class="letter-card-actions">
+          <a class="button secondary small" href="{{ url_for('web.practice', letter=letter) }}"
+            >Practice {{ letter }} {{ icon('arrow') }}</a
+          ><button
+            class="text-link mark-learned"
+            data-letter="{{ letter }}"
+            {% if letter in completed %}disabled{% endif %}
+          >
+            {{ 'Explored ✓' if letter in completed else 'Mark explored' }}
+          </button>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <p class="footnote">
+    References show recorded landmark geometry; J/Z include fingertip movement trails. Use the
+    written steps and
+    <a href="https://www.lifeprint.com/asl101/fingerspelling/abc.htm" target="_blank" rel="noopener"
+      >ASL University’s visual alphabet</a
+    >
+    for full handshape demonstrations. Q has very limited model training data. “Explored” records
+    lesson review, not recognition accuracy or proficiency.
+  </p>
 {% endblock %}
-

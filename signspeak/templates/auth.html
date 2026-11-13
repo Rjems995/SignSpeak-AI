@@ -1,3 +1,61 @@
 {% extends 'base.html' %}
-{% block content %}<div class="auth-layout"><div class="auth-intro"><span class="eyebrow">A LITTLE MORE CONNECTION</span><h1>{{ 'Start with a<br>simple hello.'|safe if register else 'Your next chapter<br>starts here.'|safe }}</h1><p>Save your words. Find your confidence.<br>Keep your progress close.</p><div class="auth-art" aria-hidden="true">Aa<span>ONE LETTER AT A TIME</span></div></div><section class="card auth-card"><span class="feature-icon lavender">{{ icon('user') }}</span><h2>{{ 'Make yourself at home' if register else 'Good to see you again' }}</h2><p class="muted">{{ 'Create your free SignSpeak account.' if register else 'Sign in and pick up where you left off.' }}</p><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% if register %}<label for="name">Your name</label><input id="name" name="name" autocomplete="given-name" maxlength="80" required value="{{ request.form.get('name', '') }}">{% endif %}<label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required value="{{ request.form.get('email', '') }}"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="{{ 'new-password' if register else 'current-password' }}" {% if register %}minlength="12"{% endif %} maxlength="128" required>{% if register %}<small class="muted">At least 12 characters. A memorable phrase works well.</small>{% endif %}<button class="button primary full-width" type="submit">{{ 'Create account' if register else 'Sign in' }} {{ icon('arrow') }}</button></form><p class="auth-switch">{{ 'Already have an account?' if register else 'New around here?' }} <a href="{{ url_for('web.login_page') if register else url_for('web.register') }}">{{ 'Sign in' if register else 'Create an account' }}</a></p></section></div>{% endblock %}
-
+{% block content %}
+  <div class="auth-layout">
+    <div class="auth-intro">
+      <span class="eyebrow">A LITTLE MORE CONNECTION</span>
+      <h1>
+        {{ 'Start with a<br>simple hello.'|safe if register else 'Your next chapter<br>starts here.'|safe }}
+      </h1>
+      <p>Save your words. Find your confidence.<br />Keep your progress close.</p>
+      <div class="auth-art" aria-hidden="true">Aa<span>ONE LETTER AT A TIME</span></div>
+    </div>
+    <section class="card auth-card">
+      <span class="feature-icon lavender">{{ icon('user') }}</span>
+      <h2>{{ 'Make yourself at home' if register else 'Good to see you again' }}</h2>
+      <p class="muted">
+        {{ 'Create your free SignSpeak account.' if register else 'Sign in and pick up where you left off.' }}
+      </p>
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />{% if register %}
+          <label for="name">Your name</label
+          ><input
+            id="name"
+            name="name"
+            autocomplete="given-name"
+            maxlength="80"
+            required
+            value="{{ request.form.get('name', '') }}"
+          />
+        {% endif %}<label for="email">Email address</label
+        ><input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          maxlength="254"
+          required
+          value="{{ request.form.get('email', '') }}"
+        /><label for="password">Password</label
+        ><input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="{{ 'new-password' if register else 'current-password' }}"
+          {% if register %}minlength="12"{% endif %}
+          maxlength="128"
+          required
+        />{% if register %}
+          <small class="muted">At least 12 characters. A memorable phrase works well.</small>
+        {% endif %}<button class="button primary full-width" type="submit">
+          {{ 'Create account' if register else 'Sign in' }} {{ icon('arrow') }}
+        </button>
+      </form>
+      <p class="auth-switch">
+        {{ 'Already have an account?' if register else 'New around here?' }}
+        <a href="{{ url_for('web.login_page') if register else url_for('web.register') }}"
+          >{{ 'Sign in' if register else 'Create an account' }}</a
+        >
+      </p>
+    </section>
+  </div>
+{% endblock %}

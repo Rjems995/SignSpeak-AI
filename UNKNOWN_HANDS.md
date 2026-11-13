@@ -16,12 +16,12 @@ results; the J/Z classifier itself is unchanged.
 
 ## Frozen test results
 
-| Test subset | Tracked samples | Previous false letters | Installed false letters |
-|---|---:|---:|---:|
-| Relaxed hands | 11 | 5 | 0 |
-| Partial finger flexion | 2 | 1 | 1 |
-| Unrelated gestures | 35 | 10 | 1 |
-| Total | 48 | 16 (33.33%) | 2 (4.17%) |
+| Test subset            | Tracked samples | Previous false letters | Installed false letters |
+| ---------------------- | --------------: | ---------------------: | ----------------------: |
+| Relaxed hands          |              11 |                      5 |                       0 |
+| Partial finger flexion |               2 |                      1 |                       1 |
+| Unrelated gestures     |              35 |                     10 |                       1 |
+| Total                  |              48 |            16 (33.33%) |               2 (4.17%) |
 
 Three more selected test images failed one-hand tracking, so end-to-end false
 acceptance is 16/51 versus 2/51. Keeping those failures in the denominator does
@@ -49,17 +49,17 @@ participant per selection cohort, plus **20 ASLYset FN controls**. Selected
 indices and decisions are in `datasets/unknown-review.json`; image and annotation
 hashes are pinned in `datasets/unknown-source-lock.json`. Images are not bundled.
 
-* HaGRID's dedicated `no_gesture` subset provides face-touching gestures. Its
+- HaGRID's dedicated `no_gesture` subset provides face-touching gestures. Its
   source label does **not** establish that a handshape is outside ASL. Object
   grips, hidden thumbs, closed parallel fingers and letter-compatible or
   ambiguous shapes were excluded conservatively.
-* The `four` annotation files identify a secondary `no_gesture` hand. Only the
+- The `four` annotation files identify a secondary `no_gesture` hand. Only the
   reviewed resting-hand crop is extracted, with 25% bounding-box padding.
-* ASLYset FN controls show a five-finger spread palm, outside this application's
+- ASLYset FN controls show a five-finger spread palm, outside this application's
   alphabet vocabulary. Source control label FN remains recorded. This shape is
   not an assertion of invalid ASL: numbers and other signs are outside scope.
   SP controls were excluded because their shapes can overlap alphabet letters.
-* Another 48 frames from SignAlphaSet movement clips were reviewed but excluded:
+- Another 48 frames from SignAlphaSet movement clips were reviewed but excluded:
   apparent incomplete signs often already matched another valid letter, or were
   blurred/occluded. No video transition was assigned a fabricated negative label.
 

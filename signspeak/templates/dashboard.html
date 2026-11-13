@@ -1,9 +1,108 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="page-heading"><div><span class="eyebrow">A LITTLE PROGRESS, EVERY DAY</span><h1>Hello, {{ current_user.profile.name.split(' ')[0] if current_user.is_authenticated else 'explorer' }}<span class="wave"> ✳</span></h1><p>Good things start with a little understanding. What will you learn today?</p></div><a class="button primary" href="{{ url_for('web.translate') }}">{{ icon('hand') }} Start signing</a></div>
-<div class="stat-grid">{% for value, label, glyph in [(stats.translations, 'Saved translations', 'message'), (stats.sessions, 'Practice sessions', 'sparkles'), ((stats.accuracy|string + '%') if stats.accuracy is not none else '—', 'Practice accuracy', 'target'), (stats.learned ~ ' / ' ~ (letters|length), 'Letters explored', 'book')] %}<div class="stat-card"><span class="stat-label">{{ label }}{{ icon(glyph) }}</span><strong>{{ value }}</strong><small>{{ 'From your completed camera attempts' if glyph == 'target' else 'Your journey, at your pace' }}</small></div>{% endfor %}</div>
-<div class="dashboard-grid"><section class="journey-card"><span class="eyebrow">A TO Z. SO MANY POSSIBILITIES.</span><h2>Your hands have<br>something to say.</h2><p>Start with the basics of American Sign Language.<br>There’s no rush. Just your next small step.</p><div class="letter-chips">{% for letter in letters %}<a href="{{ url_for('web.learn') }}#letter-{{ letter }}">{{ letter }}</a>{% endfor %}</div><a class="button primary" href="{{ url_for('web.learn') }}">Continue learning {{ icon('arrow') }}</a><span class="journey-watermark" aria-hidden="true">Aa</span></section><section class="card"><div class="card-header"><h2>Find your flow</h2>{{ icon('sparkles') }}</div><p class="muted">A few small habits for a better start.</p><ol class="flow-list"><li><span>01</span><div><strong>A little light goes a long way</strong><p>Face a light source so your hand is clear.</p></div></li><li><span>02</span><div><strong>Give your hand some space</strong><p>Keep your whole hand inside the camera.</p></div></li><li><span>03</span><div><strong>Take it one letter at a time</strong><p>Hold still, then release before repeating.</p></div></li></ol></section></div>
-<div class="section-heading"><h2>Recent conversations</h2><a class="text-link" href="{{ url_for('web.history') }}">View history {{ icon('arrow') }}</a></div>
-<section class="card">{% if recent %}{% for item in recent %}<div class="recent-row">{{ icon('message') }}<p>{{ item.text }}</p><time data-date="{{ item.to_dict().created_at }}">{{ item.to_dict().created_at[:10] }}</time></div>{% endfor %}{% else %}<div class="empty-state compact">{{ icon('message') }}<strong>Your first words belong here.</strong><p>{{ 'Save a translation to pick up the conversation later.' if current_user.is_authenticated else 'Create a free account to save translations and track your practice.' }}</p><a class="text-link" href="{{ url_for('web.translate') if current_user.is_authenticated else url_for('web.register') }}">{{ 'Try the translator' if current_user.is_authenticated else 'Create an account' }} {{ icon('arrow') }}</a></div>{% endif %}</section>
+  <div class="page-heading">
+    <div>
+      <span class="eyebrow">A LITTLE PROGRESS, EVERY DAY</span>
+      <h1>
+        Hello,
+        {{ current_user.profile.name.split(' ')[0] if current_user.is_authenticated else 'explorer' }}<span
+          class="wave"
+        >
+          ✳</span
+        >
+      </h1>
+      <p>Good things start with a little understanding. What will you learn today?</p>
+    </div>
+    <a class="button primary" href="{{ url_for('web.translate') }}"
+      >{{ icon('hand') }} Start signing</a
+    >
+  </div>
+  <div class="stat-grid">
+    {% for value, label, glyph in [(stats.translations, 'Saved translations', 'message'), (stats.sessions, 'Practice sessions', 'sparkles'), ((stats.accuracy|string + '%') if stats.accuracy is not none else '—', 'Practice accuracy', 'target'), (stats.learned ~ ' / ' ~ (letters|length), 'Letters explored', 'book')] %}
+      <div class="stat-card">
+        <span class="stat-label">{{ label }}{{ icon(glyph) }}</span><strong>{{ value }}</strong
+        ><small
+          >{{ 'From your completed camera attempts' if glyph == 'target' else 'Your journey, at your pace' }}</small
+        >
+      </div>
+    {% endfor %}
+  </div>
+  <div class="dashboard-grid">
+    <section class="journey-card">
+      <span class="eyebrow">A TO Z. SO MANY POSSIBILITIES.</span>
+      <h2>Your hands have<br />something to say.</h2>
+      <p>
+        Start with the basics of American Sign Language.<br />There’s no rush. Just your next small
+        step.
+      </p>
+      <div class="letter-chips">
+        {% for letter in letters %}
+          <a href="{{ url_for('web.learn') }}#letter-{{ letter }}">{{ letter }}</a>
+        {% endfor %}
+      </div>
+      <a class="button primary" href="{{ url_for('web.learn') }}"
+        >Continue learning {{ icon('arrow') }}</a
+      ><span class="journey-watermark" aria-hidden="true">Aa</span>
+    </section>
+    <section class="card">
+      <div class="card-header">
+        <h2>Find your flow</h2>
+        {{ icon('sparkles') }}
+      </div>
+      <p class="muted">A few small habits for a better start.</p>
+      <ol class="flow-list">
+        <li>
+          <span>01</span>
+          <div>
+            <strong>A little light goes a long way</strong>
+            <p>Face a light source so your hand is clear.</p>
+          </div>
+        </li>
+        <li>
+          <span>02</span>
+          <div>
+            <strong>Give your hand some space</strong>
+            <p>Keep your whole hand inside the camera.</p>
+          </div>
+        </li>
+        <li>
+          <span>03</span>
+          <div>
+            <strong>Take it one letter at a time</strong>
+            <p>Hold still, then release before repeating.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </div>
+  <div class="section-heading">
+    <h2>Recent conversations</h2>
+    <a class="text-link" href="{{ url_for('web.history') }}">View history {{ icon('arrow') }}</a>
+  </div>
+  <section class="card">
+    {% if recent %}
+      {% for item in recent %}
+        <div class="recent-row">
+          {{ icon('message') }}
+          <p>{{ item.text }}</p>
+          <time data-date="{{ item.to_dict().created_at }}"
+            >{{ item.to_dict().created_at[:10] }}</time
+          >
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state compact">
+        {{ icon('message') }}<strong>Your first words belong here.</strong>
+        <p>
+          {{ 'Save a translation to pick up the conversation later.' if current_user.is_authenticated else 'Create a free account to save translations and track your practice.' }}
+        </p>
+        <a
+          class="text-link"
+          href="{{ url_for('web.translate') if current_user.is_authenticated else url_for('web.register') }}"
+          >{{ 'Try the translator' if current_user.is_authenticated else 'Create an account' }}
+          {{ icon('arrow') }}</a
+        >
+      </div>
+    {% endif %}
+  </section>
 {% endblock %}
-

@@ -1,0 +1,14 @@
+# Keep Prettier-managed source consistent across Windows and Unix checkouts.
+/.gitattributes text eol=lf
+/.prettierignore text eol=lf
+/.prettierrc.json text eol=lf
+/package.json text eol=lf
+/package-lock.json text eol=lf
+/*.md text eol=lf
+/*.yaml text eol=lf
+/*.yml text eol=lf
+/scripts/*.mjs text eol=lf
+/tests/*.mjs text eol=lf
+/signspeak/static/js/*.js text eol=lf
+/signspeak/static/css/*.css text eol=lf
+/signspeak/templates/*.html text eol=lf

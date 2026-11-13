@@ -4,12 +4,12 @@
 
 ## Available annotation evidence
 
-| Source | Real samples/views audited | Hand used | Lighting | Camera |
-| --- | ---: | --- | --- | --- |
-| MU HandImages ASL / Massey | 895 usable static coordinate samples from 1,675 source images | Unknown | Five source-coded light directions per image | Fixed tripod/perpendicular setup documented for the dataset; per-image angle unknown |
-| ASLLVD research subset | 10 views of five existing J/Z performances | Unknown per token; source describes right-hand-dominant signers | Physical illumination unknown; delivered video brightness is normalized | Five frontal and five signer-right profile views |
-| Existing ASLYset pool | 4,770 unique samples | Publisher explicitly states right-hand images | Unknown per image | Unknown per image |
-| Existing ASL-HG pool | 5,746 unique samples | Unknown | Unknown per image | Unknown per image |
+| Source                     |                                    Real samples/views audited | Hand used                                                       | Lighting                                                                | Camera                                                                               |
+| -------------------------- | ------------------------------------------------------------: | --------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| MU HandImages ASL / Massey | 895 usable static coordinate samples from 1,675 source images | Unknown                                                         | Five source-coded light directions per image                            | Fixed tripod/perpendicular setup documented for the dataset; per-image angle unknown |
+| ASLLVD research subset     |                    10 views of five existing J/Z performances | Unknown per token; source describes right-hand-dominant signers | Physical illumination unknown; delivered video brightness is normalized | Five frontal and five signer-right profile views                                     |
+| Existing ASLYset pool      |                                          4,770 unique samples | Publisher explicitly states right-hand images                   | Unknown per image                                                       | Unknown per image                                                                    |
+| Existing ASL-HG pool       |                                          5,746 unique samples | Unknown                                                         | Unknown per image                                                       | Unknown per image                                                                    |
 
 **New verified left-hand samples: 0. Samples jointly labeled with actual hand, physical lighting and camera view: 0.** Lighting direction does not establish bright/soft/dim intensity or a lux value. Camera position/setup does not establish an exact per-image viewing angle. No numeric camera angle was invented. The schema distinguishes participant dominance from the hand actually used: right-hand dominance alone cannot populate a per-token physical-hand annotation. The previous local ASLLVD metadata shortcut has been corrected to keep actual hand unknown; coordinate data and recognition metrics are unchanged.
 
@@ -22,12 +22,12 @@ Section 7 grants attributed use/distribution, requires its notice to accompany r
 The previous unclear-rights decision is superseded by this primary evidence. `datasets/massey-landmarks.json` now bundles the existing **895 original coordinate records**, with corrected license metadata and per-field evidence links/locators. Every source-image hash was rechecked against the pinned archive; coordinates did not change. The images remain in the ignored cache. This source is reserved for a lighting benchmark, not added to the training pool. `ml.train` rejects benchmark/review-only records to preserve that separation.
 
 | Light direction | Source images | Valid tracked coordinates | Detection failures |
-| --- | ---: | ---: | ---: |
-| Bottom | 480 | 260 | 220 |
-| Diffuse | 475 | 285 | 190 |
-| Left | 240 | 116 | 124 |
-| Right | 240 | 83 | 157 |
-| Top | 240 | 151 | 89 |
+| --------------- | ------------: | ------------------------: | -----------------: |
+| Bottom          |           480 |                       260 |                220 |
+| Diffuse         |           475 |                       285 |                190 |
+| Left            |           240 |                       116 |                124 |
+| Right           |           240 |                        83 |                157 |
+| Top             |           240 |                       151 |                 89 |
 
 Detection fails for **780/1,675** selected source images. Evaluating only the 895 successfully tracked images would hide those failures. The new benchmark counts them as recognition failures and reports class support per condition. End-to-end gated recognition is 36.3% for the installed static model and 44.9% for the existing frozen static candidate. Unequal class/signer composition, segmented backgrounds and hand tilt confound comparisons between light directions; these numbers do not isolate a causal lighting effect. Neither model was fitted or tuned on this benchmark.
 
@@ -37,10 +37,10 @@ The [publisher's recording documentation](https://www.bu.edu/asllrp/av/dai-asllv
 
 There are **five performances, three source signer IDs, ten camera views**. The extra view does not create another person or another recording. Both panels remain grouped by the original performance ID and clip hash. Physical hand stays unknown per token even though the recording protocol describes right-hand-dominant consultants. Brightness normalization is recorded as processing, not physical lighting. All ten views pass the same tracking/movement checks.
 
-| Fixed motion model | Frontal correct after rejection | Profile correct after rejection |
-| --- | ---: | ---: |
-| Preserved original model | 0/5 | 0/5 |
-| Installed expanded model | 3/5 | 1/5 |
+| Fixed motion model       | Frontal correct after rejection | Profile correct after rejection |
+| ------------------------ | ------------------------------: | ------------------------------: |
+| Preserved original model |                             0/5 |                             0/5 |
+| Installed expanded model |                             3/5 |                             1/5 |
 
 The small profile result exposes a remaining limitation. This is a paired diagnostic using an already-reviewed source, not a new untouched test corpus. No model fitting, gate tuning or promotion follows these results. Source terms restrict redistribution/commercial use; videos, source annotation subset, signer mapping and coordinates remain in ignored local storage. Only aggregate results are bundled.
 

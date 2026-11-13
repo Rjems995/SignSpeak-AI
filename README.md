@@ -62,10 +62,10 @@ The static model uses [SigNN's pinned public coordinate file](https://github.com
 
 The installed J/Z model uses **188 real movements and 10 non-J/Z controls** from SigNN's CC0 videos and SignAlphaSet's CC BY 4.0 original AVIs. It splits 198 clips into 119 training, 39 validation and 40 test clips, preserving every original baseline split before augmentation. Per-clip signer IDs are unavailable. Full provenance, speed/size measurements, limitations and reproduction commands are in [MOTION_DATA.md](MOTION_DATA.md).
 
-| Model | Raw held-out accuracy | Accuracy after the default rejection gate |
-| --- | --- | --- |
-| 24 static letters | 74.4% on 125 samples | 68.0% on 125 samples (previously 68.8%) |
-| J/Z movements | 97.37% on 38 positive test clips | 84.21% on those 38 clips |
+| Model             | Raw held-out accuracy            | Accuracy after the default rejection gate |
+| ----------------- | -------------------------------- | ----------------------------------------- |
+| 24 static letters | 74.4% on 125 samples             | 68.0% on 125 samples (previously 68.8%)   |
+| J/Z movements     | 97.37% on 38 positive test clips | 84.21% on those 38 clips                  |
 
 Gated accuracy counts rejected valid examples as errors; it is not precision among accepted outputs. The motion model rejects 2/2 held-out non-J/Z controls. An independent, research-only ASLLVD benchmark yields 3/5 accepted correct J/Z predictions and 0/11 falsely accepted controls, versus 0/5 and 0/11 for the old model. These tiny control sets do not establish reliable unknown-gesture rejection. The public motion split has no per-clip signer IDs and does not estimate unseen-signer accuracy. The static rejection update reduces false letters from 16/48 to 2/48 reviewed held-out unknown poses; see UNKNOWN_HANDS.md for the still-image limits and one additional known-letter false rejection. In the static class network, Q still has only two unique samples: one training, one test, no validation. Its gate uses a fixed conservative fallback, and the single Q test sample was not correctly classified.
 
@@ -180,6 +180,19 @@ The included `render.yaml` defines a Flask web service and PostgreSQL database. 
 `TRUST_PROXY=1` trusts one reverse proxy for the client IP and scheme. Use it only behind infrastructure that supplies/replaces these headers. The default limiter storage is process-local; the included deployment uses one worker. For multiple workers/instances use a shared limiter store, e.g. install `redis`, set `RATELIMIT_STORAGE_URI=redis://...`, and configure a managed Redis service. Database setup should become a dedicated release step as the service grows.
 
 See [Render's Flask guide](https://render.com/docs/deploy-flask). Python/Flask and PostgreSQL need a Python-capable host; they cannot run as a static Sites deployment.
+
+## Code formatting
+
+Install the pinned development tools with `npm.cmd ci`, then use:
+
+```powershell
+npm.cmd run format
+npm.cmd run format:check
+```
+
+Prettier formats JavaScript, CSS, Jinja HTML templates, configuration files and Markdown. Its settings are in `.prettierrc.json`; the Jinja plugin handles template syntax. Keep the template ignore comments around server-rendered JSON blocks, and preserve explicit whitespace in Jinja text loops.
+
+`.prettierignore` excludes datasets, exported models, generated static data, local runtime files and Python. Those data/model files include frozen byte hashes and should be regenerated through their existing scripts.
 
 ## Tests
 
