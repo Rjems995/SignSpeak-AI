@@ -7,6 +7,11 @@ export function initTranslatorLayout() {
   );
   const labels = panels.map((panel) => panel.getAttribute('aria-labelledby'));
   const compact = matchMedia('(max-width: 980px)');
+  const textCameraControls = document.getElementById('text-camera-controls');
+  const textCameraStatus = document.getElementById('text-camera-status');
+  const textCameraStop = document.getElementById('text-camera-stop');
+  const cameraStatus = document.getElementById('camera-status');
+  const cameraStop = document.getElementById('camera-stop');
   let selected = location.hash === '#text-workspace' ? 'text' : 'camera';
   function render() {
     const focused = document.activeElement;
@@ -15,6 +20,7 @@ export function initTranslatorLayout() {
       if (editing >= 0) selected = buttons[editing].dataset.workspaceView;
     }
     tabs.hidden = !compact.matches;
+    textCameraControls.hidden = !compact.matches || selected !== 'text';
     if (compact.matches) tabs.setAttribute('role', 'tablist');
     else tabs.removeAttribute('role');
     buttons.forEach((button, index) => {
@@ -46,6 +52,14 @@ export function initTranslatorLayout() {
       ].find((element) => element.getClientRects().length);
       target?.focus({ preventScroll: true });
     }
+    if (textCameraControls.hidden && textCameraControls.contains(focused)) {
+      const target = compact.matches
+        ? buttons.find((button) => button.dataset.workspaceView === selected)
+        : cameraStop.disabled
+          ? document.getElementById('translation-text')
+          : cameraStop;
+      target.focus({ preventScroll: true });
+    }
   }
   buttons.forEach((button, index) => {
     button.addEventListener('click', () => {
@@ -71,11 +85,21 @@ export function initTranslatorLayout() {
   const indicator = document.getElementById('workspace-camera-indicator');
   const updateCamera = () => {
     indicator.hidden = !viewport.classList.contains('running');
+    if (textCameraStatus.innerHTML !== cameraStatus.innerHTML) {
+      textCameraStatus.replaceChildren(
+        ...[...cameraStatus.childNodes].map((node) => node.cloneNode(true)),
+      );
+    }
+    textCameraStop.disabled = cameraStop.disabled;
   };
-  new MutationObserver(updateCamera).observe(viewport, {
+  const cameraObserver = new MutationObserver(updateCamera);
+  cameraObserver.observe(viewport, {
     attributes: true,
     attributeFilter: ['class'],
   });
+  cameraObserver.observe(cameraStatus, { childList: true, subtree: true, characterData: true });
+  cameraObserver.observe(cameraStop, { attributes: true, attributeFilter: ['disabled'] });
+  textCameraStop.addEventListener('click', () => cameraStop.click());
   updateCamera();
   const help = document.getElementById('translator-help');
   document.getElementById('translator-help-open').addEventListener('click', () => help.showModal());

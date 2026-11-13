@@ -45,6 +45,22 @@ body[data-page='translate'] .page-heading p {
   align-items: center;
   flex-shrink: 0;
 }
+.text-camera-controls {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.text-camera-controls .camera-status {
+  min-width: 0;
+  font-size: 13px;
+  text-align: left;
+}
+.text-camera-controls .button {
+  flex-shrink: 0;
+}
 body[data-page='translate'] .workspace-tabs {
   flex-shrink: 0;
   gap: 8px;

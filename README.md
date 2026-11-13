@@ -212,6 +212,7 @@ npm.cmd run test:navigation-browser
 npm.cmd run test:translator-viewport
 npm.cmd run test:worker-browser
 npm.cmd run test:camera-async-browser
+npm.cmd run test:text-camera-browser
 ```
 
 Browser checks use the installed Windows Google Chrome at its standard location; set `CHROME_PATH` if yours differs. Set `TEST_BASE_URL` for another local port. They cover desktop/mobile page rendering and overflow, actual CDN model loading and inference with a **fake camera**, a real recorded image from Google's MediaPipe hand sample, text controls, preferences, lessons, and the account/history/deletion lifecycle. The recorded-image check validates detector-to-classifier integration; it is not an ASL accuracy benchmark. Tests create and delete a temporary test account. They do not access your real webcam. The test requires internet access for external models and the reference image. Screenshots go to ignored `artifacts/`.
@@ -220,7 +221,7 @@ Automated checks cannot establish live recognition quality or ASL teaching valid
 
 The UI checks cover light/dark layouts from 320 to 1,440 pixels, touch target sizes, cursor-aware editing, guest save guidance, persistent camera errors/retry and state-only recognition announcements. Navigation checks cover the mobile drawer's focus trap, backdrop/Escape closing, resize behavior and skip link. UI screenshots are saved in `artifacts/ui/`.
 
-The live translator fits the viewport, with Camera/Your text tabs on narrow screens and a Help dialog for the alphabet guide and model information. Long text, Help content and panels on very short screens scroll internally. `test:translator-viewport` checks document scroll, control visibility, errors, keyboard tabs and resizing from 320×568 to 1440×900 in both themes.
+The live translator fits the viewport, with Camera/Your text tabs on narrow screens and a Help dialog for the alphabet guide and model information. The Text tab keeps camera status and Stop camera visible above the scrolling editor. Long text, Help content and panels on very short screens scroll internally. `test:translator-viewport` checks document scroll, control visibility, errors, keyboard tabs and resizing from 320×568 to 1440×900 in both themes. `test:text-camera-browser` checks status synchronization, stopping from Text, restart and permission cancellation with a fake camera.
 
 Worker checks run the real tracker on Google's public hand image, then verify typing and theme changes during a bounded busy-worker test. The ignored `artifacts/worker-responsiveness.json` records those local observations; it is not a device-wide frame-rate benchmark. Async camera checks cover one-frame backpressure, transferred-frame cleanup, worker errors/timeouts, Stop/Restart isolation and recording cancellation/completion. Node tests cover the worker transport without loading MediaPipe.
 

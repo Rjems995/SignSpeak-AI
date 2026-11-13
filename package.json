@@ -15,7 +15,8 @@
     "test:navigation-browser": "node tests/navigation-browser.mjs",
     "test:translator-viewport": "node tests/translator-viewport-browser.mjs",
     "test:worker-browser": "node tests/worker-browser.mjs",
-    "test:camera-async-browser": "node tests/camera-async-browser.mjs"
+    "test:camera-async-browser": "node tests/camera-async-browser.mjs",
+    "test:text-camera-browser": "node tests/text-camera-browser.mjs"
   },
   "devDependencies": {
     "@tensorflow/tfjs": "4.22.0",

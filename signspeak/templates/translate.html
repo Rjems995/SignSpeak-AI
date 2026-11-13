@@ -41,6 +41,25 @@
       {{ icon('message') }} Your text
     </button>
   </div>
+  <div
+    class="text-camera-controls"
+    id="text-camera-controls"
+    role="group"
+    aria-label="Camera controls"
+    hidden
+  >
+    <span
+      class="camera-status"
+      id="text-camera-status"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      ><span class="status-dot gray" aria-hidden="true"></span> Camera off</span
+    >
+    <button class="button secondary small" type="button" id="text-camera-stop" disabled>
+      {{ icon('stop') }} Stop camera
+    </button>
+  </div>
   <div class="translator-layout">
     <section id="camera-workspace" aria-label="Sign a letter">
       {% include 'camera.html' %}
