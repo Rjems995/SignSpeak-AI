@@ -30,22 +30,22 @@ try{
    const {CameraController}=await import('/static/js/camera.js');
    const {LandmarkClassifier,Stabilizer}=await import('/static/js/recognition.js');
    const model=await fetch('/static/models/classifier.json').then(r=>r.json());
-   const commits=[],experts=[],camera=new CameraController({onCommit:letter=>{commits.push(letter);document.getElementById('translation-text').value+=letter;}});
+   const commits=[],experts=[],camera=new CameraController({captureFrame:async()=>({close(){}}),onCommit:letter=>{commits.push(letter);document.getElementById('translation-text').value+=letter;}});
    camera.running=true;camera.classifier=new LandmarkClassifier(model,window.tf);camera.stabilizer=new Stabilizer(30);
    camera.video={readyState:2,currentTime:1};let row=fixtures[0],world=true;
    const unpack=points=>Array.from({length:21},(_,i)=>({x:points[i*3],y:points[i*3+1],z:points[i*3+2]}));
-   camera.landmarker={detectForVideo:()=>({landmarks:[unpack(row.points)],worldLandmarks:world?[unpack(row.world_points)]:[]})};
-   const tick=()=>{camera.lastFrame=-Infinity;camera.video.currentTime++;camera.frame();cancelAnimationFrame(camera.raf);};
-   for(const fixture of fixtures){row=fixture;camera.stabilizer.reset();for(let i=0;i<8;i++){tick();await new Promise(resolve=>setTimeout(resolve,40));}experts.push(camera.lastResult.expert||null);}
+   camera.tracker={detect:async()=>({landmarks:[unpack(row.points)],worldLandmarks:world?[unpack(row.world_points)]:[]}),close(){}};
+   const tick=async()=>{camera.lastFrame=-Infinity;camera.video.currentTime++;await camera.frame();cancelAnimationFrame(camera.raf);};
+   for(const fixture of fixtures){row=fixture;camera.stabilizer.reset();for(let i=0;i<8;i++){await tick();await new Promise(resolve=>setTimeout(resolve,40));}experts.push(camera.lastResult.expert||null);}
    let rejected=0;
    for(const fixture of unknown){
      row=fixture;camera.stabilizer.reset();
-     for(let i=0;i<8;i++){tick();await new Promise(resolve=>setTimeout(resolve,40));}
+     for(let i=0;i<8;i++){await tick();await new Promise(resolve=>setTimeout(resolve,40));}
      if(document.getElementById('prediction-label').textContent!=='Sign not recognized.')throw Error('Unknown pose accepted');
      if(document.getElementById('confidence-value').textContent!=='—')throw Error('Unknown pose shows confidence');
      rejected++;
    }
-   world=false;tick();const missingWorldRejected=camera.lastResult.label===null&&camera.running;
+   world=false;await tick();const missingWorldRejected=camera.lastResult.label===null&&camera.running;
    camera.running=false;cancelAnimationFrame(camera.raf);
    return {commits,experts,text:document.getElementById('translation-text').value,rejected,missingWorldRejected};
  },{fixtures,unknown});

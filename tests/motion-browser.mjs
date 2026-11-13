@@ -28,16 +28,16 @@ try{
     const finishedText=document.getElementById('record-motion').textContent;
     controller.lastSeen=performance.now();controller.recordMotion();controller.stop();
     const cancelledText=document.getElementById('record-motion').textContent;
-    const sample=recording=>{
+    const sample=async recording=>{
       let calls=0;
-      const camera=new CameraController();
+      const camera=new CameraController({captureFrame:async()=>({close(){}})});
       camera.running=true;camera.recording=recording;camera.motionStart=performance.now();camera.motionDuration=4500;
       camera.video={readyState:2,currentTime:1};camera.lastVideoTime=-1;camera.lastFrame=performance.now()-50;
-      camera.landmarker={detectForVideo:()=>{calls++;return {landmarks:[]};}};
-      camera.frame();cancelAnimationFrame(camera.raf);camera.running=false;
+      camera.tracker={detect:async()=>{calls++;return {landmarks:[]};},close(){}};
+      await camera.frame();cancelAnimationFrame(camera.raf);camera.running=false;
       return calls;
     };
-    return {duration,startedText,finishedText,cancelledText,commits,sequences,ended,recordingCalls:sample(true),staticCalls:sample(false)};
+    return {duration,startedText,finishedText,cancelledText,commits,sequences,ended,recordingCalls:await sample(true),staticCalls:await sample(false)};
   });
   assert.equal(result.duration,4500);
   assert.equal(result.startedText,'Finish movement');

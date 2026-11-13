@@ -18,26 +18,26 @@ try{
    const {CameraController}=await import('/static/js/camera.js');
    const {LandmarkClassifier,Stabilizer}=await import('/static/js/recognition.js');
    const data=await fetch('/static/models/classifier.json').then(r=>r.json());
-   const camera=new CameraController({onCommit:letter=>{document.getElementById('translation-text').value+=letter;}});
+   const camera=new CameraController({captureFrame:async()=>({close(){}}),onCommit:letter=>{document.getElementById('translation-text').value+=letter;}});
    camera.classifier=new LandmarkClassifier(data,window.tf);camera.stabilizer=new Stabilizer(500);
    camera.running=true;camera.video={readyState:2,currentTime:1};
    let points=examples[0].points;
-   camera.landmarker={detectForVideo:()=>({landmarks:[Array.from({length:21},(_,i)=>({x:points[i*2],y:points[i*2+1]}))]})};
+   camera.tracker={detect:async()=>({landmarks:[Array.from({length:21},(_,i)=>({x:points[i*2],y:points[i*2+1]}))]}),close(){}};
    let checked=0;
-   const tick=()=>{camera.lastFrame=-Infinity;camera.video.currentTime++;camera.frame();cancelAnimationFrame(camera.raf);};
+   const tick=async()=>{camera.lastFrame=-Infinity;camera.video.currentTime++;await camera.frame();cancelAnimationFrame(camera.raf);};
    for(const row of examples){
      points=row.points;camera.stabilizer.reset();
-     tick();
+     await tick();
      if(camera.lastResult.label)throw Error('Rejected public coordinates became a letter');
      if(document.getElementById('prediction-label').textContent!=='Sign not recognized.')throw Error('Unknown message missing');
      if(document.getElementById('confidence-value').textContent!=='—')throw Error('Rejected hand shows a confident percentage');
      checked++;
    }
    // Keep a real rejected hand visible beyond the hold duration.
-   for(let i=0;i<15;i++){tick();await new Promise(resolve=>setTimeout(resolve,90));}
+   for(let i=0;i<15;i++){await tick();await new Promise(resolve=>setTimeout(resolve,90));}
    const text=document.getElementById('translation-text').value;
    // Invalid tracked geometry must reject without stopping the camera.
-   points=Array(42).fill(0);tick();const running=camera.running,invalid=camera.lastResult.label;
+   points=Array(42).fill(0);await tick();const running=camera.running,invalid=camera.lastResult.label;
    // Rejected/invalid J/Z sequences must clear stale accepted results too.
    camera.motionClassifier={predict:()=>({label:null,confidence:.99,candidate:'J'})};
    camera.recording=true;camera.motionFrames=[];camera.lastMotion={label:'J'};
@@ -47,7 +47,7 @@ try{
    camera.recording=true;camera.lastMotion={label:'Z'};camera.finishMotion();
    const cleared=camera.lastMotion===null&&camera.lastResult.label===null;
    // No detected hand has its own prompt.
-   camera.landmarker={detectForVideo:()=>({landmarks:[]})};tick();
+   camera.tracker={detect:async()=>({landmarks:[]}),close(){}};await tick();
    const absent=document.getElementById('prediction-label').textContent;
    camera.running=false;cancelAnimationFrame(camera.raf);
    return {checked,text,running,invalid,motionLabel,cleared,absent};

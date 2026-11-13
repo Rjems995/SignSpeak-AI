@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/recognition.test.mjs tests/collection.test.mjs",
+    "test": "node --test tests/recognition.test.mjs tests/collection.test.mjs tests/hand-tracker.test.mjs",
     "test:browser": "node tests/browser.mjs",
     "test:collection-browser": "node tests/collection-browser.mjs",
     "test:motion-browser": "node tests/motion-browser.mjs",
@@ -11,7 +11,9 @@
     "test:weak-letters-browser": "node tests/weak-letters-browser.mjs",
     "test:ui-browser": "node tests/ui-ux-browser.mjs",
     "test:navigation-browser": "node tests/navigation-browser.mjs",
-    "test:translator-viewport": "node tests/translator-viewport-browser.mjs"
+    "test:translator-viewport": "node tests/translator-viewport-browser.mjs",
+    "test:worker-browser": "node tests/worker-browser.mjs",
+    "test:camera-async-browser": "node tests/camera-async-browser.mjs"
   },
   "devDependencies": {"@tensorflow/tfjs": "4.22.0", "playwright": "1.56.1"}
 }

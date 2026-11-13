@@ -7,7 +7,7 @@ This is an experimental alphabet MVP, not full ASL translation. It does not inte
 ## What works
 
 - Responsive landing page, dashboard, light/dark themes, and mobile navigation.
-- Permission-based webcam access; real 21-point MediaPipe tracking; optional landmark overlay.
+- Permission-based webcam access; real 21-point MediaPipe tracking in a dedicated Web Worker; optional landmark overlay.
 - Static classifier: 42 -> 96 -> 64 -> 24. Movement classifier: 160 temporal features -> 48 -> 24 -> 3 (J, Z, unsupported). Both use learned weights, not hardcoded letter predictions.
 - Wrist/scale/mirror normalization that preserves meaningful hand direction, confidence/distance gates, reviewed negative-handshape support, temporal smoothing, and release-before-repeat for static letters. Rejected hands display “Sign not recognized.”
 - Editable text, space/delete/clear/copy, and explicit saving to private history.
@@ -51,6 +51,10 @@ For a local production-style server on Windows:
 Camera access requires localhost or HTTPS. Desktop Chrome/Edge are the main validation targets. Other modern browsers may differ in camera, WebAssembly, clipboard, and speech support. First camera activation downloads MediaPipe/TensorFlow.js and landmark assets; an internet connection is required. No paid AI APIs are used.
 
 The checked-in classifier runs without installing machine learning dependencies or training anything.
+
+Hand detection runs in a dedicated browser worker using pinned MediaPipe 0.10.21 and the CPU delegate. One captured frame is transferred at a time; busy frames are skipped so the UI can keep responding. Image/world landmarks and handedness return to the UI for drawing and letter classification. Stop, tab hiding and page exit terminate the worker and camera stream; enabling the camera starts a fresh worker. The browser must support Web Workers and `createImageBitmap`. Camera frames stay on the device.
+
+J/Z sampling uses frame capture timestamps. Finish movement waits for its last in-flight frame before classifying once. Stop or a practice-target change cancels that recording, and results from an older camera session cannot append text or enter a new movement sequence.
 
 ## Model results and practical limits
 
@@ -193,6 +197,8 @@ npm.cmd run test:browser
 npm.cmd run test:ui-browser
 npm.cmd run test:navigation-browser
 npm.cmd run test:translator-viewport
+npm.cmd run test:worker-browser
+npm.cmd run test:camera-async-browser
 ```
 
 Browser checks use the installed Windows Google Chrome at its standard location; set `CHROME_PATH` if yours differs. Set `TEST_BASE_URL` for another local port. They cover desktop/mobile page rendering and overflow, actual CDN model loading and inference with a **fake camera**, a real recorded image from Google's MediaPipe hand sample, text controls, preferences, lessons, and the account/history/deletion lifecycle. The recorded-image check validates detector-to-classifier integration; it is not an ASL accuracy benchmark. Tests create and delete a temporary test account. They do not access your real webcam. The test requires internet access for external models and the reference image. Screenshots go to ignored `artifacts/`.
@@ -202,6 +208,8 @@ Automated checks cannot establish live recognition quality or ASL teaching valid
 The UI checks cover light/dark layouts from 320 to 1,440 pixels, touch target sizes, cursor-aware editing, guest save guidance, persistent camera errors/retry and state-only recognition announcements. Navigation checks cover the mobile drawer's focus trap, backdrop/Escape closing, resize behavior and skip link. UI screenshots are saved in `artifacts/ui/`.
 
 The live translator fits the viewport, with Camera/Your text tabs on narrow screens and a Help dialog for the alphabet guide and model information. Long text, Help content and panels on very short screens scroll internally. `test:translator-viewport` checks document scroll, control visibility, errors, keyboard tabs and resizing from 320×568 to 1440×900 in both themes.
+
+Worker checks run the real tracker on Google's public hand image, then verify typing and theme changes during a bounded busy-worker test. The ignored `artifacts/worker-responsiveness.json` records those local observations; it is not a device-wide frame-rate benchmark. Async camera checks cover one-frame backpressure, transferred-frame cleanup, worker errors/timeouts, Stop/Restart isolation and recording cancellation/completion. Node tests cover the worker transport without loading MediaPipe.
 
 ## Privacy and project layout
 
