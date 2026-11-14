@@ -604,6 +604,27 @@ form > small,
   font-size: 14px;
   max-width: 32ch;
 }
+.practice-focus-controls {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.practice-focus-controls label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.practice-focus-controls select {
+  width: 100%;
+}
+.practice-prompt #practice-focus-status {
+  margin: 10px 0 0;
+  max-width: none;
+  font-size: 13px;
+  line-height: 1.6;
+}
 .practice-prompt > small,
 .summary-stats span,
 .session-summary > p {

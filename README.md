@@ -13,7 +13,7 @@ This is an experimental alphabet MVP, not full ASL translation. It does not inte
 - Editable text with correction-mode insertion pause, explicit Resume, shared Undo/Redo, space/delete/clear/copy, and explicit saving to private history.
 - English text-to-speech, available voice selection, speed, pause/resume, and stop.
 - All 26 ASL lesson cards, alphabetical navigation, recorded static references, animated J/Z movement references, and links to ASL University visual demonstrations.
-- Five-letter camera practice sessions, explicit model feedback, attempt counts, session summaries, and saved results.
+- Camera practice with balanced six-prompt R/U and M/N sessions, five-letter mixed sessions, single-letter lesson practice, explicit model feedback, attempt counts, session summaries, and saved results.
 - Registration, login/logout, scrypt password hashes, CSRF protection, authentication rate limits, account deletion, and user-scoped records.
 - SQLAlchemy tables for users, profiles, settings, translations, practice sessions/results, and learning progress. SQLite for easy local setup; PostgreSQL on Render.
 - Local, consent-based landmark sample collection at `/capture`; data preparation, training, image extraction, and evaluation scripts.
@@ -83,6 +83,7 @@ Focusing the text editor or using its editing controls pauses automatic letter i
 **Undo** and **Redo** cover recognized letters, typing, selections, Space/Delete and confirmed Clear actions in one history of up to 100 changes. Use Ctrl/Cmd+Z to undo, Ctrl/Cmd+Shift+Z or Ctrl+Y to redo. History stays in this page's memory and disappears on reload or navigation; it is not a saved draft. Saved translations are separate and are changed only through the existing history actions.
 
 - In practice, J/Z prompts show a moving reference. Record the movement, then select **Check my sign** within eight seconds of an accepted result.
+- Choose **R / U** or **M / N** in **Practice focus** to stay with that pair for six prompts, three of each. Focus stays fixed if you stop and restart the camera. Finish the session to choose another focus; **Try another session** repeats the selected focus. A lesson’s **Practice** link repeats that letter for all five prompts. Mixed alphabet sessions still cover five letters.
 - Lower/release your hand before repeating a static letter. Use a new recording for another J/Z. Camera stop, tab hiding, and navigation cancel an unfinished recording.
 
 ## Reproduce training and evaluation
@@ -219,6 +220,7 @@ npm.cmd run test:worker-browser
 npm.cmd run test:camera-async-browser
 npm.cmd run test:text-camera-browser
 npm.cmd run test:editor-browser
+npm.cmd run test:practice-focus-browser
 ```
 
 Browser checks use the installed Windows Google Chrome at its standard location; set `CHROME_PATH` if yours differs. Set `TEST_BASE_URL` for another local port. They cover desktop/mobile page rendering and overflow, actual CDN model loading and inference with a **fake camera**, a real recorded image from Google's MediaPipe hand sample, text controls, preferences, lessons, and the account/history/deletion lifecycle. The recorded-image check validates detector-to-classifier integration; it is not an ASL accuracy benchmark. Tests create and delete a temporary test account. They do not access your real webcam. The test requires internet access for external models and the reference image. Screenshots go to ignored `artifacts/`.
@@ -232,6 +234,8 @@ The live translator fits the viewport, with Camera/Your text tabs on narrow scre
 Worker checks run the real tracker on Google's public hand image, then verify typing and theme changes during a bounded busy-worker test. The ignored `artifacts/worker-responsiveness.json` records those local observations; it is not a device-wide frame-rate benchmark. Async camera checks cover one-frame backpressure, transferred-frame cleanup, worker errors/timeouts, Stop/Restart isolation and recording cancellation/completion. Node tests cover the worker transport without loading MediaPipe.
 
 Editor checks use a fake camera and recorded reference coordinates to verify automatic additions, correction pause/Resume, held-sign release, shared Undo/Redo, selection restoration, keyboard/mobile history actions, composition input and mobile layout. Unit tests cover history bounds and redo branching.
+
+Focused practice checks use a synthetic camera stream, a fixture tracking worker and the real classifier to verify balanced pair sessions, focus locking, camera pauses, repeat sessions, single-letter lesson links and fresh observations between prompts. Unit tests cover target selection and unavailable labels.
 
 ## Privacy and project layout
 

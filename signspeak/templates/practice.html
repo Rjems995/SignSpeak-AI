@@ -4,7 +4,7 @@
     <div>
       <span class="eyebrow">PRACTICE STUDIO</span>
       <h1>A little practice goes a long way.</h1>
-      <p>Try five letters. Find your rhythm. Every attempt is part of learning.</p>
+      <p>Focus on a confusing pair or mix the alphabet. Every attempt is part of learning.</p>
     </div>
     <a class="button secondary" href="{{ url_for('web.learn') }}"
       >{{ icon('book') }} Review the letters</a
@@ -12,11 +12,27 @@
   </div>
   <div class="practice-layout">
     <section class="card practice-prompt" data-target="{{ target }}">
+      <div class="practice-focus-controls">
+        <label for="practice-focus">Practice focus</label>
+        <select id="practice-focus" aria-describedby="practice-focus-status">
+          <option value="mixed">Mixed alphabet · 5 letters</option>
+          <optgroup label="Confusion pairs">
+            <option value="ru">R / U · 6 prompts</option>
+            <option value="mn">M / N · 6 prompts</option>
+          </optgroup>
+          {% if target %}
+            <option value="letter" selected>Letter {{ target }} · 5 prompts</option>
+          {% endif %}
+        </select>
+        <p id="practice-focus-status" role="status" aria-live="polite">
+          Choose the letters you want to practice throughout this session.
+        </p>
+      </div>
       <span class="eyebrow" id="practice-step">YOUR NEXT SMALL STEP</span
       ><span id="practice-letter" class="practice-letter">{{ target or 'Aa' }}</span>
       <h2 id="practice-heading">Ready to give it a try?</h2>
       <p id="practice-feedback" aria-live="polite">
-        Enable your camera, then start a five-letter session.
+        Choose a focus, enable your camera, then start a session.
       </p>
       <canvas
         id="practice-reference"
@@ -56,6 +72,7 @@
   <section class="card session-summary" id="session-summary" hidden>
     <span class="eyebrow">ANOTHER STEP FORWARD</span>
     <h2>That’s a little more confidence.</h2>
+    <p id="summary-focus"></p>
     <div class="summary-stats">
       <div><strong id="summary-correct">0</strong><span>correct</span></div>
       <div><strong id="summary-attempts">0</strong><span>attempts</span></div>
