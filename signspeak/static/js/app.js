@@ -162,12 +162,13 @@ window.addEventListener('pagehide', () => speaker.stop());
 
 async function initTranslator() {
   const { initTranslatorLayout } = await import('./translator-layout.js');
-  initTranslatorLayout();
+  const { updateMessagePreview } = initTranslatorLayout();
   const text = document.getElementById('translation-text');
   const count = document.getElementById('character-count');
   let camera = null;
   let saving = false;
   const update = () => {
+    updateMessagePreview(text.value);
     count.textContent = `${text.value.length} / 5,000 characters`;
     for (const id of ['speak-text', 'copy-text'])
       document.getElementById(id).disabled = !text.value.trim();

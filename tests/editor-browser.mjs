@@ -9,6 +9,10 @@ const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:5000';
 const references = JSON.parse(
   await fs.readFile(new URL('../signspeak/static/models/references.json', import.meta.url), 'utf8'),
 );
+const tensorflowSource = await fs.readFile(
+  new URL('../node_modules/@tensorflow/tfjs/dist/tf.min.js', import.meta.url),
+  'utf8',
+);
 const points = Array.from({ length: 21 }, (_, index) => ({
   x: references.L[index * 2],
   y: references.L[index * 2 + 1],
@@ -44,14 +48,36 @@ const browser = await chromium.launch({
   args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'],
 });
 const errors = [];
+const diagnostics = new WeakMap();
+let activePage;
 const textSelector = '#translation-text';
 const textTab = '.workspace-tabs [data-workspace-view="text"]';
 const cameraTab = '.workspace-tabs [data-workspace-view="camera"]';
+const emptyPreview = 'Your message will appear here.';
 
 async function openTranslator(context) {
   const page = await context.newPage();
+  activePage = page;
+  const messages = [];
+  diagnostics.set(page, messages);
+  page.on('console', (message) => {
+    if (['error', 'warning'].includes(message.type()))
+      messages.push({ type: message.type(), message: message.text() });
+  });
+  page.on('requestfailed', (request) =>
+    messages.push({ type: 'requestfailed', url: request.url(), failure: request.failure() }),
+  );
+  page.on('response', (response) => {
+    if (!response.ok())
+      messages.push({ type: 'http-error', url: response.url(), status: response.status() });
+  });
   page.on('pageerror', (error) => errors.push(error.message));
   await page.route('https://fonts.googleapis.com/**', (route) => route.abort());
+  // Keep this real-classifier fixture test independent of CDN availability.
+  // The installed package and production URL both pin TensorFlow.js 4.22.0.
+  await page.route('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js', (route) =>
+    route.fulfill({ body: tensorflowSource, contentType: 'text/javascript' }),
+  );
   await page.route('**/static/js/hand-tracking-worker.js', (route) =>
     route.fulfill({ body: workerSource, contentType: 'text/javascript' }),
   );
@@ -59,6 +85,20 @@ async function openTranslator(context) {
   await page.waitForFunction(() => document.getElementById('undo-text'));
   await page.waitForFunction(() => document.getElementById('character-count').textContent);
   return page;
+}
+
+async function resizeTranslator(page, viewport) {
+  await page.setViewportSize(viewport);
+  // Chrome dispatches the matchMedia change asynchronously after the viewport update.
+  await page.waitForFunction((compact) => {
+    const tabs = document.querySelector('.workspace-tabs');
+    const cameraSelected =
+      document.getElementById('workspace-tab-camera').getAttribute('aria-selected') === 'true';
+    return (
+      tabs.hidden === !compact &&
+      document.getElementById('camera-message-preview').hidden === (!compact || !cameraSelected)
+    );
+  }, viewport.width <= 980);
 }
 
 async function valueIs(page, value, label = 'editor value') {
@@ -71,6 +111,11 @@ async function valueIs(page, value, label = 'editor value') {
     (await page.locator('#character-count').textContent()).trim(),
     `${value.length} / 5,000 characters`,
     `${label}: character count`,
+  );
+  assert.equal(
+    await page.locator('#camera-message-text').textContent(),
+    value.trim() ? value : emptyPreview,
+    `${label}: the Camera preview mirrors the same message`,
   );
 }
 
@@ -160,6 +205,56 @@ async function cameraState(page) {
   }));
 }
 
+async function waitForCameraReady(page) {
+  await page.waitForFunction(
+    () => document.getElementById('camera-status').textContent.trim() === 'Camera on',
+    undefined,
+    { timeout: 120000 },
+  );
+}
+
+async function dumpCameraDiagnostics(page) {
+  const detail = await page.evaluate(() => {
+    const video = document.getElementById('webcam');
+    return {
+      status: document.getElementById('camera-status').textContent.trim(),
+      error: document.getElementById('camera-error').textContent,
+      prediction: document.getElementById('prediction-label').textContent,
+      predictionHint: document.getElementById('prediction-hint').textContent,
+      predictionLetter: document.getElementById('prediction-letter').textContent,
+      score: document.getElementById('confidence-value').textContent,
+      editor: {
+        value: document.getElementById('translation-text').value,
+        focused: document.activeElement.id,
+        pauseMessage: document.getElementById('editor-pause-message').textContent,
+        resumeVisible: Boolean(document.getElementById('resume-insertion').getClientRects().length),
+      },
+      start: {
+        disabled: document.getElementById('camera-start').disabled,
+        busy: document.getElementById('camera-start').getAttribute('aria-busy'),
+      },
+      visibility: document.visibilityState,
+      video: {
+        readyState: video.readyState,
+        paused: video.paused,
+        width: video.videoWidth,
+        height: video.videoHeight,
+        currentTime: video.currentTime,
+        error: video.error?.message,
+      },
+      tensorflow: { loaded: Boolean(window.tf), backend: window.tf?.getBackend() },
+      workerMessages: window.__editorTest.workerMessages,
+      mediaEvents: window.__editorTest.mediaEvents,
+    };
+  });
+  console.error(
+    'Editor browser failure diagnostics:',
+    JSON.stringify({ ...(await cameraState(page)), ...detail, browser: diagnostics.get(page) }),
+  );
+  await fs.mkdir('artifacts', { recursive: true });
+  await page.screenshot({ path: 'artifacts/editor-browser-failure.png', fullPage: true });
+}
+
 async function confirmClear(page, confirm) {
   await page.locator('#clear-text').click();
   assert.equal(await page.locator('#confirm-dialog').isVisible(), true);
@@ -209,6 +304,57 @@ async function expectMobileControls(page, label) {
   }
 }
 
+async function expectCameraPreview(page, label) {
+  assert.equal(await page.locator('#camera-message-preview').isVisible(), true, label);
+  const geometry = await page.locator('#camera-message-text').evaluate((preview) => {
+    const box = preview.getBoundingClientRect();
+    const tail = document.createRange();
+    tail.selectNodeContents(preview);
+    tail.setStart(preview.firstChild, preview.textContent.length - 1);
+    const lastCharacter = tail.getBoundingClientRect();
+    const edit = document.getElementById('camera-message-edit');
+    const button = edit.getBoundingClientRect();
+    const hit = document.elementFromPoint(
+      button.x + button.width / 2,
+      button.y + button.height / 2,
+    );
+    return {
+      box: { left: box.left, right: box.right, top: box.top, bottom: box.bottom },
+      tail: { left: lastCharacter.left, right: lastCharacter.right },
+      atEnd: preview.scrollLeft + preview.clientWidth >= preview.scrollWidth - 2,
+      button: { width: button.width, height: button.height },
+      reachable: hit === edit || edit.contains(hit),
+      viewportWidth: innerWidth,
+      viewportHeight: innerHeight,
+      documentWidth: document.documentElement.scrollWidth,
+      documentHeight: document.documentElement.scrollHeight,
+      scrollY,
+    };
+  });
+  assert.ok(
+    geometry.atEnd,
+    `${label}: preview follows the latest text: ${JSON.stringify(geometry)}`,
+  );
+  assert.ok(
+    geometry.tail.left >= geometry.box.left - 1 && geometry.tail.right <= geometry.box.right + 1,
+    `${label}: the most recent character remains visible: ${JSON.stringify(geometry)}`,
+  );
+  assert.ok(
+    geometry.box.top >= 0 &&
+      geometry.box.bottom <= geometry.viewportHeight + 1 &&
+      geometry.reachable &&
+      geometry.button.width >= 43.5 &&
+      geometry.button.height >= 43.5,
+    `${label}: preview and Edit text remain reachable: ${JSON.stringify(geometry)}`,
+  );
+  assert.ok(
+    geometry.documentWidth <= geometry.viewportWidth + 1 &&
+      geometry.documentHeight <= geometry.viewportHeight + 1 &&
+      geometry.scrollY === 0,
+    `${label}: preview must keep the document fixed: ${JSON.stringify(geometry)}`,
+  );
+}
+
 try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
   await context.addInitScript(() => {
@@ -223,6 +369,8 @@ try {
       serial: 0,
       ack: 0,
       stops: [],
+      workerMessages: [],
+      mediaEvents: [],
     });
     const nativeStop = MediaStreamTrack.prototype.stop;
     MediaStreamTrack.prototype.stop = function () {
@@ -237,6 +385,8 @@ try {
         state.worker = this;
         state.workers++;
         this.addEventListener('message', ({ data }) => {
+          state.workerMessages.push({ type: data.type, id: data.id, at: performance.now() });
+          if (state.workerMessages.length > 20) state.workerMessages.shift();
           if (data.type === 'fixture-ready') state.ack = data.serial;
         });
       }
@@ -247,9 +397,20 @@ try {
     };
     const getUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
     navigator.mediaDevices.getUserMedia = async (constraints) => {
-      const stream = await getUserMedia(constraints);
-      state.streams.push(stream);
-      return stream;
+      state.mediaEvents.push({ type: 'requested', at: performance.now() });
+      try {
+        const stream = await getUserMedia(constraints);
+        state.streams.push(stream);
+        state.mediaEvents.push({ type: 'resolved', at: performance.now() });
+        for (const track of stream.getTracks())
+          track.addEventListener('ended', () =>
+            state.mediaEvents.push({ type: 'track-ended', at: performance.now() }),
+          );
+        return stream;
+      } catch (error) {
+        state.mediaEvents.push({ type: 'rejected', name: error.name, message: error.message });
+        throw error;
+      }
     };
   });
 
@@ -261,13 +422,14 @@ try {
     await cameraPage.locator('#editor-announcement').getAttribute('aria-live'),
     'polite',
   );
+  assert.equal(await cameraPage.locator('#camera-message-preview').isVisible(), false);
+  await resizeTranslator(cameraPage, { width: 390, height: 844 });
+  await valueIs(cameraPage, '');
+  await expectCameraPreview(cameraPage, 'empty mobile Camera preview');
   await cameraPage.locator('#camera-start').click();
-  await cameraPage.waitForFunction(
-    () => document.getElementById('camera-status').textContent.trim() === 'Camera on',
-    undefined,
-    { timeout: 120000 },
-  );
+  await waitForCameraReady(cameraPage);
   await valueIs(cameraPage, 'L', 'real classifier automatically appends through app onCommit');
+  await expectCameraPreview(cameraPage, 'recognized letter in mobile Camera preview');
   await expectPaused(cameraPage, false);
   assert.equal(
     await cameraPage.locator(textSelector).evaluate((text) => text === document.activeElement),
@@ -279,6 +441,23 @@ try {
     running.tracks.length > 0 && running.tracks.every((state) => state === 'live'),
     JSON.stringify(running),
   );
+
+  await cameraPage.locator('#camera-message-edit').click();
+  assert.equal(await cameraPage.locator('#text-workspace').isVisible(), true);
+  assert.equal(await cameraPage.locator('#camera-message-preview').isVisible(), false);
+  assert.equal(
+    await cameraPage.locator(textSelector).evaluate((text) => text === document.activeElement),
+    true,
+    'Edit text opens and focuses the editor',
+  );
+  await expectPaused(cameraPage);
+  assert.deepEqual(
+    await cameraState(cameraPage),
+    running,
+    'preview editing keeps the camera active',
+  );
+  await resizeTranslator(cameraPage, { width: 1440, height: 1000 });
+  assert.equal(await cameraPage.locator('#camera-message-preview').isVisible(), false);
 
   await cameraPage.locator('#undo-text').click();
   await valueIs(cameraPage, '', 'Undo removes a recognized letter');
@@ -467,16 +646,20 @@ try {
   await page.locator('#redo-text').click();
   await valueIs(page, 'ABに');
 
-  await edit(page, 'A message that remains available during corrections.\n'.repeat(35));
+  const longMessage =
+    'A message that remains available during corrections.\n'.repeat(35) +
+    '<img src=x onerror="window.previewInjection=true">\nRECENT TEXT: CHECK SPELLING';
+  await edit(page, longMessage);
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 320, height: 568 },
   ]) {
-    await page.setViewportSize(viewport);
+    await resizeTranslator(page, viewport);
     await page.locator(textTab).click();
     await expectPaused(page);
     assert.equal(await page.locator('#text-workspace').isVisible(), true);
     assert.equal(await page.locator('#camera-workspace').isVisible(), false);
+    assert.equal(await page.locator('#camera-message-preview').isVisible(), false);
     await expectMobileControls(page, `${viewport.width}x${viewport.height} message mode`);
     await page.locator('#undo-text').click();
     assert.equal(await page.locator(textSelector).inputValue(), 'ABに');
@@ -490,8 +673,15 @@ try {
       'Undo must bring the restored editor into view inside its panel',
     );
     await page.locator('#redo-text').click();
-    await valueIs(page, 'A message that remains available during corrections.\n'.repeat(35));
+    await valueIs(page, longMessage);
     await page.locator(cameraTab).click();
+    await expectCameraPreview(page, `${viewport.width}x${viewport.height} recent message preview`);
+    assert.equal(
+      await page.locator('#camera-message-text *').count(),
+      0,
+      'render user text literally',
+    );
+    assert.equal(await page.evaluate(() => Boolean(window.previewInjection)), false);
     await expectPaused(page);
     await page.locator('#resume-insertion').click();
     await expectPaused(page, false);
@@ -499,7 +689,16 @@ try {
     await page.locator(textSelector).focus();
     await expectPaused(page);
   }
-  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator(cameraTab).click();
+  await page.locator('#camera-message-edit').focus();
+  await resizeTranslator(page, { width: 1440, height: 1000 });
+  assert.equal(await page.locator('#camera-message-preview').isVisible(), false);
+  assert.equal(
+    await page.evaluate(() => document.activeElement.getClientRects().length > 0),
+    true,
+    'desktop resize moves focus from the hidden preview button to a visible control',
+  );
+  await resizeTranslator(page, { width: 390, height: 844 });
   await page.locator(textTab).click();
   await page.locator('#text-workspace').evaluate((panel) => (panel.scrollTop = 0));
   await fs.mkdir('artifacts', { recursive: true });
@@ -507,8 +706,11 @@ try {
   await context.close();
   assert.deepEqual(errors, [], 'browser JavaScript errors');
   console.log(
-    'Editor browser checks passed: real-classifier additions, persistent correction pause with live fake camera, explicit Resume and fresh release, shared recognition/manual history, selection restoration, Space/Delete/Clear, cancellation, shortcuts, mobile history input, IME composition, and fixed mobile controls. No real camera was activated.',
+    'Editor browser checks passed: real-classifier additions, persistent correction pause with live fake camera, explicit Resume and fresh release, shared recognition/manual history, selection restoration, Space/Delete/Clear, cancellation, shortcuts, mobile history input, IME composition, fixed mobile controls, and synchronized mobile Camera message previews with recent literal text and an Edit shortcut. No real camera was activated.',
   );
+} catch (error) {
+  if (activePage && !activePage.isClosed()) await dumpCameraDiagnostics(activePage);
+  throw error;
 } finally {
   await browser.close();
 }

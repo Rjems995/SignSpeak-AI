@@ -12,6 +12,23 @@ export function initTranslatorLayout() {
   const textCameraStop = document.getElementById('text-camera-stop');
   const cameraStatus = document.getElementById('camera-status');
   const cameraStop = document.getElementById('camera-stop');
+  const messagePreview = document.getElementById('camera-message-preview');
+  const messageText = document.getElementById('camera-message-text');
+  const messageEdit = document.getElementById('camera-message-edit');
+  const text = document.getElementById('translation-text');
+  const scrollMessageToEnd = () => {
+    if (messagePreview.hidden) return;
+    messageText.scrollLeft =
+      getComputedStyle(messageText).direction === 'rtl'
+        ? -messageText.scrollWidth
+        : messageText.scrollWidth;
+  };
+  const updateMessagePreview = (value = text.value) => {
+    const empty = !value.trim();
+    messageText.textContent = empty ? 'Your message will appear here.' : value;
+    messageText.classList.toggle('is-empty', empty);
+    scrollMessageToEnd();
+  };
   let selected = location.hash === '#text-workspace' ? 'text' : 'camera';
   function render() {
     const focused = document.activeElement;
@@ -21,6 +38,8 @@ export function initTranslatorLayout() {
     }
     tabs.hidden = !compact.matches;
     textCameraControls.hidden = !compact.matches || selected !== 'text';
+    messagePreview.hidden = !compact.matches || selected !== 'camera';
+    updateMessagePreview();
     if (compact.matches) tabs.setAttribute('role', 'tablist');
     else tabs.removeAttribute('role');
     buttons.forEach((button, index) => {
@@ -60,6 +79,8 @@ export function initTranslatorLayout() {
           : cameraStop;
       target.focus({ preventScroll: true });
     }
+    if (messagePreview.hidden && messagePreview.contains(focused))
+      document.getElementById('text-heading').focus({ preventScroll: true });
   }
   buttons.forEach((button, index) => {
     button.addEventListener('click', () => {
@@ -79,7 +100,14 @@ export function initTranslatorLayout() {
       buttons[next].focus();
     });
   });
+  messageEdit.addEventListener('click', () => {
+    selected = 'text';
+    render();
+    text.focus({ preventScroll: true });
+    text.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  });
   compact.addEventListener('change', render);
+  window.addEventListener('resize', scrollMessageToEnd);
   render();
   const viewport = document.getElementById('camera-viewport');
   const indicator = document.getElementById('workspace-camera-indicator');
@@ -104,4 +132,5 @@ export function initTranslatorLayout() {
   const help = document.getElementById('translator-help');
   document.getElementById('translator-help-open').addEventListener('click', () => help.showModal());
   document.getElementById('translator-help-close').addEventListener('click', () => help.close());
+  return { updateMessagePreview };
 }

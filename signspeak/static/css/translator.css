@@ -82,6 +82,44 @@ body[data-page='translate'] .page-heading p {
 .text-camera-controls .button {
   flex-shrink: 0;
 }
+.camera-message-preview {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.camera-message-content {
+  flex: 1;
+  min-width: 0;
+}
+.camera-message-label {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+#camera-message-text {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+#camera-message-text.is-empty {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.camera-message-preview .button {
+  flex-shrink: 0;
+}
 body[data-page='translate'] .workspace-tabs {
   flex-shrink: 0;
   gap: 8px;

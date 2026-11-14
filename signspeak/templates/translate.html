@@ -71,6 +71,19 @@
     aria-live="polite"
     aria-atomic="true"
   ></p>
+  <div
+    class="camera-message-preview"
+    id="camera-message-preview"
+    role="group"
+    aria-labelledby="camera-message-label"
+    hidden
+  >
+    <div class="camera-message-content">
+      <span class="camera-message-label" id="camera-message-label">Recent text</span>
+      <p id="camera-message-text" dir="auto">Your message will appear here.</p>
+    </div>
+    <button class="button secondary small" type="button" id="camera-message-edit">Edit text</button>
+  </div>
   <div class="translator-layout">
     <section id="camera-workspace" aria-label="Sign a letter">
       {% include 'camera.html' %}
