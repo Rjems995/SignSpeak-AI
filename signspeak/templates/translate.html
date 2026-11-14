@@ -60,6 +60,17 @@
       {{ icon('stop') }} Stop camera
     </button>
   </div>
+  <div class="editor-paused" id="editor-paused" hidden>
+    <span id="editor-pause-message">Automatic insertion paused</span>
+    <button class="button primary small" type="button" id="resume-insertion">Resume</button>
+  </div>
+  <p
+    class="sr-only"
+    id="editor-announcement"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></p>
   <div class="translator-layout">
     <section id="camera-workspace" aria-label="Sign a letter">
       {% include 'camera.html' %}
@@ -83,11 +94,11 @@
     </section>
     <section class="card translation-panel" id="text-workspace" aria-labelledby="text-heading">
       <div class="card-header">
-        <h2 id="text-heading">Your text</h2>
+        <h2 id="text-heading" tabindex="-1">Your text</h2>
         {{ icon('message') }}
       </div>
       <p class="muted small-text" id="editor-help">
-        Letters appear here as you sign. You can also type or correct them.
+        Editing pauses letter insertion. Select Resume when you are ready to sign again.
       </p>
       <label class="sr-only" for="translation-text">Translated text</label>
       <textarea
@@ -104,6 +115,28 @@
         ><button class="button small secondary" id="delete-letter">
           {{ icon('backspace') }} Delete</button
         ><button class="button small ghost" id="clear-text">Clear</button>
+        <div class="history-actions button-row" role="group" aria-label="Text edit history">
+          <button
+            class="button small secondary"
+            type="button"
+            id="undo-text"
+            title="Undo (Ctrl/Cmd+Z)"
+            aria-keyshortcuts="Control+z Meta+z"
+            disabled
+          >
+            Undo
+          </button>
+          <button
+            class="button small secondary"
+            type="button"
+            id="redo-text"
+            title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)"
+            aria-keyshortcuts="Control+Shift+z Meta+Shift+z Control+y"
+            disabled
+          >
+            Redo
+          </button>
+        </div>
       </div>
       <div class="speech-controls">
         <button class="button primary" id="speak-text">{{ icon('volume') }} Read aloud</button

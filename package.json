@@ -5,7 +5,7 @@
   "scripts": {
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
-    "test": "node --test tests/recognition.test.mjs tests/collection.test.mjs tests/hand-tracker.test.mjs",
+    "test": "node --test tests/recognition.test.mjs tests/collection.test.mjs tests/hand-tracker.test.mjs tests/editor-history.test.mjs",
     "test:browser": "node tests/browser.mjs",
     "test:collection-browser": "node tests/collection-browser.mjs",
     "test:motion-browser": "node tests/motion-browser.mjs",
@@ -16,7 +16,8 @@
     "test:translator-viewport": "node tests/translator-viewport-browser.mjs",
     "test:worker-browser": "node tests/worker-browser.mjs",
     "test:camera-async-browser": "node tests/camera-async-browser.mjs",
-    "test:text-camera-browser": "node tests/text-camera-browser.mjs"
+    "test:text-camera-browser": "node tests/text-camera-browser.mjs",
+    "test:editor-browser": "node tests/editor-browser.mjs"
   },
   "devDependencies": {
     "@tensorflow/tfjs": "4.22.0",

@@ -59,10 +59,11 @@ export function makeIcon(name) {
   svg.append(use);
   return svg;
 }
-export function confirmAction(title, message) {
+export function confirmAction(title, message, confirmLabel = 'Delete') {
   const dialog = document.getElementById('confirm-dialog');
   document.getElementById('confirm-title').textContent = title;
   document.getElementById('confirm-message').textContent = message;
+  dialog.querySelector('[value="confirm"]').textContent = confirmLabel;
   return new Promise((resolve) => {
     dialog.addEventListener('close', () => resolve(dialog.returnValue === 'confirm'), {
       once: true,
@@ -164,13 +165,12 @@ async function initTranslator() {
   initTranslatorLayout();
   const text = document.getElementById('translation-text');
   const count = document.getElementById('character-count');
+  let camera = null;
   let saving = false;
   const update = () => {
     count.textContent = `${text.value.length} / 5,000 characters`;
     for (const id of ['speak-text', 'copy-text'])
       document.getElementById(id).disabled = !text.value.trim();
-    for (const id of ['clear-text', 'delete-letter'])
-      document.getElementById(id).disabled = !text.value.length;
     document.getElementById('save-text').disabled =
       saving || !text.value.trim() || !settings.save_history || !config.authenticated;
   };
@@ -181,30 +181,16 @@ async function initTranslator() {
     link.textContent = 'Enable saving in Settings';
     saveHint.replaceChildren('Saving is turned off. ', link, '.');
   }
-  const insertAtCursor = (value) => {
-    const start = text.selectionStart,
-      end = text.selectionEnd;
-    if (text.value.length - (end - start) + value.length > text.maxLength) return;
-    text.setRangeText(value, start, end, 'end');
-    update();
-    text.focus();
-  };
-  text.addEventListener('input', update);
-  document.getElementById('add-space').addEventListener('click', () => insertAtCursor(' '));
-  document.getElementById('delete-letter').addEventListener('click', () => {
-    const start = text.selectionStart,
-      end = text.selectionEnd;
-    const previous = Array.from(text.value.slice(0, start)).at(-1)?.length || 0;
-    text.setRangeText('', start === end ? start - previous : start, end, 'end');
-    update();
-    text.focus();
-  });
-  document.getElementById('clear-text').addEventListener('click', async () => {
-    if (await confirmAction('Clear this text?', 'This removes the current text from the editor.')) {
-      text.value = '';
-      speaker.stop();
-      update();
-    }
+  const { TranslatorEditor } = await import('./translator-editor.js');
+  const editor = new TranslatorEditor({
+    onChange: update,
+    resetRecognition: () => camera?.clearMotion(),
+    heldLetter: () => (camera?.running ? camera.lastResult?.label : null),
+    confirmClear: () =>
+      confirmAction('Clear this text?', 'You can restore the cleared text with Undo.', 'Clear'),
+    stopSpeech: () => speaker.stop(),
+    onLimit: () =>
+      toast('This translation has reached 5,000 characters. Save it and start another.'),
   });
   document.getElementById('copy-text').addEventListener('click', () => copyText(text.value));
   document.getElementById('speak-text').addEventListener('click', () => speaker.speak(text.value));
@@ -231,13 +217,9 @@ async function initTranslator() {
     ? `Static model: ${m.static_labels.length} letters, ${m.training_samples} unique training samples, ${(m.test_accuracy * 100).toFixed(1)}% raw accuracy on ${m.test_samples} held-out samples. Split: ${m.split}. ${m.motion?.ready ? `J/Z model: ${(m.motion.test_accuracy * 100).toFixed(1)}% raw accuracy on only ${m.motion.test_samples} held-out source clips; ${m.motion.split}.` : 'J/Z movement model is not installed.'} ${m.low_support_warning || ''} Experimental source-image and clip benchmarks do not establish live accuracy.`
     : 'No trained classifier is installed. Hand tracking and manual text editing remain available.';
   const { CameraController } = await import('./camera.js');
-  const camera = new CameraController({
-    onCommit: (letter) => {
-      if (text.value.length < 5000) {
-        text.value += letter;
-        update();
-      } else toast('This translation has reached 5,000 characters. Save it and start another.');
-    },
+  camera = new CameraController({
+    onCommit: (letter) => editor.appendRecognized(letter),
+    onResult: (result) => editor.observePrediction(result),
   });
   camera.bind();
   update();

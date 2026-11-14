@@ -10,7 +10,7 @@ This is an experimental alphabet MVP, not full ASL translation. It does not inte
 - Permission-based webcam access; real 21-point MediaPipe tracking in a dedicated Web Worker; optional landmark overlay.
 - Static classifier: 42 -> 96 -> 64 -> 24. Movement classifier: 160 temporal features -> 48 -> 24 -> 3 (J, Z, unsupported). Both use learned weights, not hardcoded letter predictions.
 - Wrist/scale/mirror normalization that preserves meaningful hand direction, confidence/distance gates, reviewed negative-handshape support, temporal smoothing, and release-before-repeat for static letters. Rejected hands display “Sign not recognized.”
-- Editable text, space/delete/clear/copy, and explicit saving to private history.
+- Editable text with correction-mode insertion pause, explicit Resume, shared Undo/Redo, space/delete/clear/copy, and explicit saving to private history.
 - English text-to-speech, available voice selection, speed, pause/resume, and stop.
 - All 26 ASL lesson cards, alphabetical navigation, recorded static references, animated J/Z movement references, and links to ASL University visual demonstrations.
 - Five-letter camera practice sessions, explicit model feedback, attempt counts, session summaries, and saved results.
@@ -77,6 +77,11 @@ See `signspeak/static/models/evaluation.json`, `motion-evaluation.json`, their m
 
 - A-I and K-Y: hold one clear handshape steady until the hold indicator fills.
 - J and Z: enable the camera, select **Record J / Z**, trace once, and select **Finish movement**. Recording ends automatically after 4.5 seconds. J uses the little fingertip; Z uses the index fingertip. Coordinates are held temporarily in browser memory; no video is recorded or uploaded.
+
+Focusing the text editor or using its editing controls pauses automatic letter insertion while the camera stays on. Leaving the editor keeps insertion paused. Select **Resume** when ready; release a currently recognized handshape before signing again. Entering corrections cancels an unfinished J/Z recording and discards pending recognition results.
+
+**Undo** and **Redo** cover recognized letters, typing, selections, Space/Delete and confirmed Clear actions in one history of up to 100 changes. Use Ctrl/Cmd+Z to undo, Ctrl/Cmd+Shift+Z or Ctrl+Y to redo. History stays in this page's memory and disappears on reload or navigation; it is not a saved draft. Saved translations are separate and are changed only through the existing history actions.
+
 - In practice, J/Z prompts show a moving reference. Record the movement, then select **Check my sign** within eight seconds of an accepted result.
 - Lower/release your hand before repeating a static letter. Use a new recording for another J/Z. Camera stop, tab hiding, and navigation cancel an unfinished recording.
 
@@ -213,6 +218,7 @@ npm.cmd run test:translator-viewport
 npm.cmd run test:worker-browser
 npm.cmd run test:camera-async-browser
 npm.cmd run test:text-camera-browser
+npm.cmd run test:editor-browser
 ```
 
 Browser checks use the installed Windows Google Chrome at its standard location; set `CHROME_PATH` if yours differs. Set `TEST_BASE_URL` for another local port. They cover desktop/mobile page rendering and overflow, actual CDN model loading and inference with a **fake camera**, a real recorded image from Google's MediaPipe hand sample, text controls, preferences, lessons, and the account/history/deletion lifecycle. The recorded-image check validates detector-to-classifier integration; it is not an ASL accuracy benchmark. Tests create and delete a temporary test account. They do not access your real webcam. The test requires internet access for external models and the reference image. Screenshots go to ignored `artifacts/`.
@@ -224,6 +230,8 @@ The UI checks cover light/dark layouts from 320 to 1,440 pixels, touch target si
 The live translator fits the viewport, with Camera/Your text tabs on narrow screens and a Help dialog for the alphabet guide and model information. The Text tab keeps camera status and Stop camera visible above the scrolling editor. Long text, Help content and panels on very short screens scroll internally. `test:translator-viewport` checks document scroll, control visibility, errors, keyboard tabs and resizing from 320×568 to 1440×900 in both themes. `test:text-camera-browser` checks status synchronization, stopping from Text, restart and permission cancellation with a fake camera.
 
 Worker checks run the real tracker on Google's public hand image, then verify typing and theme changes during a bounded busy-worker test. The ignored `artifacts/worker-responsiveness.json` records those local observations; it is not a device-wide frame-rate benchmark. Async camera checks cover one-frame backpressure, transferred-frame cleanup, worker errors/timeouts, Stop/Restart isolation and recording cancellation/completion. Node tests cover the worker transport without loading MediaPipe.
+
+Editor checks use a fake camera and recorded reference coordinates to verify automatic additions, correction pause/Resume, held-sign release, shared Undo/Redo, selection restoration, keyboard/mobile history actions, composition input and mobile layout. Unit tests cover history bounds and redo branching.
 
 ## Privacy and project layout
 
